@@ -52,18 +52,18 @@ else:
 # 3. ฐานข้อมูลวิชาการเรียน (12 รายวิชา)
 # ---------------------------------------------------------
 SUBJECT_NAMES = {
-    "math": "คณิตศาสตร์ (Math)",
-    "science": "วิทยาศาสตร์ (Science)",
-    "tech": "คอมพิวเตอร์ (Tech)",
+    "math": "คณิตศาสตร์ (Mathematics)",
+    "science": "วิทยาศาสตร์/ฟิสิกส์ (Science)",
+    "tech": "วิทยาการคำนวณ/คอมพิวเตอร์ (Computer & Tech)",
     "english": "ภาษาอังกฤษ (English)",
-    "art": "ศิลปะและการออกแบบ (Art)",
-    "social": "สังคมศึกษา (Social)",
-    "finance": "การเงินและการบัญชี (Finance)",
-    "marketing": "การตลาดและธุรกิจ (Marketing)",
-    "lang3": "ภาษาที่สาม (3rd Lang)",
-    "design_3d": "สถาปัตยกรรม (3D/Arch)",
-    "law": "กฎหมายและรัฐศาสตร์ (Law)",
-    "psychology": "จิตวิทยา (Psychology)"
+    "art": "ศิลปะและการออกแบบ (Art & Design)",
+    "social": "สังคมศึกษา/ประวัติศาสตร์ (Social Studies)",
+    "finance": "การเงินและการบัญชี (Finance & Accounting)",
+    "marketing": "การตลาดและธุรกิจ (Marketing & Business)",
+    "lang3": "ภาษาที่สาม (Third Language)",
+    "design_3d": "สถาปัตยกรรม/มัลติมีเดีย (Architecture & 3D)",
+    "law": "กฎหมายและรัฐศาสตร์ (Law & Political Science)",
+    "psychology": "จิตวิทยาและการแนะแนว (Psychology)"
 }
 
 # ---------------------------------------------------------
@@ -83,95 +83,105 @@ CAREERS_DB = [
         "desc": "ดูแลสัญญาจ้างออกแบบ ตรวจสอบลิขสิทธิ์แบบ 3D และคุ้มครองเครื่องหมายการค้าธุรกิจสถาปนิก"
     },
     {
-        "title": "นักวาดภาพประกอบ / คอมมิคระดับโลก (Global Illustrator)",
-        "primary": ["art"],
-        "secondary": ["english", "lang3"],
-        "desc": "สร้างสรรค์ผลงานศิลปะ วาดภาพประกอบ และสื่อสารกับผู้ว่าจ้างต่างประเทศ"
-    },
-    {
-        "title": "นักออกแบบ UI/UX สายนานาชาติ (International UI/UX Designer)",
-        "primary": ["art"],
-        "secondary": ["english", "tech"],
-        "desc": "ออกแบบหน้าตาแอปพลิเคชันและเว็บไซต์โดยใช้หลักศิลปะ ร่วมกับทีมต่างชาติ"
-    },
-    {
-        "title": "ล่ามและนักแปลภาษาต่างประเทศ (Interpreter / Translator)",
-        "primary": ["lang3"],
-        "secondary": ["english", "social"],
-        "desc": "แปลภาษา ฟัง-พูด สื่อสารระหว่างประเทศ แปลเอกสารหรือทำหน้าที่ล่าม"
-    },
-    {
-        "title": "พนักงานต้อนรับบนเครื่องบิน (Flight Attendant)",
-        "primary": ["lang3"],
-        "secondary": ["english", "psychology"],
-        "desc": "ดูแลความปลอดภัย บริการผู้โดยสารบนเครื่องบิน และใช้ภาษาต่างประเทศ"
-    },
-    {
-        "title": "แพทย์ / หมอรักษาโรค (Medical Doctor)",
-        "primary": ["science"],
-        "secondary": ["math", "english"],
-        "desc": "วินิจฉัยโรค ประยุกต์ใช้วิทยาศาสตร์ คำนวณขนาดยา และอ่านตำราต่างประเทศ"
-    },
-    {
-        "title": "วิศวกรซอฟต์แวร์ (Software Developer)",
+        "title": "วิศวกรซอฟต์แวร์ / นักพัฒนาแอปพลิเคชัน (Software Engineer)",
         "primary": ["tech"],
         "secondary": ["math", "english"],
-        "desc": "เขียนโปรแกรมคอมพิวเตอร์ ใช้ตรรกะคณิตศาสตร์แก้ปัญหา"
+        "desc": "ใช้ตรรกะคณิตศาสตร์ เขียนโค้ดคอมพิวเตอร์ และอ่านเอกสารเทคโนโลยีภาษาอังกฤษ"
     },
     {
-        "title": "สถาปนิก / นักออกแบบ 3D (Architect / 3D Designer)",
+        "title": "นักวิเคราะห์ข้อมูลและ AI (Data Scientist / AI Specialist)",
+        "primary": ["math"],
+        "secondary": ["tech", "science"],
+        "desc": "วิเคราะห์ข้อมูลขนาดใหญ่ด้วยคณิตศาสตร์ สถิติ วิทยาการคำนวณ และกระบวนการวิจัย"
+    },
+    {
+        "title": "แพทย์ / นักวิจัยทางการแพทย์ (Medical Researcher)",
+        "primary": ["science"],
+        "secondary": ["math", "english"],
+        "desc": "ใช้วิทยาศาสตร์ขั้นสูง คำนวณขนาดยา/สถิติ และสื่อสารภาษาอังกฤษเพื่อผลงานวิจัย"
+    },
+    {
+        "title": "นักการเงินเชิงวิเคราะห์และนักลงทุน (Financial Analyst)",
+        "primary": ["finance"],
+        "secondary": ["math", "marketing"],
+        "desc": "ประเมินความเสี่ยง ตรวจสอบตัวเลขการเงิน การคำนวณผลตอบแทน และวิเคราะห์แนวโน้มตลาด"
+    },
+    {
+        "title": "นักออกแบบ UI/UX และผลิตภัณฑ์ดิจิทัล (UI/UX Designer)",
+        "primary": ["art"],
+        "secondary": ["tech", "psychology"],
+        "desc": "ออกแบบความสวยงาม รวมกับระบบเทคโนโลยี และเข้าใจจิตวิทยาพฤติกรรมผู้ใช้งาน"
+    },
+    {
+        "title": "สถาปนิกและนักออกแบบ 3D (Architect)",
         "primary": ["design_3d"],
-        "secondary": ["art", "math"],
-        "desc": "ออกแบบอาคารสถานที่ วาดแบบ 3D และคำนวณโครงสร้างตามหลักสถาปัตยกรรม"
+        "secondary": ["math", "art"],
+        "desc": "คำนวณโครงสร้างตามหลักวิศวกรรม/ฟิสิกส์ ผสานกับความสวยงามทางศิลปะและการเขียนแบบ"
     },
     {
-        "title": "นักกฎหมาย / ทนายความ (Lawyer / Legal Advisor)",
-        "primary": ["law"],
-        "secondary": ["social", "english"],
-        "desc": "ตีความกฎหมาย ร่างสัญญา ดำเนินคดี และว่าความในชั้นศาล"
-    },
-    {
-        "title": "นักการตลาดดิจิทัล (Digital Marketer)",
+        "title": "นักการตลาดดิจิทัลและกลยุทธ์แบรนด์ (Digital Strategist)",
         "primary": ["marketing"],
-        "secondary": ["tech", "finance"],
-        "desc": "วางแผนกลยุทธ์การตลาด วิเคราะห์โฆษณาออนไลน์และบริหารงบประมาณ"
+        "secondary": ["social", "tech"],
+        "desc": "วางแผนธุรกิจ เข้าใจสังคมพฤติกรรมผู้บริโภค และใช้เครื่องมือดิจิทัลวิเคราะห์แคมเปญ"
+    },
+    {
+        "title": "นักกฎหมายธุรกิจระหว่างประเทศ (International Corporate Lawyer)",
+        "primary": ["law"],
+        "secondary": ["english", "social"],
+        "desc": "ใช้ข้อกฎหมายและระเบียบสังคม ร่างสัญญาภาษาอังกฤษ และเข้าใจบริบทธุรกิจ"
+    },
+    {
+        "title": "นักจิตวิทยาคลินิก / นักที่ปรึกษาองค์กร (Corporate Psychologist)",
+        "primary": ["psychology"],
+        "secondary": ["social", "english"],
+        "desc": "ใช้หลักจิตวิทยา วิเคราะห์พฤติกรรมมนุษย์และสังคม พร้อมการสื่อสารระดับสากล"
+    },
+    {
+        "title": "นักวิเคราะห์และล่ามเจรจาธุรกิจข้ามชาติ (Global Business Analyst)",
+        "primary": ["lang3"],
+        "secondary": ["english", "marketing"],
+        "desc": "ใช้ทักษะภาษาที่สาม ภาษาอังกฤษ และความรู้การตลาดในการเจรจาการค้าระหว่างประเทศ"
     }
 ]
 
+# ฐานข้อมูลอาชีพอิสระ
 FREELANCE_CAREERS_DB = {
-    "math": {"title": "Tutor สอนพิเศษคณิตศาสตร์ / Data Freelance", "desc": "รับสอนพิเศษวิชาคณิตศาสตร์ หรือรับทำวิเคราะห์ข้อมูลสถิติ"},
-    "science": {"title": "นักเขียนบทความสุขภาพและวิทยาศาสตร์", "desc": "รับเขียนบทความความรู้ สุขภาพ อาหาร และวิทยาศาสตร์"},
-    "tech": {"title": "Freelance รับทำเว็บไซต์ / ไอทีซัพพอร์ต", "desc": "รับสร้างเว็บไซต์ พัฒนาแอปพลิเคชัน และดูแลระบบคอมพิวเตอร์"},
-    "english": {"title": "นักแปลเอกสารอิสระ / พิสูจน์อักษร", "desc": "รับแปลเอกสาร แปลซับไตเติล หรือเขียนอีเมลติดต่อธุรกิจต่างประเทศ"},
-    "art": {"title": "Freelance Illustrator / ช่างภาพ", "desc": "รับวาดภาพประกอบ วาดสติกเกอร์ไลน์ ถ่ายภาพ และออกแบบกราฟิก"},
-    "social": {"title": "นักสร้างคอนเทนต์ประวัติศาสตร์/สังคม", "desc": "ทำคลิปเล่าเรื่องประวัติศาสตร์ สังคมวิทยา หรือเรื่องน่ารู้รอบโลก"},
-    "finance": {"title": "รับทำบัญชีร้านค้า / วางแผนภาษีบุคคล", "desc": "ช่วยร้านค้าเล็กๆ วางแผนภาษี ยื่นภาษี และสรุปงบการเงิน"},
-    "marketing": {"title": "Freelance ดูแลเพจ / ยิงแอดโฆษณา", "desc": "รับเขียนโพสต์ขายของ วางแผนคอนเทนต์ และยิงแอด Facebook/TikTok"},
-    "lang3": {"title": "ล่ามอิสระ / มัคคุเทศก์ภาษาเฉพาะ", "desc": "รับงานแปลภาษาเฉพาะกิจ ล่ามติดตาม หรือนำเที่ยวชาวต่างชาติ"},
-    "design_3d": {"title": "Freelance ขึ้นโมเดล 3D / เขียนแบบบ้าน", "desc": "รับขึ้นโมเดล 3D สินค้า หรือออกแบบและเขียนแบบบ้าน"},
-    "law": {"title": "ที่ปรึกษาข้อกฎหมายร้านค้าและตรวจสัญญา", "desc": "ให้คำปรึกษาการทำสัญญาเช่า สัญญาจ้างงาน และตรวจข้อตกลงทางกฎหมาย"},
-    "psychology": {"title": "ที่ปรึกษาพัฒนาบุคลิกภาพ / Life Coach", "desc": "ให้คำปรึกษาเรื่องการสื่อสาร การบริหารจิตใจ และพัฒนาศักยภาพ"}
+    "math": {"title": "Tutor สอนคณิตศาสตร์ / Freelance Data Analyst", "desc": "รับสอนพิเศษออนไลน์ หรือรับงานวิเคราะห์ข้อมูลตัวเลขให้องค์กรต่างชาติ"},
+    "science": {"title": "นักเขียนบทความวิทยาศาสตร์ / ครีเอเตอร์สาย Sci-Tech", "desc": "สร้างคอนเทนต์วิทยาศาสตร์ พิสูจน์อักษร หรืองานวิเคราะห์ข้อมูลสุขภาพ"},
+    "tech": {"title": "Freelance Web/App Developer", "desc": "รับเขียนโปรแกรม สร้างเว็บไซต์ หรือพัฒนาระบบอัตโนมัติรับงานอิสระ"},
+    "english": {"title": "นักแปลเอกสารอิสระ / Content Writer ภาษาอังกฤษ", "desc": "รับงานแปลภาษา พิสูจน์อักษร หรือเขียนบทความ SEO ต่างประเทศ"},
+    "art": {"title": "Freelance Illustrator / NFT Artist", "desc": "รับวาดภาพประกอบ ออกแบบตัวละคร โลโก้ และกราฟิกดีไซน์"},
+    "social": {"title": "นักวิเคราะห์เทรนด์สังคม / พอดแคสเตอร์อิสระ", "desc": "สร้างคอนเทนต์เกี่ยวกับประวัติศาสตร์ สังคม การเมือง หรือการวิเคราะห์เหตุการณ์บ้านเมือง"},
+    "finance": {"title": "ที่ปรึกษาการเงินส่วนบุคคลอิสระ / Trader", "desc": "วางแผนการเงิน บัญชี และการลงทุนอิสระให้ลูกค้าบุคคล"},
+    "marketing": {"title": "Freelance Social Media Admin & Ad Specialist", "desc": "รับบริหารเพจ วางแผนคอนเทนต์ และยิงโฆษณาออนไลน์ให้แบรนด์ต่างๆ"},
+    "lang3": {"title": "ล่ามอิสระ / นักแปลภาษาเฉพาะทาง", "desc": "รับงานล่ามการประชุม ถ่ายทำ หรือแปลซับไตเติลภาพยนตร์"},
+    "design_3d": {"title": "3D Modeler / Freelance Interior Visualizer", "desc": "รับขึ้นโมเดล 3D ออกแบบภาพทัศนียภาพห้องและอาคาร"},
+    "law": {"title": "ที่ปรึกษากฎหมายอิสระ (Legal Consultant)", "desc": "ให้คำปรึกษาด้านสัญญา กฎหมายธุรกิจ และทรัพย์สินทางปัญญา"},
+    "psychology": {"title": "Life Coach / คอนซัลต์พัฒนาบุคลิกภาพ", "desc": "ให้คำปรึกษาการดำรงชีวิต การจัดการความเครียด และการสื่อสารในองค์กร"}
 }
 
+# ฐานข้อมูลสื่อการเรียนรู้
 LEARNING_RESOURCES_DB = {
-    "math": {"title": "คณิตศาสตร์และสถิติ", "resources": ["Khan Academy Math", "Coursera Mathematics", "SmartMathPro"]},
-    "science": {"title": "วิทยาศาสตร์และเทคโนโลยี", "resources": ["edX Introductory Physics", "National Geographic Science", "สสวท."]},
-    "tech": {"title": "วิทยาการคำนวณและโปรแกรมมิ่ง", "resources": ["freeCodeCamp.org", "Codecademy Python", "Harvard CS50"]},
-    "english": {"title": "ภาษาอังกฤษเพื่อการสื่อสาร", "resources": ["BBC Learning English", "Duolingo App", "TED Talks"]},
-    "art": {"title": "ศิลปะและการออกแบบ", "resources": ["Canva Design School", "Skillshare Art Courses", "Adobe Creative Cloud"]},
-    "social": {"title": "สังคมศึกษาและการเมืองโลก", "resources": ["edX Global History", "8 Minutes History Podcast", "National Geographic"]},
-    "finance": {"title": "การเงิน บัญชี และการลงทุน", "resources": ["SET e-Learning (ตลาดหลักทรัพย์)", "Coursera Finance", "Money Buffalo"]},
-    "marketing": {"title": "การตลาดดิจิทัลและธุรกิจ", "resources": ["Google Digital Garage", "HubSpot Academy", "The Secret Sauce Podcast"]},
-    "lang3": {"title": "ภาษาที่สาม (3rd Language)", "resources": ["Memrise", "Busuu App", "คอร์สภาษาออนไลน์"]},
-    "design_3d": {"title": "สถาปัตยกรรมและ 3D Design", "resources": ["Blender Guru Tutorials", "SketchUp Campus", "Coursera Architecture"]},
-    "law": {"title": "กฎหมายและรัฐศาสตร์", "resources": ["คอร์สกฎหมายประชาชน (จุฬาฯ MOOC)", "edX International Law", "คลังกฎหมายไทย"]},
-    "psychology": {"title": "จิตวิทยาพฤติกรรมมนุษย์", "resources": ["Coursera Intro to Psychology (Yale)", "Psych2Go Channel", "หนังสือสรุปจิตวิทยา"]}
+    "math": {"title": "คณิตศาสตร์และสถิติ", "resources": ["Khan Academy Math", "Coursera: Calculus & Statistics", "Youtube: พี่ปั้น SmartMathPro"]},
+    "science": {"title": "วิทยาศาสตร์และฟิสิกส์", "resources": ["EDX: Intro to Physics", "National Geographic Portal", "Youtube: คลังความรู้วิทยาศาสตร์ สสวท."]},
+    "tech": {"title": "วิทยาการคำนวณและเขียนโค้ด", "resources": ["freeCodeCamp.org", "Codecademy Python", "Harvard CS50 Course"]},
+    "english": {"title": "ภาษาอังกฤษเพื่อการทำงาน", "resources": ["Duolingo App", "BBC Learning English", "BBC / TED Talks Podcast"]},
+    "art": {"title": "ศิลปะและการออกแบบกราฟิก", "resources": ["Canva Design School", "Skillshare Graphic Design", "Youtube: สอนใช้ Photoshop & Illustrator"]},
+    "social": {"title": "สังคมศึกษาและความเข้าใจมนุษย์", "resources": ["edX: Global History", "Podcast: 8 Minutes History", "National Geographic Social Portal"]},
+    "finance": {"title": "การเงิน บัญชี และการลงทุน", "resources": ["ตลาดหลักทรัพย์แห่งประเทศไทย (SET e-Learning)", "คอร์สการเงินบน Coursera", "Youtube: สรุปให้ / Money Buffalo"]},
+    "marketing": {"title": "การตลาดดิจิทัลและธุรกิจ", "resources": ["Google Digital Garage", "HubSpot Academy", "Podcast: The Secret Sauce"]},
+    "lang3": {"title": "ทักษะภาษาที่สาม", "resources": ["Memrise App", "Busuu Language Course", "Youtube: ช่องสอนภาษาต่างประเทศฟรี"]},
+    "design_3d": {"title": "การขึ้นแบบ 3D และงานสถาปัตยกรรม", "resources": ["Blender Guru Tutorial", "SketchUp Official School", "Coursera: Architectural Design"]},
+    "law": {"title": "ความรู้กฎหมายและรัฐศาสตร์", "resources": ["คอร์สความรู้กฎหมายประชาชน (จุฬาฯ MOOC)", "edX: International Law", "เว็บไซต์คลังกฎหมายไทย"]},
+    "psychology": {"title": "จิตวิทยาพฤติกรรมและการสื่อสาร", "resources": ["Coursera: Introduction to Psychology (Yale)", "Psych2Go Youtube Channel", "หนังสือสรุปจิตวิทยาพฤติกรรม"]}
 }
 
 # ---------------------------------------------------------
-# 5. เมนูกรอกข้อมูล Sidebar
+# 5. ส่วน UI ฝั่งซ้าย: เมนูกรอกข้อมูล (Sidebar)
 # ---------------------------------------------------------
 st.sidebar.header("📝 1. กรอกคะแนนรายวิชา (0-100)")
+st.sidebar.caption("ปรับระดับคะแนนตามผลการเรียนของคุณ:")
+
 scores = {}
 for code, name in SUBJECT_NAMES.items():
     scores[code] = st.sidebar.slider(name, 0, 100, 0)
@@ -179,23 +189,24 @@ for code, name in SUBJECT_NAMES.items():
 st.sidebar.markdown("---")
 st.sidebar.header("❤️ 2. วิชาที่คุณชอบที่สุด")
 favorite_subject = st.sidebar.selectbox(
-    "เลือกวิชาที่ชอบ (คำนวณอาชีพอิสระ):",
+    "เลือกวิชาที่ชอบ (เพื่อคำนวณอาชีพอิสระ):",
     options=list(SUBJECT_NAMES.keys()),
     format_func=lambda x: SUBJECT_NAMES[x]
 )
 
 st.sidebar.markdown("---")
+st.sidebar.header("🎨 3. เลือกรูปแบบ UI กราฟ")
 chart_type = st.sidebar.radio(
-    "รูปแบบการแสดงผลคะแนน:",
-    ["📊 กราฟแท่งเข้าใจง่าย (Bar Chart)", "🕸️ กราฟแมงมุม (Radar Chart)", "🍩 กราฟวงกลม (Donut Chart)", "📋 ตารางข้อมูล (Table)"]
+    "เลือกประเภทการแสดงผลคะแนน:",
+    ["🕸️ กราฟแมงมุม (Radar Chart)", "🍩 กราฟวงกลม (Donut Chart)", "📊 กราฟแท่ง (Bar Chart)", "📋 ตารางข้อมูล (Table)"]
 )
 
 # ---------------------------------------------------------
-# 6. อัลกอริทึมและการประมวลผล (Main Logic)
+# 6. อัลกอริทึมและการแสดงผล (Main Layout)
 # ---------------------------------------------------------
 with col_title:
     st.title("🎓 Smart Career Recommendation System")
-    st.caption("ระบบวิเคราะห์อาชีพอัจฉริยะ (Strict & Percentage Matching)")
+    st.caption("ระบบวิเคราะห์อาชีพหลัก อาชีพอิสระ จัดอันดับทักษะ พร้อมสื่อพัฒนาการเรียนรู้")
 
 st.markdown("---")
 
@@ -206,16 +217,17 @@ if len(active_scores) == 0:
     st.warning("⚠️ กรุณากรอกคะแนนอย่างน้อย 1 วิชาในแถบสีดำฝั่งซ้าย เพื่อเปิดการประมวลผล")
     
     st.markdown("---")
-    st.subheader("📚 คลังสื่อการเรียนรู้แนะนำสำหรับผู้เริ่มต้นศึกษา (Learning Resources)")
+    st.subheader("💡 คำแนะนำสื่อการเรียนรู้ปูพื้นฐาน (สำหรับวิชาที่มีคะแนน 0)")
     col_a, col_b = st.columns(2)
     sub_keys = list(SUBJECT_NAMES.keys())
     for idx, code in enumerate(sub_keys):
         res_info = LEARNING_RESOURCES_DB[code]
         target_col = col_a if idx % 2 == 0 else col_b
-        with target_col.expander(f"📖 {SUBJECT_NAMES[code]}", expanded=False):
-            st.write(f"**เน้นทักษะด้าน:** {res_info['title']}")
+        with target_col.expander(f"📕 {SUBJECT_NAMES[code]}", expanded=False):
+            st.write(f"**ขอบเขตเนื้อหา:** {res_info['title']}")
+            st.markdown("**สื่อและแหล่งเรียนรู้ที่แนะนำ:**")
             for r in res_info["resources"]:
-                st.markdown(f"- 🔗 {r}")
+                st.markdown(f"- 📖 {r}")
 
 else:
     def calculate_subject_overlap_pct(career_item, selected_subject_ids):
@@ -246,7 +258,7 @@ else:
         results.sort(key=lambda x: x["match_pct"], reverse=True)
         return results
 
-    # --- ฟังก์ชันแสดงการ์ดอาชีพ (ย้าย % ความสอดคล้องมาไว้ด้านล่างสุด) ---
+    # --- ฟังก์ชันแสดงการ์ดอาชีพ (% ความสอดคล้องถูกย้ายมาอยู่ล่างสุด) ---
     def render_career_card(career_item, rank_label=""):
         c = career_item["details"]
         match_pct = career_item["match_pct"]
@@ -256,27 +268,25 @@ else:
         else:
             st.markdown(f"#### 🎯 **{c['title']}**")
             
-        st.write(f"**ลักษณะงานจริง:** {c['desc']}")
+        st.write(f"**รายละเอียดอาชีพ:** {c['desc']}")
         
         p_text = ", ".join([f"**{SUBJECT_NAMES[s]}** ({scores[s]} คะแนน)" for s in career_item["primary_subs"] if s in scores])
         s_text = ", ".join([f"{SUBJECT_NAMES[s]} ({scores[s]} คะแนน)" for s in career_item["secondary_subs"] if s in scores])
         
-        st.markdown(f"🔑 **วิชาหลัก:** {p_text}")
-        st.markdown(f"🛠️ **วิชาสนับสนุน:** {s_text}")
+        st.markdown(f"💡 **วิชาหลักที่ใช้ประมวลผล:** {p_text}")
+        if s_text:
+            st.markdown(f"🛠️ **วิชาสนับสนุน:** {s_text}")
         
-        # --- ย้ายความสอดคล้องและ Progress Bar ลงมาไว้ด้านล่างสุด ---
+        # --- ย้ายความสอดคล้องมาไว้ส่วนล่างสุดของการ์ด ---
         st.progress(min(match_pct / 100, 1.0))
-        st.caption(f"📊 **ระดับความสอดคล้องกับวิชาที่คุณเลือก: {match_pct}%**")
+        st.caption(f"📊 **ระดับความเข้ากันของทักษะวิชา: {match_pct}%**")
         st.markdown("---")
 
     sorted_active = sorted(active_scores.items(), key=lambda x: x[1], reverse=True)
     num_active = len(sorted_active)
 
-    st.subheader("📌 ผลการวิเคราะห์และจัดอันดับอาชีพที่เหมาะสม")
+    st.subheader("🎯 อาชีพที่เหมาะสมที่สุดจากการประมวลผลทักษะวิชา")
 
-    # =========================================================
-    # การแสดงผลตามจำนวนวิชาที่เลือก
-    # =========================================================
     if num_active == 1:
         single_id, single_score = sorted_active[0]
         st.info(f"💡 **คุณกรอกคะแนน 1 วิชา:** {SUBJECT_NAMES[single_id]} ({single_score} คะแนน)")
@@ -292,7 +302,7 @@ else:
         
         c_list = get_ranked_careers_with_pct([s1_id, s2_id])
         for i, item in enumerate(c_list[:3]):
-            badge = f"🥇 อันดับ {i+1} (ตรง 100%):" if item["match_pct"] == 100 else f"⭐ อันดับ {i+1}:"
+            badge = f"🥇 อันดับ {i+1} (เหมาะสมที่สุด):" if item["match_pct"] == 100 else f"⭐ อันดับ {i+1}:"
             render_career_card(item, badge)
 
     else:
@@ -313,7 +323,7 @@ else:
             
             for i, item in enumerate(c_list[:3]):
                 pct = item["match_pct"]
-                badge = f"🥇 **อันดับ {i+1} (ตรงสาย 100%):**" if pct == 100 else f"⭐ **อันดับ {i+1}:**"
+                badge = f"🥇 **อันดับ {i+1} (เหมาะสมที่สุด):**" if pct == 100 else f"⭐ **อันดับ {i+1}:**"
                 render_career_card(item, badge)
 
         with tab2:
@@ -351,33 +361,24 @@ else:
                 for item in get_ranked_careers_with_pct([s3_id])[:3]:
                     render_career_card(item)
 
-    # === อาชีพอิสระ ===
-    st.subheader("🚀 เส้นทางอาชีพอิสระ (Freelance Options)")
+    # --- ส่วนที่ 2: อาชีพอิสระจากวิชาที่ชอบ ---
+    st.subheader("🚀 อาชีพอิสระ (Freelance) จากวิชาที่คุณชอบ")
     fav_freelance = FREELANCE_CAREERS_DB[favorite_subject]
-    st.success(f"**จากวิชาที่คุณชื่นชอบเป็นพิเศษ:** {SUBJECT_NAMES[favorite_subject]}\n\n"
+    st.success(f"**วิชาที่คุณชอบ:** {SUBJECT_NAMES[favorite_subject]}\n\n"
                f"👉 **อาชีพอิสระที่แนะนำ:** **{fav_freelance['title']}**\n\n"
                f"📝 {fav_freelance['desc']}")
 
     st.markdown("---")
 
-    # === กราฟแสดงผลคะแนน ===
-    st.subheader(f"📊 กราฟสรุปผลวิเคราะห์ทักษะ ({chart_type.split(' ')[0]})")
+    # --- ส่วนที่ 3: กราฟสรุปผลคะแนน ---
+    st.subheader(f"📊 ภาพรวมคะแนนวิชาทั้งหมด ({chart_type.split(' ')[1]})")
 
     df_chart = pd.DataFrame({
         "วิชา": [SUBJECT_NAMES[k] for k, v in active_scores.items()],
         "คะแนน": [v for k, v in active_scores.items()]
     })
 
-    if "Bar" in chart_type:
-        fig = px.bar(
-            df_chart, x='วิชา', y='คะแนน', color='คะแนน', text='คะแนน',
-            color_continuous_scale='Blues', template=chart_template
-        )
-        fig.update_traces(textposition='outside', textfont_size=14)
-        fig.update_layout(yaxis=dict(range=[0, 115], title="ระดับคะแนน"), height=450)
-        st.plotly_chart(fig, use_container_width=True)
-
-    elif "Radar" in chart_type:
+    if "Radar" in chart_type:
         fig = go.Figure(data=go.Scatterpolar(
             r=df_chart["คะแนน"], theta=df_chart["วิชา"],
             fill='toself', fillcolor='rgba(30, 136, 229, 0.3)',
@@ -395,32 +396,40 @@ else:
         fig.update_layout(height=480)
         st.plotly_chart(fig, use_container_width=True)
 
+    elif "Bar" in chart_type:
+        fig = px.bar(
+            df_chart, x='วิชา', y='คะแนน', color='คะแนน', text='คะแนน',
+            color_continuous_scale='Blues', template=chart_template
+        )
+        fig.update_traces(textposition='outside', textfont_size=14)
+        fig.update_layout(yaxis=dict(range=[0, 115], title="ระดับคะแนน"), height=450)
+        st.plotly_chart(fig, use_container_width=True)
+
     else:
         st.dataframe(df_chart, use_container_width=True, hide_index=True)
 
     st.markdown("---")
 
-    # =========================================================
-    # 7. ระบบแนะนำสื่อการเรียนรู้และพัฒนาทักษะ (Skill Enhancement)
-    # =========================================================
-    st.subheader("💡 ระบบแนะนำสื่อการเรียนรู้และพัฒนาทักษะ (Skill Enhancement)")
-    low_scores = [item for item in sorted_active if item[1] < 50]
+    # --- ส่วนที่ 4: สื่อการเรียนรู้สำหรับวิชาที่มีคะแนนต่ำ (< 30 คะแนน) ---
+    st.subheader("💡 คำแนะนำสื่อการเรียนรู้เพื่อพัฒนาตนเอง")
 
-    if low_scores:
-        st.warning(f"🚨 **พบวิชาที่คุณได้คะแนนน้อยกว่า 50 คะแนน จำนวน {len(low_scores)} วิชาที่ควรเร่งพัฒนา:**")
-        col_l1, col_l2 = st.columns(2)
-        for i, (s_id, score) in enumerate(low_scores):
+    low_score_subjects = [item for item in sorted_active if item[1] < 30]
+
+    if low_score_subjects:
+        st.error(f"🚨 **พบทั้งหมด {len(low_score_subjects)} วิชาที่มีคะแนนต่ำกว่า 30 คะแนน (วิชาที่ควรเร่งพัฒนา):**")
+        for s_id, score in low_score_subjects:
             res_info = LEARNING_RESOURCES_DB[s_id]
-            target_col = col_l1 if i % 2 == 0 else col_l2
-            with target_col.expander(f"📙 {SUBJECT_NAMES[s_id]} — ได้ {score} คะแนน", expanded=True):
-                st.write(f"**ขอบเขตทักษะ:** {res_info['title']}")
+            with st.expander(f"📕 {SUBJECT_NAMES[s_id]} — ได้ {score} คะแนน", expanded=True):
+                st.write(f"**ขอบเขตเนื้อหา:** {res_info['title']}")
+                st.markdown("**สื่อและแหล่งเรียนรู้ที่แนะนำ:**")
                 for r in res_info["resources"]:
                     st.markdown(f"- 📖 {r}")
     else:
         lowest_id, lowest_score = sorted_active[-1]
         res_info = LEARNING_RESOURCES_DB[lowest_id]
-        st.success(f"🎉 **ทักษะยอดเยี่ยมมาก! ไม่มีวิชาใดได้คะแนนต่ำกว่า 50 คะแนนเลย**")
-        with st.expander(f"📘 แนะนำคอร์สเรียนเสริมความเชี่ยวชาญสำหรับ: {SUBJECT_NAMES[lowest_id]}", expanded=False):
-            st.write(f"**ขอบเขตทักษะ:** {res_info['title']}")
+        st.info(f"🎉 **ไม่มีวิชาใดได้คะแนนต่ำกว่า 30 คะแนน!** แนะนำสื่อการเรียนรู้สำหรับวิชาที่ได้คะแนนน้อยที่สุดของคุณแทน:")
+        with st.expander(f"📙 {SUBJECT_NAMES[lowest_id]} — ได้ {lowest_score} คะแนน", expanded=True):
+            st.write(f"**ขอบเขตเนื้อหา:** {res_info['title']}")
+            st.markdown("**สื่อและแหล่งเรียนรู้ที่แนะนำ:**")
             for r in res_info["resources"]:
                 st.markdown(f"- 📖 {r}")
