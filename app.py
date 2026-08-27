@@ -25,20 +25,38 @@ with col_toggle:
     is_dark = st.toggle("🌙 โหมดมืด (Dark Theme)", value=(st.session_state.theme_mode == "Dark"))
     st.session_state.theme_mode = "Dark" if is_dark else "Light"
 
-# ตกแต่ง CSS ให้รองรับโทนขาวดำ
+# ตกแต่ง CSS ให้รองรับโทนขาวดำแบบสมบูรณ์
 if st.session_state.theme_mode == "Dark":
     st.markdown("""
         <style>
+        /* พื้นหลังหลักและตัวหนังสือขาว */
         .stApp {
-            background-color: #121212;
-            color: #E0E0E0;
+            background-color: #121212 !important;
+            color: #FFFFFF !important;
         }
-        .stSidebar {
-            background-color: #1E1E1E;
+        /* แถบเมนูด้านข้าง */
+        [data-testid="stSidebar"] {
+            background-color: #1E1E1E !important;
         }
+        /* บังคับตัวหนังสือทุกประเภทให้เป็นสีขาว */
+        p, h1, h2, h3, h4, h5, h6, span, label, div, .stMarkdown {
+            color: #FFFFFF !important;
+        }
+        /* ปรับแต่งกล่อง Expander และ Accordion */
         div[data-testid="stExpander"] {
-            background-color: #1E1E1E;
-            border: 1px solid #333333;
+            background-color: #1E1E1E !important;
+            border: 1px solid #444444 !important;
+            color: #FFFFFF !important;
+        }
+        /* ปรับกล่องข้อความแจ้งเตือน (Alerts & Info) */
+        div[data-baseweb="notification"] {
+            background-color: #262626 !important;
+            border: 1px solid #444444 !important;
+            color: #FFFFFF !important;
+        }
+        /* ปรับสีตัวหนังสือใน Tab */
+        button[data-baseweb="tab"] p {
+            color: #FFFFFF !important;
         }
         </style>
     """, unsafe_allow_html=True)
