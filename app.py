@@ -13,7 +13,51 @@ st.set_page_config(
 )
 
 # ---------------------------------------------------------
-# 2. ฐานข้อมูลวิชาการเรียนการสอน (12 วิชา)
+# 2. ระบบปรับโทนสี ขาว-ดำ (Theme Toggle มุมขวาบน)
+# ---------------------------------------------------------
+if "theme_mode" not in st.session_state:
+    st.session_state.theme_mode = "Light"
+
+# สร้าง Layout สำหรับวางปุ่มสวิตช์มุมขวาบน
+col_title, col_toggle = st.columns([5, 1])
+
+with col_toggle:
+    is_dark = st.toggle("🌙 โหมดมืด (Dark Theme)", value=(st.session_state.theme_mode == "Dark"))
+    st.session_state.theme_mode = "Dark" if is_dark else "Light"
+
+# ตกแต่ง CSS ให้รองรับโทนขาวดำ
+if st.session_state.theme_mode == "Dark":
+    st.markdown("""
+        <style>
+        .stApp {
+            background-color: #121212;
+            color: #E0E0E0;
+        }
+        .stSidebar {
+            background-color: #1E1E1E;
+        }
+        div[data-testid="stExpander"] {
+            background-color: #1E1E1E;
+            border: 1px solid #333333;
+        }
+        </style>
+    """, unsafe_allow_html=True)
+    chart_template = "plotly_dark"
+    radar_color = "#64B5F6"
+else:
+    st.markdown("""
+        <style>
+        .stApp {
+            background-color: #FFFFFF;
+            color: #000000;
+        }
+        </style>
+    """, unsafe_allow_html=True)
+    chart_template = "plotly_white"
+    radar_color = "#1E88E5"
+
+# ---------------------------------------------------------
+# 3. ฐานข้อมูลวิชาการเรียนการสอน (12 วิชา)
 # ---------------------------------------------------------
 SUBJECT_NAMES = {
     "math": "คณิตศาสตร์ (Mathematics)",
@@ -31,7 +75,7 @@ SUBJECT_NAMES = {
 }
 
 # ---------------------------------------------------------
-# 3. ฐานข้อมูลอาชีพครอบคลุมหลากหลายสายงาน
+# 4. ฐานข้อมูลอาชีพครอบคลุมหลากหลายสายงาน
 # ---------------------------------------------------------
 CAREERS_DB = [
     # --- สายการแพทย์ สาธารณสุข และเภสัชกรรม ---
@@ -161,7 +205,7 @@ LEARNING_RESOURCES_DB = {
 }
 
 # ---------------------------------------------------------
-# 4. ส่วน UI ฝั่งซ้าย: เมนูกรอกข้อมูล (Sidebar)
+# 5. ส่วน UI ฝั่งซ้าย: เมนูกรอกข้อมูล (Sidebar)
 # ---------------------------------------------------------
 st.sidebar.header("📝 1. กรอกคะแนนรายวิชา (0-100)")
 st.sidebar.caption("ปรับระดับคะแนนตามผลการเรียนของคุณ:")
@@ -186,10 +230,12 @@ chart_type = st.sidebar.radio(
 )
 
 # ---------------------------------------------------------
-# 5. อัลกอริทึมและการแสดงผล (Main Layout)
+# 6. อัลกอริทึมและการแสดงผล (Main Layout)
 # ---------------------------------------------------------
-st.title("🎓 Smart Career Recommendation System")
-st.caption("ระบบวิเคราะห์และจัดอันดับอาชีพแยกตามการรวมกลุ่มวิชา 1, 2 และ 3 วิชา")
+with col_title:
+    st.title("🎓 Smart Career Recommendation System")
+    st.caption("ระบบวิเคราะห์จัดอันดับอาชีพ รองรับโหมดสีสว่าง/มืด และแยกตามโครงสร้างการจับคู่รายวิชา")
+
 st.markdown("---")
 
 all_zero = all(value == 0 for value in scores.values())
@@ -209,94 +255,121 @@ if all_zero:
 
 else:
     sorted_scores = sorted(scores.items(), key=lambda x: x[1], reverse=True)
-    top_3_ids = [item[0] for item in sorted_scores[:3]]
-    top_2_ids = [item[0] for item in sorted_scores[:2]]
-    top_1_id = sorted_scores[0][0]
-
-    # ฟังก์ชันช่วยแสดงผล 3 อันดับอาชีพย่อย
-    def render_top_3_career_cards(career_list, max_score_possible):
-        rank_badges = [
-            "🥇 **อันดับ 1 (เหมาะสมที่สุด)**",
-            "🥈 **อันดับ 2 (เหมาะสมรองลงมา)**",
-            "🥉 **อันดับ 3 (ทางเลือกเพิ่มเติม)**"
-        ]
-        
-        for i, item in enumerate(career_list[:3]):
-            c = item["details"]
-            match_pct = round((item["score"] / max_score_possible) * 100, 1) if max_score_possible > 0 else 0
-            
-            st.markdown(f"### {rank_badges[i]}: {c['title']}")
-            st.progress(min(match_pct / 100, 1.0))
-            st.caption(f"📊 ระดับความเข้ากัน: **{match_pct}%** (คะแนนรวมวิชาที่ใช้: {item['score']} / {max_score_possible})")
-            st.write(f"**รายละเอียดอาชีพ:** {c['desc']}")
-            
-            used_sub_text = ", ".join([f"**{SUBJECT_NAMES[s]}** ({scores[s]} คะแนน)" for s in c["subjects"] if s in item["active_subjects"]])
-            st.markdown(f"💡 **วิชาที่ดึงมาประมวลผล:** {used_sub_text}")
-            st.markdown("---")
-
-    st.subheader("📌 เลือกดูอันดับอาชีพตามจำนวนกลุ่มวิชาที่นำมารวมกัน")
+    top_3 = sorted_scores[:3]  # [(id1, score1), (id2, score2), (id3, score3)]
     
-    tab1, tab2, tab3 = st.tabs([
-        "🧩 รวม 3 วิชาหลัก (จัดอันดับ 3 อาชีพ)", 
-        "⚖️ รวม 2 วิชาหลัก (จัดอันดับ 3 อาชีพ)", 
-        "💡 รวม 1 วิชาเด่น (จัดอันดับ 3 อาชีพ)"
-    ])
+    s1_id, s1_score = top_3[0]
+    s2_id, s2_score = top_3[1]
+    s3_id, s3_score = top_3[2]
 
-    # --- TAB 1: 3 วิชาหลัก (แยกย่อย 3 อาชีพ) ---
-    with tab1:
-        st.info(f"🎯 **วิชาหลัก 3 อันดับแรกของคุณ:** {SUBJECT_NAMES[top_3_ids[0]]}, {SUBJECT_NAMES[top_3_ids[1]]}, {SUBJECT_NAMES[top_3_ids[2]]}")
-        rankings_3 = []
-        for career in CAREERS_DB:
-            c_subjs = career["subjects"]
-            matches = [s for s in c_subjs if s in top_3_ids]
-            score_sum = sum([scores[s] for s in matches])
-            rankings_3.append({
-                "details": career,
-                "matches_count": len(matches),
-                "score": score_sum,
-                "active_subjects": matches
-            })
+    # ฟังก์ชันช่วยแสดงผลการ์ดอาชีพ
+    def render_career_card(career_item, max_score_possible, rank_label=""):
+        c = career_item["details"]
+        match_pct = round((career_item["score"] / max_score_possible) * 100, 1) if max_score_possible > 0 else 0
         
-        # เรียงตามจำนวนวิชาที่ตรง และคะแนนรวม
-        rankings_3.sort(key=lambda x: (x["matches_count"], x["score"]), reverse=True)
-        max_possible_3 = sum([scores[s] for s in top_3_ids])
-        render_top_3_career_cards(rankings_3, max_score_possible=max_possible_3)
+        if rank_label:
+            st.markdown(f"#### {rank_label} {c['title']}")
+        else:
+            st.markdown(f"#### 🎯 **{c['title']}**")
+            
+        st.progress(min(match_pct / 100, 1.0))
+        st.caption(f"📊 ระดับความเข้ากัน: **{match_pct}%** (คะแนนวิชาที่ใช้: {career_item['score']} / {max_score_possible})")
+        st.write(f"**รายละเอียดอาชีพ:** {c['desc']}")
+        
+        used_sub_text = ", ".join([f"**{SUBJECT_NAMES[s]}** ({scores[s]} คะแนน)" for s in c["subjects"] if s in career_item["active_subjects"]])
+        st.markdown(f"💡 **วิชาที่ดึงมาประมวลผล:** {used_sub_text}")
+        st.markdown("---")
 
-    # --- TAB 2: 2 วิชาหลัก (แยกย่อย 3 อาชีพ) ---
-    with tab2:
-        st.info(f"⚖️ **วิชาหลัก 2 อันดับแรกของคุณ:** {SUBJECT_NAMES[top_2_ids[0]]}, {SUBJECT_NAMES[top_2_ids[1]]}")
-        rankings_2 = []
+    # ฟังก์ชันค้นหาอาชีพที่ตรงกับกลุ่มวิชาที่กำหนด
+    def get_careers_for_subjects(target_subject_ids):
+        results = []
+        max_possible = sum([scores[s] for s in target_subject_ids])
         for career in CAREERS_DB:
             c_subjs = career["subjects"]
-            matches = [s for s in c_subjs if s in top_2_ids]
-            score_sum = sum([scores[s] for s in matches])
+            matches = [s for s in c_subjs if s in target_subject_ids]
             if len(matches) > 0:
-                rankings_2.append({
+                score_sum = sum([scores[s] for s in matches])
+                results.append({
                     "details": career,
                     "matches_count": len(matches),
                     "score": score_sum,
                     "active_subjects": matches
                 })
-        
-        rankings_2.sort(key=lambda x: (x["matches_count"], x["score"]), reverse=True)
-        max_possible_2 = sum([scores[s] for s in top_2_ids])
-        render_top_3_career_cards(rankings_2, max_score_possible=max_possible_2)
+        results.sort(key=lambda x: (x["matches_count"], x["score"]), reverse=True)
+        return results, max_possible
 
-    # --- TAB 3: 1 วิชาเด่น (แยกย่อย 3 อาชีพ) ---
-    with tab3:
-        st.info(f"💡 **วิชาอันดับ 1 ของคุณ:** {SUBJECT_NAMES[top_1_id]}")
-        rankings_1 = []
-        for career in CAREERS_DB:
-            if top_1_id in career["subjects"]:
-                rankings_1.append({
-                    "details": career,
-                    "matches_count": 1,
-                    "score": scores[top_1_id],
-                    "active_subjects": [top_1_id]
-                })
+    st.subheader("📌 เลือกดูอันดับอาชีพตามการรวมกลุ่มวิชา")
+    
+    tab1, tab2, tab3 = st.tabs([
+        "🧩 รวม 3 วิชาหลัก", 
+        "⚖️ รวม 2 วิชาหลัก (จับคู่ 3 หมวดหมู่)", 
+        "💡 รวม 1 วิชาเดี่ยว (3 หมวดตามอันดับคะแนน)"
+    ])
+
+    # --- TAB 1: 3 วิชาหลักรวมกัน ---
+    with tab1:
+        st.info(f"🎯 **วิชาหลัก 3 อันดับแรกของคุณ:** {SUBJECT_NAMES[s1_id]}, {SUBJECT_NAMES[s2_id]}, {SUBJECT_NAMES[s3_id]}")
+        careers_3, max_3 = get_careers_for_subjects([s1_id, s2_id, s3_id])
         
-        rankings_1.sort(key=lambda x: x["score"], reverse=True)
-        render_top_3_career_cards(rankings_1, max_score_possible=100)
+        if careers_3:
+            rank_badges = ["🥇 **อันดับ 1:**", "🥈 **อันดับ 2:**", "🥉 **อันดับ 3:**"]
+            for i, item in enumerate(careers_3[:3]):
+                render_career_card(item, max_3, rank_badges[i])
+        else:
+            st.warning("ไม่พบอาชีพที่ตรงกับเงื่อนไข")
+
+    # --- TAB 2: รวม 2 วิชาแบบจับคู่เป็น 3 หมวดหมู่ย่อย ---
+    with tab2:
+        st.caption("จับคู่ 2 วิชาจาก 3 วิชาหลักของคุณ ออกเป็น 3 หมวดหมู่ย่อย:")
+        
+        pair1_ids = [s1_id, s2_id]
+        pair2_ids = [s1_id, s3_id]
+        pair3_ids = [s2_id, s3_id]
+
+        subtab2_1, subtab2_2, subtab2_3 = st.tabs([
+            f"1️⃣ คู่ที่ 1: {SUBJECT_NAMES[s1_id]} + {SUBJECT_NAMES[s2_id]}",
+            f"2️⃣ คู่ที่ 2: {SUBJECT_NAMES[s1_id]} + {SUBJECT_NAMES[s3_id]}",
+            f"3️⃣ คู่ที่ 3: {SUBJECT_NAMES[s2_id]} + {SUBJECT_NAMES[s3_id]}"
+        ])
+
+        with subtab2_1:
+            c_list, max_p = get_careers_for_subjects(pair1_ids)
+            for item in c_list[:3]:
+                render_career_card(item, max_p)
+
+        with subtab2_2:
+            c_list, max_p = get_careers_for_subjects(pair2_ids)
+            for item in c_list[:3]:
+                render_career_card(item, max_p)
+
+        with subtab2_3:
+            c_list, max_p = get_careers_for_subjects(pair3_ids)
+            for item in c_list[:3]:
+                render_career_card(item, max_p)
+
+    # --- TAB 3: วิชาเดี่ยว 3 หมวดตามอันดับ 1, 2, 3 ---
+    with tab3:
+        st.caption("จำแนกอาชีพตามวิชาเดี่ยว เรียงตามอันดับคะแนนของคุณ:")
+        
+        subtab3_1, subtab3_2, subtab3_3 = st.tabs([
+            f"🥇 อันดับ 1: {SUBJECT_NAMES[s1_id]} ({s1_score} คะแนน)",
+            f"🥈 อันดับ 2: {SUBJECT_NAMES[s2_id]} ({s2_score} คะแนน)",
+            f"🥉 อันดับ 3: {SUBJECT_NAMES[s3_id]} ({s3_score} คะแนน)"
+        ])
+
+        with subtab3_1:
+            c_list, max_p = get_careers_for_subjects([s1_id])
+            for item in c_list[:3]:
+                render_career_card(item, max_p)
+
+        with subtab3_2:
+            c_list, max_p = get_careers_for_subjects([s2_id])
+            for item in c_list[:3]:
+                render_career_card(item, max_p)
+
+        with subtab3_3:
+            c_list, max_p = get_careers_for_subjects([s3_id])
+            for item in c_list[:3]:
+                render_career_card(item, max_p)
 
     # --- ส่วนที่ 2: อาชีพอิสระ ---
     st.subheader("🚀 อาชีพอิสระ (Freelance) จากวิชาที่คุณชอบ")
@@ -320,22 +393,23 @@ else:
             r=df_chart["คะแนน"],
             theta=df_chart["วิชา"],
             fill='toself',
-            line_color='#1E88E5'
+            line_color=radar_color
         ))
         fig.update_layout(
             polar=dict(radialaxis=dict(visible=True, range=[0, 100])),
             showlegend=False,
+            template=chart_template,
             height=500
         )
         st.plotly_chart(fig, use_container_width=True)
 
     elif "Donut" in chart_type:
-        fig = px.pie(df_chart, values='คะแนน', names='วิชา', hole=0.4, color_discrete_sequence=px.colors.qualitative.Pastel)
+        fig = px.pie(df_chart, values='คะแนน', names='วิชา', hole=0.4, template=chart_template)
         fig.update_traces(textposition='inside', textinfo='percent+label')
         st.plotly_chart(fig, use_container_width=True)
 
     elif "Bar" in chart_type:
-        fig = px.bar(df_chart, x='วิชา', y='คะแนน', color='คะแนน', color_continuous_scale='Blues')
+        fig = px.bar(df_chart, x='วิชา', y='คะแนน', color='คะแนน', color_continuous_scale='Blues', template=chart_template)
         fig.update_layout(yaxis=dict(range=[0, 100]))
         st.plotly_chart(fig, use_container_width=True)
 
