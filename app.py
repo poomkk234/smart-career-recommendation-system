@@ -25,24 +25,50 @@ with col_toggle:
     is_dark = st.toggle("🌙 โหมดมืด (Dark Theme)", value=(st.session_state.theme_mode == "Dark"))
     st.session_state.theme_mode = "Dark" if is_dark else "Light"
 
-# ตกแต่ง CSS ให้รองรับโทนขาวดำแบบสมบูรณ์
+# ตกแต่ง CSS ให้รองรับโทนขาวดำตามเงื่อนไขใหม่
 if st.session_state.theme_mode == "Dark":
     st.markdown("""
         <style>
-        /* พื้นหลังหลักและตัวหนังสือขาว */
+        /* พื้นหลังหลักและตัวหนังสือขาวในส่วนแสดงผลหลัก */
         .stApp {
             background-color: #121212 !important;
             color: #FFFFFF !important;
         }
-        /* แถบเมนูด้านข้าง */
-        [data-testid="stSidebar"] {
-            background-color: #1E1E1E !important;
-        }
-        /* บังคับตัวหนังสือทุกประเภทให้เป็นสีขาว */
-        p, h1, h2, h3, h4, h5, h6, span, label, div, .stMarkdown {
+        
+        /* บังคับตัวหนังสือฝั่งขวา (Main Content) ให้เป็นสีขาว */
+        .stMain p, .stMain h1, .stMain h2, .stMain h3, .stMain h4, .stMain h5, .stMain h6, .stMain span, .stMain div, .stMain .stMarkdown {
             color: #FFFFFF !important;
         }
-        /* ปรับแต่งกล่อง Expander และ Accordion */
+
+        /* ----- บังคับส่วน Sidebar และปุ่ม Toggle ให้เป็นตัวหนังสือสีดำตามโจทย์ ----- */
+        
+        /* 1. ปุ่มเปิด-ปิด Toggle สีดำ */
+        div[data-testid="stToggle"] label p {
+            color: #000000 !important;
+            font-weight: bold !important;
+        }
+        
+        /* 2. พื้นหลังและข้อความใน Sidebar เป็นสีดำ */
+        [data-testid="stSidebar"] {
+            background-color: #F0F2F6 !important; /* ปรับพื้นหลังซ้ายเป็นสีสว่างเพื่อให้ข้อความดำอ่านง่าย */
+        }
+        [data-testid="stSidebar"] p, 
+        [data-testid="stSidebar"] h1, 
+        [data-testid="stSidebar"] h2, 
+        [data-testid="stSidebar"] h3, 
+        [data-testid="stSidebar"] span, 
+        [data-testid="stSidebar"] label {
+            color: #000000 !important;
+            font-weight: bold !important;
+        }
+
+        /* 3. ช่องเลือกวิชาที่ชอบ (Selectbox) ตัวหนังสือสีดำ */
+        [data-testid="stSidebar"] div[data-baseweb="select"] div {
+            color: #000000 !important;
+            background-color: #FFFFFF !important;
+        }
+
+        /* ปรับแต่งกล่อง Expander และ Accordion ฝั่งขวา */
         div[data-testid="stExpander"] {
             background-color: #1E1E1E !important;
             border: 1px solid #444444 !important;
@@ -68,6 +94,10 @@ else:
         .stApp {
             background-color: #FFFFFF;
             color: #000000;
+        }
+        /* กำหนดตัวหนังสือใน Selectbox ให้เป็นสีดำชัดเจน */
+        div[data-baseweb="select"] div {
+            color: #000000 !important;
         }
         </style>
     """, unsafe_allow_html=True)
