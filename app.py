@@ -49,7 +49,7 @@ else:
     radar_color = "#1E88E5"
 
 # ---------------------------------------------------------
-# 3. ฐานข้อมูลวิชาการเรียน
+# 3. ฐานข้อมูลวิชาการเรียน (12 รายวิชา)
 # ---------------------------------------------------------
 SUBJECT_NAMES = {
     "math": "คณิตศาสตร์ (Math)",
@@ -67,7 +67,7 @@ SUBJECT_NAMES = {
 }
 
 # ---------------------------------------------------------
-# 4. ฐานข้อมูลอาชีพ (เพิ่มอาชีพสายผสม Niche Careers)
+# 4. ฐานข้อมูลอาชีพ (CAREERS_DB)
 # ---------------------------------------------------------
 CAREERS_DB = [
     {
@@ -154,18 +154,18 @@ FREELANCE_CAREERS_DB = {
 }
 
 LEARNING_RESOURCES_DB = {
-    "math": {"title": "คณิตศาสตร์และสถิติ", "resources": ["Khan Academy Math", "Coursera Mathematics"]},
-    "science": {"title": "วิทยาศาสตร์และเทคโนโลยี", "resources": ["edX Introductory Physics", "สสวท."]},
-    "tech": {"title": "วิทยาการคำนวณและโปรแกรมมิ่ง", "resources": ["freeCodeCamp.org", "Harvard CS50"]},
-    "english": {"title": "ภาษาอังกฤษเพื่อการสื่อสาร", "resources": ["BBC Learning English", "Duolingo"]},
-    "art": {"title": "ศิลปะและการออกแบบ", "resources": ["Canva Design School", "Skillshare"]},
-    "social": {"title": "สังคมศึกษาและการเมืองโลก", "resources": ["8 Minutes History", "National Geographic"]},
-    "finance": {"title": "การเงิน บัญชี และการลงทุน", "resources": ["SET e-Learning", "Money Buffalo"]},
-    "marketing": {"title": "การตลาดดิจิทัลและธุรกิจ", "resources": ["Google Digital Garage", "HubSpot Academy"]},
-    "lang3": {"title": "ภาษาที่สาม (3rd Language)", "resources": ["Memrise", "Busuu App"]},
-    "design_3d": {"title": "สถาปัตยกรรมและ 3D Design", "resources": ["Blender Guru", "SketchUp Campus"]},
-    "law": {"title": "กฎหมายและรัฐศาสตร์", "resources": ["จุฬาฯ MOOC กฎหมาย", "คลังกฎหมายไทย"]},
-    "psychology": {"title": "จิตวิทยาพฤติกรรมมนุษย์", "resources": ["Coursera Intro to Psychology", "Psych2Go"]}
+    "math": {"title": "คณิตศาสตร์และสถิติ", "resources": ["Khan Academy Math", "Coursera Mathematics", "SmartMathPro"]},
+    "science": {"title": "วิทยาศาสตร์และเทคโนโลยี", "resources": ["edX Introductory Physics", "National Geographic Science", "สสวท."]},
+    "tech": {"title": "วิทยาการคำนวณและโปรแกรมมิ่ง", "resources": ["freeCodeCamp.org", "Codecademy Python", "Harvard CS50"]},
+    "english": {"title": "ภาษาอังกฤษเพื่อการสื่อสาร", "resources": ["BBC Learning English", "Duolingo App", "TED Talks"]},
+    "art": {"title": "ศิลปะและการออกแบบ", "resources": ["Canva Design School", "Skillshare Art Courses", "Adobe Creative Cloud"]},
+    "social": {"title": "สังคมศึกษาและการเมืองโลก", "resources": ["edX Global History", "8 Minutes History Podcast", "National Geographic"]},
+    "finance": {"title": "การเงิน บัญชี และการลงทุน", "resources": ["SET e-Learning (ตลาดหลักทรัพย์)", "Coursera Finance", "Money Buffalo"]},
+    "marketing": {"title": "การตลาดดิจิทัลและธุรกิจ", "resources": ["Google Digital Garage", "HubSpot Academy", "The Secret Sauce Podcast"]},
+    "lang3": {"title": "ภาษาที่สาม (3rd Language)", "resources": ["Memrise", "Busuu App", "คอร์สภาษาออนไลน์"]},
+    "design_3d": {"title": "สถาปัตยกรรมและ 3D Design", "resources": ["Blender Guru Tutorials", "SketchUp Campus", "Coursera Architecture"]},
+    "law": {"title": "กฎหมายและรัฐศาสตร์", "resources": ["คอร์สกฎหมายประชาชน (จุฬาฯ MOOC)", "edX International Law", "คลังกฎหมายไทย"]},
+    "psychology": {"title": "จิตวิทยาพฤติกรรมมนุษย์", "resources": ["Coursera Intro to Psychology (Yale)", "Psych2Go Channel", "หนังสือสรุปจิตวิทยา"]}
 }
 
 # ---------------------------------------------------------
@@ -191,11 +191,11 @@ chart_type = st.sidebar.radio(
 )
 
 # ---------------------------------------------------------
-# 6. อัลกอริทึมคำนวณ % ความสอดคล้อง (Percentage Match)
+# 6. อัลกอริทึมและการประมวลผล (Main Logic)
 # ---------------------------------------------------------
 with col_title:
     st.title("🎓 Smart Career Recommendation System")
-    st.caption("ระบบวิเคราะห์อาชีพอัจฉริยะ (Weighted % Match System)")
+    st.caption("ระบบวิเคราะห์อาชีพอัจฉริยะ (Strict & Percentage Matching)")
 
 st.markdown("---")
 
@@ -204,8 +204,20 @@ active_scores = {k: v for k, v in scores.items() if v > 0}
 if len(active_scores) == 0:
     st.error("🚫 **ไม่พบข้อมูลคะแนน**")
     st.warning("⚠️ กรุณากรอกคะแนนอย่างน้อย 1 วิชาในแถบสีดำฝั่งซ้าย เพื่อเปิดการประมวลผล")
+    
+    st.markdown("---")
+    st.subheader("📚 คลังสื่อการเรียนรู้แนะนำสำหรับผู้เริ่มต้นศึกษา (Learning Resources)")
+    col_a, col_b = st.columns(2)
+    sub_keys = list(SUBJECT_NAMES.keys())
+    for idx, code in enumerate(sub_keys):
+        res_info = LEARNING_RESOURCES_DB[code]
+        target_col = col_a if idx % 2 == 0 else col_b
+        with target_col.expander(f"📖 {SUBJECT_NAMES[code]}", expanded=False):
+            st.write(f"**เน้นทักษะด้าน:** {res_info['title']}")
+            for r in res_info["resources"]:
+                st.markdown(f"- 🔗 {r}")
+
 else:
-    # --- ฟังก์ชันคำนวณ % ความสอดคล้องระหว่างวิชาที่เลือก กับ โครงสร้างอาชีพ ---
     def calculate_subject_overlap_pct(career_item, selected_subject_ids):
         all_reqs = career_item["primary"] + career_item["secondary"]
         matched = [s for s in selected_subject_ids if s in all_reqs]
@@ -213,10 +225,8 @@ else:
         if not matched:
             return 0.0, []
         
-        # คำนวณสัดส่วน % จากวิชาที่ตรงกัน
         total_selected = len(selected_subject_ids)
         overlap_pct = round((len(matched) / total_selected) * 100, 1)
-        
         return overlap_pct, matched
 
     def get_ranked_careers_with_pct(selected_subject_ids):
@@ -233,10 +243,10 @@ else:
                     "secondary_subs": career["secondary"]
                 })
         
-        # เรียงลำดับตาม % สอดคล้องจากมากไปน้อย
         results.sort(key=lambda x: x["match_pct"], reverse=True)
         return results
 
+    # --- ฟังก์ชันแสดงการ์ดอาชีพ (ย้าย % ความสอดคล้องมาไว้ด้านล่างสุด) ---
     def render_career_card(career_item, rank_label=""):
         c = career_item["details"]
         match_pct = career_item["match_pct"]
@@ -246,8 +256,6 @@ else:
         else:
             st.markdown(f"#### 🎯 **{c['title']}**")
             
-        st.progress(min(match_pct / 100, 1.0))
-        st.caption(f"📊 ความสอดคล้องกับวิชาที่คุณเลือก: **{match_pct}%**")
         st.write(f"**ลักษณะงานจริง:** {c['desc']}")
         
         p_text = ", ".join([f"**{SUBJECT_NAMES[s]}** ({scores[s]} คะแนน)" for s in career_item["primary_subs"] if s in scores])
@@ -255,6 +263,10 @@ else:
         
         st.markdown(f"🔑 **วิชาหลัก:** {p_text}")
         st.markdown(f"🛠️ **วิชาสนับสนุน:** {s_text}")
+        
+        # --- ย้ายความสอดคล้องและ Progress Bar ลงมาไว้ด้านล่างสุด ---
+        st.progress(min(match_pct / 100, 1.0))
+        st.caption(f"📊 **ระดับความสอดคล้องกับวิชาที่คุณเลือก: {match_pct}%**")
         st.markdown("---")
 
     sorted_active = sorted(active_scores.items(), key=lambda x: x[1], reverse=True)
@@ -263,7 +275,7 @@ else:
     st.subheader("📌 ผลการวิเคราะห์และจัดอันดับอาชีพที่เหมาะสม")
 
     # =========================================================
-    # การแสดงผลแบ่งตามจำนวนวิชาที่กรอก
+    # การแสดงผลตามจำนวนวิชาที่เลือก
     # =========================================================
     if num_active == 1:
         single_id, single_score = sorted_active[0]
@@ -279,10 +291,8 @@ else:
         st.info(f"💡 **คุณกรอกคะแนน 2 วิชา:** {SUBJECT_NAMES[s1_id]} ({s1_score} คะแนน), {SUBJECT_NAMES[s2_id]} ({s2_score} คะแนน)")
         
         c_list = get_ranked_careers_with_pct([s1_id, s2_id])
-        
-        # ดึงอาชีพที่สอดคล้อง % สูงสุดมาโชว์
         for i, item in enumerate(c_list[:3]):
-            badge = f"🥇 อันดับ {i+1} (ตรง 100%):" if item["match_pct"] == 100 else f"⭐ อันดับ {i+1} (ตรง {item['match_pct']}%):"
+            badge = f"🥇 อันดับ {i+1} (ตรง 100%):" if item["match_pct"] == 100 else f"⭐ อันดับ {i+1}:"
             render_career_card(item, badge)
 
     else:
@@ -301,13 +311,9 @@ else:
             st.info(f"🎯 **กลุ่ม 3 วิชาเด่นของคุณ:** {SUBJECT_NAMES[s1_id]}, {SUBJECT_NAMES[s2_id]}, {SUBJECT_NAMES[s3_id]}")
             c_list = get_ranked_careers_with_pct([s1_id, s2_id, s3_id])
             
-            # แสดงอาชีพเรียงตาม % ความสอดคล้องเสมอ (ไม่มีหน้าว่างเปล่า)
             for i, item in enumerate(c_list[:3]):
                 pct = item["match_pct"]
-                if pct == 100:
-                    badge = f"🥇 **ตรงสาย 100% (อันดับ {i+1}):**"
-                else:
-                    badge = f"⭐ **ความสอดคล้อง {pct}% (อันดับ {i+1}):**"
+                badge = f"🥇 **อันดับ {i+1} (ตรงสาย 100%):**" if pct == 100 else f"⭐ **อันดับ {i+1}:**"
                 render_career_card(item, badge)
 
         with tab2:
@@ -320,7 +326,7 @@ else:
             def render_pair_tab(sub1, sub2):
                 pair_list = get_ranked_careers_with_pct([sub1, sub2])
                 for i, item in enumerate(pair_list[:3]):
-                    render_career_card(item, f"🎯 อันดับ {i+1} ({item['match_pct']}% Match):")
+                    render_career_card(item, f"🎯 อันดับ {i+1}:")
 
             with subtab2_1:
                 render_pair_tab(s1_id, s2_id)
@@ -391,3 +397,30 @@ else:
 
     else:
         st.dataframe(df_chart, use_container_width=True, hide_index=True)
+
+    st.markdown("---")
+
+    # =========================================================
+    # 7. ระบบแนะนำสื่อการเรียนรู้และพัฒนาทักษะ (Skill Enhancement)
+    # =========================================================
+    st.subheader("💡 ระบบแนะนำสื่อการเรียนรู้และพัฒนาทักษะ (Skill Enhancement)")
+    low_scores = [item for item in sorted_active if item[1] < 50]
+
+    if low_scores:
+        st.warning(f"🚨 **พบวิชาที่คุณได้คะแนนน้อยกว่า 50 คะแนน จำนวน {len(low_scores)} วิชาที่ควรเร่งพัฒนา:**")
+        col_l1, col_l2 = st.columns(2)
+        for i, (s_id, score) in enumerate(low_scores):
+            res_info = LEARNING_RESOURCES_DB[s_id]
+            target_col = col_l1 if i % 2 == 0 else col_l2
+            with target_col.expander(f"📙 {SUBJECT_NAMES[s_id]} — ได้ {score} คะแนน", expanded=True):
+                st.write(f"**ขอบเขตทักษะ:** {res_info['title']}")
+                for r in res_info["resources"]:
+                    st.markdown(f"- 📖 {r}")
+    else:
+        lowest_id, lowest_score = sorted_active[-1]
+        res_info = LEARNING_RESOURCES_DB[lowest_id]
+        st.success(f"🎉 **ทักษะยอดเยี่ยมมาก! ไม่มีวิชาใดได้คะแนนต่ำกว่า 50 คะแนนเลย**")
+        with st.expander(f"📘 แนะนำคอร์สเรียนเสริมความเชี่ยวชาญสำหรับ: {SUBJECT_NAMES[lowest_id]}", expanded=False):
+            st.write(f"**ขอบเขตทักษะ:** {res_info['title']}")
+            for r in res_info["resources"]:
+                st.markdown(f"- 📖 {r}")
