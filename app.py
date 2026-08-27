@@ -67,92 +67,92 @@ SUBJECT_NAMES = {
 }
 
 # ---------------------------------------------------------
-# 4. ฐานข้อมูลอาชีพในชีวิตประจำวัน (ปรับปรุงให้หลากหลายและสมจริง)
+# 4. ฐานข้อมูลอาชีพมหาชน (รู้จักกันดี + มีวิชาสอดคล้องชัดเจน)
 # ---------------------------------------------------------
 CAREERS_DB = [
     {
-        "title": "นักสถิติ / นักคณิตศาสตร์ประกันภัย (Actuary)",
-        "primary": ["math"],
-        "secondary": ["finance", "tech"],
-        "desc": "ใช้ทักษะคำนวณคณิตศาสตร์ขั้นสูง วิเคราะห์ความเสี่ยงทางการเงินและสถิติประชากร"
-    },
-    {
-        "title": "ครู / อาจารย์สอนวิชาคณิตศาสตร์ (Mathematics Teacher)",
+        "title": "ครู / อาจารย์สอนคณิตศาสตร์ (Mathematics Teacher)",
         "primary": ["math"],
         "secondary": ["psychology", "social"],
-        "desc": "ถ่ายทอดความรู้ทางคณิตศาสตร์ ถ่ายทอดตรรกะความรู้ เข้าใจจิตวิทยาการเรียนรู้ของนักเรียน"
+        "desc": "ถ่ายทอดความรู้คณิตศาสตร์ วางแผนการสอน เข้าใจจิตวิทยาเด็กและพัฒนาการเรียนรู้"
     },
     {
-        "title": "วิศวกรซอฟต์แวร์ / นักพัฒนาแอปพลิเคชัน (Software Engineer)",
+        "title": "นักวิเคราะห์ตัวเลขและสถิติ (Data Analyst)",
+        "primary": ["math"],
+        "secondary": ["tech", "finance"],
+        "desc": "นำตัวเลขและสถิติมาคำนวณ วิเคราะห์แนวโน้มธุรกิจและการเงินเพื่อช่วยการตัดสินใจ"
+    },
+    {
+        "title": "โปรแกรมเมอร์ / นักพัฒนาแอปพลิเคชัน (Programmer / Developer)",
         "primary": ["tech"],
         "secondary": ["math", "english"],
-        "desc": "ออกแบบและเขียนโค้ดพัฒนาระบบคอมพิวเตอร์ ใช้ตรรกะคณิตศาสตร์และภาษาอังกฤษในการศึกษาเทคโนโลยี"
+        "desc": "เขียนโค้ดสร้างเว็บไซต์และแอปพลิเคชัน แก้ปัญหาด้วยตรรกะ และอ่านคู่มือภาษาอังกฤษ"
     },
     {
-        "title": "นักการตลาดออนไลน์ / ครีเอเตอร์ดิจิทัล (Digital Content Creator & Marketer)",
+        "title": "ครีเอเตอร์ / ยูทูบเบอร์ / นักการตลาดออนไลน์ (Content Creator & Digital Marketer)",
         "primary": ["marketing"],
         "secondary": ["art", "tech"],
-        "desc": "วางแผนกลยุทธ์การขาย สร้างสรรค์คอนเทนต์รูปภาพ/วิดีโอ และใช้เครื่องมือโซเชียลมีเดีย"
+        "desc": "คิดคอนเทนต์ ตัดต่อวิดีโอ โปรโมตสินค้าผ่านโซเชียลมีเดีย ยิงโฆษณาหาลูกค้า"
     },
     {
-        "title": "ผู้ประกอบการ / เจ้าของธุรกิจส่วนตัว (Entrepreneur / SME Business Owner)",
+        "title": "เจ้าของธุรกิจส่วนตัว / แม่ค้าพ่อค้าออนไลน์ (Online Business Owner)",
         "primary": ["marketing"],
         "secondary": ["finance", "psychology"],
-        "desc": "บริหารจัดการธุรกิจ วางแผนการเงิน การขาย บริหารทีมงานและเจรจาพฤติกรรมลูกค้า"
+        "desc": "บริหารร้านค้า จัดการสต็อกสินค้า วางแผนต้นทุนกำไร และสื่อสารมัดใจลูกค้า"
     },
     {
-        "title": "นักบัญชี / สมุห์บัญชีองค์กร (Accountant)",
+        "title": "นักบัญชี / เจ้าหน้าที่การเงิน (Accountant / Finance Officer)",
         "primary": ["finance"],
         "secondary": ["math", "law"],
-        "desc": "ตรวจสอบและบันทึกรายการทางการเงิน คำนวณภาษี และกำกับดูแลเอกสารตามข้อกฎหมาย"
+        "desc": "ทำรับ-จ่าย บันทึกบัญชี ตรวจสอบตัวเลขรายรับรายจ่าย ดูแลเรื่องภาษีถูกต้องตามกฎหมาย"
     },
     {
-        "title": "แพทย์ / พยาบาล / เภสัชกร (Medical Professional)",
+        "title": "แพทย์ / พยาบาล / เภสัชกร (Doctor / Nurse / Pharmacist)",
         "primary": ["science"],
         "secondary": ["psychology", "english"],
-        "desc": "ใช้วิทยาศาสตร์สุขภาพในการวินิจฉัยและรักษา ดูแลจิตวิทยาผู้ป่วย และใช้วิชาการภาษาอังกฤษ"
+        "desc": "ใช้วิทยาศาสตร์ชีวภาพในการตรวจรักษาโรค จ่ายยา และสื่อสารดูแลจิตวิทยาผู้ป่วย"
     },
     {
-        "title": "ทนายความ / ที่ปรึกษากฎหมาย (Lawyer / Legal Advisor)",
-        "primary": ["law"],
-        "secondary": ["social", "psychology"],
-        "desc": "ให้คำแนะนำทางกฎหมาย วิจารณ์ระเบียบสังคม ตรวจสอบสัญญาและใช้จิตวิทยาในการว่าความ"
-    },
-    {
-        "title": "นักจิตวิทยาปรึกษา / เจ้าหน้าที่ทรัพยากรบุคคล (HR Manager / Counselor)",
-        "primary": ["psychology"],
-        "secondary": ["social", "english"],
-        "desc": "คัดเลือกและดูแลบุคลากรในองค์กร ให้คำปรึกษาปัญหาความเครียด พัฒนาศักยภาพมนุษย์"
-    },
-    {
-        "title": "กราฟิกดีไซเนอร์ / นักวาดภาพประกอบ (Graphic Designer / Illustrator)",
-        "primary": ["art"],
-        "secondary": ["design_3d", "marketing"],
-        "desc": "สร้างสรรค์ผลงานศิลปะ ออกแบบอัตลักษณ์แบรนด์ โลโก้ และงานสื่อสิ่งพิมพ์/สื่อดิจิทัล"
-    },
-    {
-        "title": "สถาปนิก / มัณฑนากรตกแต่งภายใน (Architect / Interior Designer)",
-        "primary": ["design_3d"],
-        "secondary": ["art", "math"],
-        "desc": "ออกแบบโครงสร้างอาคารและพื้นที่ใช้สอย คำนวณขนาดตามหลักวิศวกรรม ผสานความสวยงามทางศิลปะ"
-    },
-    {
-        "title": "นักแปล / ล่าม / เจ้าหน้าที่การต่างประเทศ (Translator / Interpreter)",
-        "primary": ["lang3"],
-        "secondary": ["english", "social"],
-        "desc": "แปลภาษาทางการ สื่อสารเจรจาข้ามวัฒนธรรม และประสานงานความสัมพันธ์ระหว่างประเทศ"
-    },
-    {
-        "title": "เชฟ / นักรังสรรค์อาหาร (Chef / Culinary Artist)",
+        "title": "เชฟ / ช่างทำขนม / เจ้าหน้าที่โภชนาการ (Chef / Baker)",
         "primary": ["science"],
         "secondary": ["art", "marketing"],
-        "desc": "ประยุกต์ใช้วิทยาศาสตร์อาหาร (โภชนาการ/เคมี) ตกแต่งหน้าตาจานอาหาร และบริหารต้นทุนร้าน"
+        "desc": "ผสมผสานเคมีอาหารกับการตกแต่งหน้าตาอาหารให้อร่อย สวยงาม และคำนวณต้นทุนขาย"
     },
     {
-        "title": "นักบิน / เจ้าหน้าที่ควบคุมการจราจรทางอากาศ (Pilot / Air Traffic Controller)",
-        "primary": ["science"],
-        "secondary": ["english", "math"],
-        "desc": "ใช้วิทยาศาสตร์การบิน คำนวณพิกัดคณิตศาสตร์ และสื่อสารภาษาอังกฤษตามมาตรฐานสากล"
+        "title": "ทนายความ / นิติกร / ตำรวจ (Lawyer / Legal Officer / Police)",
+        "primary": ["law"],
+        "secondary": ["social", "psychology"],
+        "desc": "ใช้กฎหมายในการว่าความ ให้คำปรึกษาความถูกต้อง รักษาระเบียบสังคมและเข้าใจพฤติกรรมมนุษย์"
+    },
+    {
+        "title": "นักจิตวิทยา / เจ้าหน้าที่ฝ่ายบุคคล (Psychologist / HR Officer)",
+        "primary": ["psychology"],
+        "secondary": ["social", "english"],
+        "desc": "ให้คำปรึกษาปัญหาชีวิต ดูแลสุขภาพจิต สัมภาษณ์คัดเลือกคนเข้าทำงานและบริหารคน"
+    },
+    {
+        "title": "กราฟิกดีไซเนอร์ / ช่างภาพ (Graphic Designer / Photographer)",
+        "primary": ["art"],
+        "secondary": ["design_3d", "marketing"],
+        "desc": "วาดภาพ วาดการ์ตูน ออกแบบโลโก้ แบนเนอร์ ปรับแต่งรูปภาพและวิดีโอเพื่อการประชาสัมพันธ์"
+    },
+    {
+        "title": "สถาปนิก / นักออกแบบภายใน (Architect / Interior Designer)",
+        "primary": ["design_3d"],
+        "secondary": ["art", "math"],
+        "desc": "เขียนแบบบ้าน ออกแบบอาคาร และตกแต่งห้อง 3 มิติ พร้อมคำนวณพื้นที่และระยะโครงสร้าง"
+    },
+    {
+        "title": "ล่าม / นักแปล / ไกด์นำเที่ยว (Interpreter / Translator / Tour Guide)",
+        "primary": ["lang3"],
+        "secondary": ["english", "social"],
+        "desc": "แปลภาษา เจรจาติดต่อสื่อสารกับชาวต่างชาติ แนะนำสถานที่ท่องเที่ยวและวัฒนธรรม"
+    },
+    {
+        "title": "นักบิน / สจ๊วต-แอร์โฮสเตส (Pilot / Cabin Crew)",
+        "primary": ["english"],
+        "secondary": ["science", "psychology"],
+        "desc": "ใช้ภาษาอังกฤษสื่อสารการบิน ให้บริการผู้โดยสาร ดูแลความปลอดภัยและแก้วิกฤตฉุกเฉิน"
     }
 ]
 
@@ -222,12 +222,11 @@ with col_title:
 
 st.markdown("---")
 
-# ตรวจสอบว่ามีคะแนนมากกว่า 0 หรือไม่
 all_zero = all(v == 0 for v in scores.values())
 
 if all_zero:
     st.error("🚫 **ไม่พบอาชีพที่เหมาะสม (คะแนนเป็น 0 ทุกวิชา)**")
-    st.warning("⚠️ คุณยังไม่ได้ปรับคะแนนรายวิชา กรุณาปรับคะแนนในแถบเมนูฝั่งซ้ายอย่างน้อย 1 วิชา เพื่อให้ระบบคำนวณหาอาชีพ")
+    st.warning("⚠️ กรุณากรอกคะแนนอย่างน้อย 1 วิชาในแถบสีดำฝั่งซ้าย เพื่อเปิดการประมวลผล")
     
     st.markdown("---")
     st.subheader("💡 คำแนะนำสื่อการเรียนรู้ปูพื้นฐาน (สำหรับวิชาที่มีคะแนน 0)")
@@ -243,47 +242,42 @@ if all_zero:
                 st.markdown(f"- 📖 {r}")
 
 else:
-    # --- อัลกอริทึมคำนวณความสอดคล้องใหม่ (Weighted Matching Logic) ---
-    def calculate_career_fit(career):
-        primary_subs = career["primary"]
-        secondary_subs = career["secondary"]
+    # --- ฟังก์ชันคำนวณคะแนนความเหมาะสม (กรองวิชาที่มีคะแนน > 0 เท่านั้น) ---
+    def get_ranked_careers_by_subjects(target_subject_ids):
+        results = []
+        for career in CAREERS_DB:
+            # ตรวจสอบวิชาหลัก
+            p_match = [s for s in career["primary"] if s in target_subject_ids]
+            # ตรวจสอบวิชาสนับสนุน
+            s_match = [s for s in career["secondary"] if s in target_subject_ids]
+            
+            if not p_match and not s_match:
+                continue
+                
+            p_avg = sum([scores[s] for s in p_match]) / len(career["primary"]) if p_match else 0
+            s_avg = sum([scores[s] for s in s_match]) / len(career["secondary"]) if s_match else 0
+            
+            # วิชาหลักน้ำหนัก 70%, วิชาสนับสนุนน้ำหนัก 30%
+            fit_score = round((p_avg * 0.7) + (s_avg * 0.3), 1)
+            
+            if fit_score > 0:
+                results.append({
+                    "details": career,
+                    "fit_score": fit_score
+                })
         
-        # คำนวณคะแนนเฉลี่ยวิชาหลัก (น้ำหนัก 70%)
-        p_scores = [scores[s] for s in primary_subs]
-        p_avg = sum(p_scores) / len(p_scores) if p_scores else 0
-        
-        # คำนวณคะแนนเฉลี่ยวิชาสนับสนุน (น้ำหนัก 30%)
-        s_scores = [scores[s] for s in secondary_subs]
-        s_avg = sum(s_scores) / len(s_scores) if s_scores else 0
-        
-        # คะแนนรวมสุทธิ
-        total_fit = (p_avg * 0.7) + (s_avg * 0.3)
-        return round(total_fit, 1)
+        results.sort(key=lambda x: x["fit_score"], reverse=True)
+        return results
 
-    # จัดอันดับอาชีพตามคะแนนความสอดคล้อง
-    career_rankings = []
-    for career in CAREERS_DB:
-        fit_score = calculate_career_fit(career)
-        if fit_score > 0:
-            career_rankings.append({
-                "details": career,
-                "fit_score": fit_score
-            })
-
-    career_rankings.sort(key=lambda x: x["fit_score"], reverse=True)
-
-    # --- ส่วนที่ 1: แสดงอาชีพที่เหมาะสมที่สุด ---
-    st.subheader("🎯 อาชีพที่เหมาะสมที่สุดจากการประมวลผลทักษะวิชา")
-
-    active_user_subs = [f"{SUBJECT_NAMES[k]} ({v} คะแนน)" for k, v in scores.items() if v > 0]
-    st.info(f"💡 **วิชาที่คุณกรอกคะแนน:** {', '.join(active_user_subs)}")
-
-    for i, item in enumerate(career_rankings[:3]):
+    def render_career_card(item, rank_badge=""):
         c = item["details"]
         fit = item["fit_score"]
         
-        rank_badges = ["🥇 อันดับ 1 (เหมาะสมที่สุด)", "🥈 อันดับ 2", "🥉 อันดับ 3"]
-        st.markdown(f"#### {rank_badges[i]}: **{c['title']}**")
+        if rank_badge:
+            st.markdown(f"#### {rank_badge} **{c['title']}**")
+        else:
+            st.markdown(f"#### 🎯 **{c['title']}**")
+            
         st.write(f"**รายละเอียดอาชีพ:** {c['desc']}")
         
         p_text = ", ".join([f"**{SUBJECT_NAMES[s]}** ({scores[s]} คะแนน)" for s in c["primary"]])
@@ -295,6 +289,91 @@ else:
         st.progress(min(fit / 100.0, 1.0))
         st.caption(f"📊 **ระดับความเข้ากันของทักษะวิชา: {fit}%**")
         st.markdown("---")
+
+    # ดึงเฉพาะวิชาที่ผู้ใช้ใส่คะแนน > 0
+    active_sorted = sorted([(k, v) for k, v in scores.items() if v > 0], key=lambda x: x[1], reverse=True)
+    num_active = len(active_sorted)
+
+    st.subheader("🎯 อาชีพที่เหมาะสมที่สุดจากการประมวลผลทักษะวิชา")
+
+    if num_active == 1:
+        s1_id, s1_score = active_sorted[0]
+        st.info(f"💡 **คุณกรอกคะแนน 1 วิชา:** {SUBJECT_NAMES[s1_id]} ({s1_score} คะแนน)")
+        
+        c_list = get_ranked_careers_by_subjects([s1_id])
+        for i, item in enumerate(c_list[:3]):
+            badges = ["🥇 อันดับ 1:", "🥈 อันดับ 2:", "🥉 อันดับ 3:"]
+            render_career_card(item, badges[i])
+
+    elif num_active == 2:
+        s1_id, s1_score = active_sorted[0]
+        s2_id, s2_score = active_sorted[1]
+        st.info(f"💡 **คุณกรอกคะแนน 2 วิชา:** {SUBJECT_NAMES[s1_id]} ({s1_score} คะแนน), {SUBJECT_NAMES[s2_id]} ({s2_score} คะแนน)")
+        
+        c_list = get_ranked_careers_by_subjects([s1_id, s2_id])
+        for i, item in enumerate(c_list[:3]):
+            badges = ["🥇 อันดับ 1:", "🥈 อันดับ 2:", "🥉 อันดับ 3:"]
+            render_career_card(item, badges[i])
+
+    else:
+        # กรณีมีคะแนนมากกว่า 2 วิชาขึ้นไป ให้แสดงแบบ 3 แท็บระบบหมวดหมู่ครบถ้วน
+        top_3 = active_sorted[:3]
+        s1_id, s1_score = top_3[0]
+        s2_id, s2_score = top_3[1]
+        s3_id, s3_score = top_3[2]
+
+        tab1, tab2, tab3 = st.tabs([
+            "🧩 ผลลัพธ์ภาพรวม (3 วิชาหลัก)", 
+            "⚖️ การจับคู่ย่อย (2 วิชา)", 
+            "💡 แยกตามวิชาเดี่ยว (1 วิชา)"
+        ])
+
+        with tab1:
+            st.info(f"🎯 **กลุ่ม 3 วิชาเด่นของคุณ:** {SUBJECT_NAMES[s1_id]} ({s1_score} คะแนน), {SUBJECT_NAMES[s2_id]} ({s2_score} คะแนน), {SUBJECT_NAMES[s3_id]} ({s3_score} คะแนน)")
+            c_list = get_ranked_careers_by_subjects([s1_id, s2_id, s3_id])
+            for i, item in enumerate(c_list[:3]):
+                badges = ["🥇 อันดับ 1 (เหมาะสมที่สุด):", "🥈 อันดับ 2:", "🥉 อันดับ 3:"]
+                render_career_card(item, badges[i])
+
+        with tab2:
+            subtab2_1, subtab2_2, subtab2_3 = st.tabs([
+                f"1️⃣ {SUBJECT_NAMES[s1_id]} + {SUBJECT_NAMES[s2_id]}",
+                f"2️⃣ {SUBJECT_NAMES[s1_id]} + {SUBJECT_NAMES[s3_id]}",
+                f"3️⃣ {SUBJECT_NAMES[s2_id]} + {SUBJECT_NAMES[s3_id]}"
+            ])
+            
+            def render_pair(subA, subB):
+                pair_list = get_ranked_careers_by_subjects([subA, subB])
+                for i, item in enumerate(pair_list[:3]):
+                    badges = ["🥇 อันดับ 1:", "🥈 อันดับ 2:", "🥉 อันดับ 3:"]
+                    render_career_card(item, badges[i])
+
+            with subtab2_1:
+                render_pair(s1_id, s2_id)
+            with subtab2_2:
+                render_pair(s1_id, s3_id)
+            with subtab2_3:
+                render_pair(s2_id, s3_id)
+
+        with tab3:
+            subtab3_1, subtab3_2, subtab3_3 = st.tabs([
+                f"🥇 {SUBJECT_NAMES[s1_id]} ({s1_score} คะแนน)",
+                f"🥈 {SUBJECT_NAMES[s2_id]} ({s2_score} คะแนน)",
+                f"🥉 {SUBJECT_NAMES[s3_id]} ({s3_score} คะแนน)"
+            ])
+            
+            def render_single(sub_id):
+                single_list = get_ranked_careers_by_subjects([sub_id])
+                for i, item in enumerate(single_list[:3]):
+                    badges = ["🥇 อันดับ 1:", "🥈 อันดับ 2:", "🥉 อันดับ 3:"]
+                    render_career_card(item, badges[i])
+
+            with subtab3_1:
+                render_single(s1_id)
+            with subtab3_2:
+                render_single(s2_id)
+            with subtab3_3:
+                render_single(s3_id)
 
     # --- ส่วนที่ 2: อาชีพอิสระจากวิชาที่ชอบ ---
     st.subheader("🚀 อาชีพอิสระ (Freelance) จากวิชาที่คุณชอบ")
