@@ -7,7 +7,7 @@ import plotly.graph_objects as go
 # 1. ตั้งค่าหน้าตาเว็บไซต์ (Page Configuration)
 # ---------------------------------------------------------
 st.set_page_config(
-    page_title="Smart Career Recommendation System (Real-World Edition)",
+    page_title="Smart Career Recommendation System (Everyday Careers Edition)",
     page_icon="🎓",
     layout="wide"
 )
@@ -36,7 +36,6 @@ st.markdown("""
         background-color: #121212 !important;
     }
     
-    /* ตัวหนังสือ ข้อความ หัวข้อ และ Label ทั้งหมดใน Sidebar */
     [data-testid="stSidebar"] p, 
     [data-testid="stSidebar"] h1, 
     [data-testid="stSidebar"] h2, 
@@ -49,7 +48,6 @@ st.markdown("""
         font-weight: 600 !important;
     }
 
-    /* ปรับแต่งกล่อง Selectbox ใน Sidebar */
     [data-testid="stSidebar"] div[data-baseweb="select"] > div {
         background-color: #1A1A1A !important;
         color: #FFFFFF !important;
@@ -88,7 +86,6 @@ st.markdown("""
         border-bottom: 3px solid #FFFFFF !important;
     }
 
-    /* ปรับ Toggle Label ด้านบน */
     div[data-testid="stToggle"] label p {
         color: inherit !important;
         font-weight: bold !important;
@@ -145,130 +142,150 @@ SUBJECT_NAMES = {
 }
 
 # ---------------------------------------------------------
-# 4. ฐานข้อมูลอาชีพจริงในโลก (Real-World Master Database)
+# 4. ฐานข้อมูลอาชีพในชีวิตประจำวันและอาชีพทั่วไป (Comprehensive Real-World DB)
 # ---------------------------------------------------------
 CAREERS_DB = [
-    # --- สายงานอสังหาริมทรัพย์ การเมือง กฎหมาย และโครงสร้างพื้นฐาน ---
+    # === กลุ่มอาชีพในชีวิตประจำวัน & ครีเอเตอร์ดิจิทัล (Everyday & Digital Careers) ===
+    {
+        "title": "ผู้สร้างคอนเทนต์ / ยูทูปเบอร์ (Content Creator / YouTuber / TikToker)",
+        "subjects": ["art", "marketing", "tech"],
+        "desc": "คิดคอนเทนต์ ตัดต่อวิดีโอ (Art/Tech) วางกลยุทธ์สร้างยอดวิวและเข้าถึงผู้ติดตาม (Marketing)"
+    },
+    {
+        "title": "พ่อค้าแม่ค้าออนไลน์ / เจ้าของร้านค้า E-commerce",
+        "subjects": ["marketing", "finance", "tech"],
+        "desc": "ยิงโฆษณาออนไลน์ (Marketing) บริหารต้นทุนและกำไร (Finance) ใช้แพลตฟอร์มสำเร็จรูปขายสินค้า (Tech)"
+    },
+    {
+        "title": "เจ้าของร้านกาแฟ / บาริสต้า (Barista & Coffee Shop Owner)",
+        "subjects": ["marketing", "finance", "art"],
+        "desc": "ออกแบบตกแต่งร้านและเครื่องดื่ม (Art) คำนวณรายรับ-รายจ่าย (Finance) และทำการตลาดเรียกลูกค้า (Marketing)"
+    },
+    {
+        "title": "เชฟ / พ่อครัว / แม่ครัว (Chef & Culinary Specialist)",
+        "subjects": ["science", "art", "marketing"],
+        "desc": "เข้าใจปฏิกิริยาเคมีของอาหารและความร้อน (Science) ตกแต่งจานอาหารให้สวยงาม (Art) และสร้างแบรนด์ร้านอาหาร (Marketing)"
+    },
+
+    # === กลุ่มงานออฟฟิศ องค์กร & การบริหาร (Office & Business Operations) ===
+    {
+        "title": "นักบัญชี / พนักงานบัญชีบริษัท (Corporate Accountant)",
+        "subjects": ["finance", "math", "law"],
+        "desc": "บันทึกบัญชี ตรวจสอบงบการเงิน (Finance/Math) และยื่นภาษีตามข้อกำหนดของกฎหมาย (Law)"
+    },
+    {
+        "title": "เจ้าหน้าที่ฝ่ายทรัพยากรบุคคล (HR / Human Resources)",
+        "subjects": ["psychology", "social", "law"],
+        "desc": "คัดเลือกและดูแลพนักงาน (Psychology) สร้างวัฒนธรรมองค์กร (Social) และดูแลกฎหมายแรงงาน (Law)"
+    },
+    {
+        "title": "พนักงานฝ่ายขาย / เซลส์ (Sales Executive)",
+        "subjects": ["marketing", "psychology", "english"],
+        "desc": "นำเสนอสินค้า จูงใจผู้ซื้อ (Marketing) เข้าใจความต้องการของลูกค้า (Psychology) และสื่อสารขายงานต่างชาติ (English)"
+    },
+    {
+        "title": "เจ้าหน้าที่ฝ่ายการตลาด (Marketing Executive)",
+        "subjects": ["marketing", "social", "art"],
+        "desc": "วิเคราะห์พฤติกรรมผู้บริโภคในสังคม (Social) คิดแคมเปญโฆษณา (Marketing) และบรีฟงานออกแบบกราฟิก (Art)"
+    },
+
+    # === กลุ่มข้าราชการ สังคม & กฎหมาย (Government, Law & Public Sector) ===
+    {
+        "title": "ข้าราชการพลเรือน / เจ้าหน้าที่รัฐ (Civil Servant)",
+        "subjects": ["social", "law", "psychology"],
+        "desc": "ปฏิบัติตามระเบียบและข้อกฎหมาย (Law) บริการประชาชน (Social) และประสานงานองค์กร (Psychology)"
+    },
+    {
+        "title": "ทหาร / ตำรวจ (Military / Police Officer)",
+        "subjects": ["social", "law", "science"],
+        "desc": "บังคับใช้กฎหมายรักษาความสงบ (Law) เข้าใจโครงสร้างสังคม (Social) และใช้วิทยาศาสตร์พิสูจน์หลักฐาน/ยุทธวิธี (Science)"
+    },
+    {
+        "title": "นักข่าว / ผู้ประกาศข่าว (Journalist / News Reporter)",
+        "subjects": ["social", "english", "law"],
+        "desc": "ติดตามสถานการณ์บ้านเมือง (Social) รายงานข่าวภาษาไทยและสากล (English) และยึดหลักจริยธรรมกฎหมายสื่อ (Law)"
+    },
+    {
+        "title": "ทนายความ / ที่ปรึกษากฎหมาย (Lawyer / Attorney)",
+        "subjects": ["law", "social", "english"],
+        "desc": "ว่าความ ตีความกฎหมาย (Law) ช่วยเหลือสังคม (Social) และจัดการสัญญาระหว่างประเทศ (English)"
+    },
+
+    # === กลุ่มอสังหาริมทรัพย์ สถาปัตยกรรม & งานช่าง (Real Estate, Arch & Craft) ===
     {
         "title": "นักพัฒนาอสังหาริมทรัพย์ (Real Estate Developer)",
         "subjects": ["design_3d", "finance", "law"],
-        "desc": "วางโครงสร้างอสังหาริมทรัพย์และอาคาร (3D Architecture) วิเคราะห์ความเป็นไปได้ทางการเงิน (Finance) และดำเนินการตามข้อกฎหมายที่ดิน/การจัดสรร (Law)"
+        "desc": "วางโครงสร้างอาคารและแบบ 3D (Design 3D) คำนวณการลงทุนและงบประมาณ (Finance) และจัดการกฎหมายที่ดิน (Law)"
     },
     {
-        "title": "ผู้ประเมินราคาทรัพย์สินและสินทรัพย์ (Asset Valuer & Surveyor)",
-        "subjects": ["design_3d", "finance", "law"],
-        "desc": "ตรวจสอบพิมพ์เขียวและสิ่งปลูกสร้าง (3D/Arch) ประเมินมูลค่าทางบัญชีและการเงิน (Finance) และออกเอกสารรับรองตามกฎหมาย (Law)"
-    },
-    {
-        "title": "ที่ปรึกษากฎหมายการเงินและอสังหาริมทรัพย์ (Real Estate & Legal Advisor)",
-        "subjects": ["law", "finance", "social"],
-        "desc": "ดูแลข้อกฎหมายธุรกรรมทางการเงิน ร่างสัญญาการร่วมทุน และดูแลการปฏิบัติตามกฎหมายเศรษฐกิจและสังคม"
-    },
-
-    # --- สายงานการแพทย์ สาธารณสุข และชีวเทคโนโลยี ---
-    {
-        "title": "แพทย์ / ศัลยแพทย์ (Medical Doctor / Surgeon)",
-        "subjects": ["science", "math", "english"],
-        "desc": "วินิจฉัยและรักษาผู้ป่วย คำนวณขนาดยาและสถิติการรักษาอย่างแม่นยำ อ่านและงานวิจัยตำราต่างประเทศ"
-    },
-    {
-        "title": "เภสัชกรอุตสาหกรรม (Industrial Pharmacist)",
-        "subjects": ["science", "math", "english"],
-        "desc": "วิจัยพัฒนาตำรับยา วิเคราะห์ปฏิกิริยาเคมีด้วยสถิติและคณิตศาสตร์ และศึกษามาตรฐานสากล"
-    },
-    {
-        "title": "นักวิจัยชีวเวชศาสตร์และพันธุศาสตร์ (Biomedical Researcher)",
-        "subjects": ["science", "tech", "english"],
-        "desc": "ใช้วิทยาศาสตร์การแพทย์ ประมวลผลข้อมูลชีวภาพด้วยคอมพิวเตอร์ (Bioinformatics) และตีพิมพ์ผลงานสากล"
-    },
-
-    # --- สายงานเทคโนโลยี นวัตกรรม และ AI ---
-    {
-        "title": "วิศวกรซอฟต์แวร์และระบบ (Software Engineer)",
-        "subjects": ["tech", "math", "english"],
-        "desc": "ใช้วิทยาการคำนวณและตรรกะคณิตศาสตร์ในการเขียนโปรแกรม สร้างระบบซอฟต์แวร์ และสื่อสารในทีมระดับสากล"
-    },
-    {
-        "title": "นักวิทยาศาสตร์ข้อมูลและ AI (Data Scientist / AI Engineer)",
-        "subjects": ["math", "tech", "science"],
-        "desc": "สร้างโมเดลคณิตศาสตร์และสถิติ ใช้เครื่องมือคอมพิวเตอร์ประมวลผล Big Data และวิจัยเชิงวิทยาศาสตร์"
-    },
-    {
-        "title": "นักพัฒนาเทคโนโลยีการเงิน (FinTech Developer)",
-        "subjects": ["tech", "finance", "math"],
-        "desc": "สร้างระบบชำระเงิน ตลาดหุ้น และบล็อกเชน โดยใช้วิทยาการคำนวณ ตรรกะคณิตศาสตร์ และโมเดลการเงิน"
-    },
-
-    # --- สายงานออกแบบ สถาปัตยกรรม และสื่อสร้างสรรค์ ---
-    {
-        "title": "สถาปนิกและนักออกแบบเมือง (Architect & Urban Planner)",
+        "title": "มัณฑนากร / นักออกแบบภายใน (Interior Designer)",
         "subjects": ["design_3d", "art", "math"],
-        "desc": "ออกแบบโครงสร้าง 3 มิติ ใช้ความคิดสร้างสรรค์ทางศิลปะ และคำนวณความแข็งแรงทางวิศวกรรม"
+        "desc": "ออกแบบตกแต่งภายใน (Art/3D) คำนวณระยะ สัดส่วน และพื้นที่ใช้งานให้คุ้มค่า (Math)"
     },
     {
-        "title": "นักออกแบบ UI/UX (UI/UX Designer)",
-        "subjects": ["art", "tech", "psychology"],
-        "desc": "ออกแบบหน้าตาแอปพลิเคชันให้สวยงาม เข้าใจพฤติกรรมผู้ใช้ด้วยจิตวิทยา และทำงานร่วมกับทีมพัฒนาระบบ"
-    },
-    {
-        "title": "นักออกแบบเกมและโลกเสมือน (Game & Metaverse Designer)",
-        "subjects": ["design_3d", "art", "tech"],
-        "desc": "ขึ้นแบบจำลอง 3D ออกแบบทัศนียภาพและกราฟิก และใช้ engine ในการพัฒนาระบบเกม"
+        "title": "วิศวกรบริการ / ช่างไฟฟ้าและระบบ (Systems & Service Engineer)",
+        "subjects": ["science", "tech", "math"],
+        "desc": "ตรวจเช็กระบบไฟฟ้า วางระบบเทคโนโลยี (Science/Tech) และคำนวณกำลังไฟกับความปลอดภัย (Math)"
     },
 
-    # --- สายงานการบริหาร การเงิน การตลาด และธุรกิจ global ---
+    # === กลุ่มการแพทย์ สุขภาพ & บริการ (Healthcare & Service Industry) ===
     {
-        "title": "นักวิเคราะห์การลงทุนและวอลสตรีท (Investment Banker / Analyst)",
-        "subjects": ["finance", "math", "marketing"],
-        "desc": "วิเคราะห์งบการเงิน ประเมินมูลค่าบริษัทด้วยคณิตศาสตร์การเงิน และวางกลยุทธ์เติบโตทางธุรกิจ"
-    },
-    {
-        "title": "นักการตลาดดิจิทัลและพฤติกรรมผู้บริโภค (Digital Marketing Strategist)",
-        "subjects": ["marketing", "psychology", "tech"],
-        "desc": "วางแผนวิเคราะห์การตลาด ใช้จิตวิทยาโน้มน้าวใจผู้บริโภค และบริหารเครื่องมือโฆษณาออนไลน์"
-    },
-    {
-        "title": "ผู้บริหารการค้าและการต่างประเทศ (International Business Executive)",
-        "subjects": ["marketing", "english", "lang3"],
-        "desc": "บริหารการตลาดระหว่างประเทศ สื่อสารภาษาอังกฤษและภาษาที่สามในการเจรจาการค้าสากล"
-    },
-
-    # --- สายงานกฎหมาย สังคมศาสตร์ การบิน และการบริการ ---
-    {
-        "title": "ทนายความหุ้นส่วนและธุรกิจ (Corporate Lawyer)",
-        "subjects": ["law", "english", "social"],
-        "desc": "ว่าความและตีความกฎหมาย ตรวจสอบสัญญาภาษาอังกฤษสากล และเข้าใจโครงสร้างสังคมและธุรกิจ"
-    },
-    {
-        "title": "นักการทูตและวิเทศสัมพันธ์ (Diplomat / Foreign Affairs Officer)",
-        "subjects": ["social", "lang3", "english"],
-        "desc": "วิเคราะห์การเมืองและสังคมโลก สื่อสารภาษาทางการทูตทั้งภาษาอังกฤษและภาษาที่สาม"
-    },
-    {
-        "title": "นักบินพาณิชย์เอกชน (Commercial Airline Pilot)",
+        "title": "แพทย์ / หมอรักษาโรค (Medical Doctor)",
         "subjects": ["science", "math", "english"],
-        "desc": "ประยุกต์ใช้ฟิสิกส์การบิน คำนวณการเชื้อเพลิงและทิศทางลม และสื่อสารวิทยุการบินภาษาอังกฤษ"
+        "desc": "วินิจฉัยโรค ประยุกต์ใช้วิทยาศาสตร์ คำนวณขนาดยา และอ่านตำราต่างประเทศ"
     },
     {
-        "title": "นักจิตวิทยาองค์กรและทรัพยากรบุคคล (Organizational Psychologist)",
-        "subjects": ["psychology", "social", "english"],
-        "desc": "ใช้องค์ความรู้จิตวิทยา บริหารคนและวัฒนธรรมองค์กร และปรับปรุงประสิทธิภาพการทำงาน"
+        "title": "พยาบาลวิชาชีพ (Registered Nurse)",
+        "subjects": ["science", "psychology", "english"],
+        "desc": "ดูแลผู้ป่วย ใช้ความรู้วิทยาศาสตร์ สื่อสารสร้างความอุ่นใจ (Psychology) และดูแลผู้ป่วยต่างชาติ (English)"
+    },
+    {
+        "title": "เภสัชกรหน้าร้าน / เภสัชกรโรงพยาบาล (Pharmacist)",
+        "subjects": ["science", "math", "english"],
+        "desc": "จ่ายยา ให้คำแนะนำการใช้ยาอย่างปลอดภัย คำนวณสัดส่วนตามน้ำหนักตัวผู้ป่วย"
+    },
+    {
+        "title": "พนักงานต้อนรับโรงแรม / ต้อนรับลูกค้า (Hotel Receptionist / Concierge)",
+        "subjects": ["english", "lang3", "psychology"],
+        "desc": "สื่อสารภาษาอังกฤษและภาษาที่สาม บริการด้วยจิตวิทยาและการแก้ปัญหาเฉพาะหน้าให้ลูกค้า"
+    },
+    {
+        "title": "พนักงานต้อนรับบนเครื่องบิน (Flight Attendant / ลูกเรือ)",
+        "subjects": ["english", "lang3", "psychology"],
+        "desc": "สื่อสารหลายภาษา ดูแลความปลอดภัยผู้โดยสารด้วยจิตวิทยาและการบริการสากล"
+    },
+
+    # === กลุ่มเทคโนโลยี ซอฟต์แวร์ & AI (IT & Tech Industry) ===
+    {
+        "title": "วิศวกรซอฟต์แวร์ / นักเขียนโปรแกรม (Software Developer)",
+        "subjects": ["tech", "math", "english"],
+        "desc": "เขียนโปรแกรมคอมพิวเตอร์ ใช้ตรรกะคณิตศาสตร์แก้ปัญหา และอ่านคู่มือภาษาอังกฤษ"
+    },
+    {
+        "title": "นักวิเคราะห์ข้อมูล (Data Analyst)",
+        "subjects": ["math", "tech", "finance"],
+        "desc": "วิเคราะห์ข้อมูลยอดขายและสถิติธุรกิจด้วยคอมพิวเตอร์และคณิตศาสตร์"
+    },
+    {
+        "title": "นักออกแบบหน้าเว็บและแอปพลิเคชัน (UI/UX Designer)",
+        "subjects": ["art", "tech", "psychology"],
+        "desc": "ออกแบบปุ่ม หน้าตาเว็บ (Art) ผสานระบบเทคโนโลยี (Tech) และศึกษาพฤติกรรมผู้ใช้ (Psychology)"
     }
 ]
 
 FREELANCE_CAREERS_DB = {
-    "math": {"title": "Tutor สอนคณิตศาสตร์ / Data Analyst อิสระ", "desc": "รับวิเคราะห์ข้อมูลเชิงสถิติ หรือสอนพิเศษคณิตศาสตร์/สถิติออนไลน์"},
-    "science": {"title": "นักเขียนบทความวิทยาศาสตร์และสุขภาพ", "desc": "เขียนคอนเทนต์ความรู้วิทยาศาสตร์ พิสูจน์อักษรวารสารวิจัย"},
-    "tech": {"title": "Freelance Full-Stack Developer", "desc": "รับพัฒนาเว็บไซต์ แอปพลิเคชัน และระบบออโตเมชัน"},
-    "english": {"title": "นักแปลเอกสารสัญญา / คอนเทนต์นักเขียนภาษาอังกฤษ", "desc": "รับแปลเอกสารทางวิชาการ กฎหมาย หรือบทความ SEO"},
-    "art": {"title": "Freelance Character & Graphic Designer", "desc": "รับวาดภาพประกอบ ออกแบบโลโก้ และสื่อกราฟิกโปรโมต"},
-    "social": {"title": "นักวิเคราะห์เทรนด์สังคม / Podcast Content Creator", "desc": "ผลิตสื่อพอดแคสต์เล่าเรื่องราวประวัติศาสตร์ สังคม และเศรษฐกิจ"},
-    "finance": {"title": "ที่ปรึกษาการเงินส่วนบุคคล / นักบัญชีอิสระ", "desc": "วางแผนภาษี ทำบัญชีรายรับรายจ่าย และวางแผนการลงทุน"},
-    "marketing": {"title": "Freelance Digital Ads & Media Planner", "desc": "รับบริหารเพจ ยิงโฆษณา Facebook/Google และวางกลยุทธ์การตลาด"},
-    "lang3": {"title": "ล่ามอิสระ / นักแปลภาษาที่สาม", "desc": "รับงานล่ามการประชุม งานแปลซีรีส์ ซับไตเติล และเอกสารต่างประเทศ"},
-    "design_3d": {"title": "3D Architectural Visualizer", "desc": "รับขึ้นโมเดล 3D อาคาร ออกแบบภาพทัศนียภาพห้องพักและตกแต่งภายใน"},
-    "law": {"title": "ที่ปรึกษากฎหมายและสัญญาธุรกิจอิสระ", "desc": "ให้คำปรึกษาด้านข้อกฎหมาย ร่างสัญญา และจดทะเบียนทรัพย์สินทางปัญญา"},
-    "psychology": {"title": "Life Coach / ที่ปรึกษาการพัฒนาตนเอง", "desc": "ให้คำปรึกษาการจัดการความเครียด บุคลิกภาพ และเป้าหมายชีวิต"}
+    "math": {"title": "Tutor สอนพิเศษคณิตศาสตร์ / รับติวเตอร์ออนไลน์", "desc": "รับสอนพิเศษวิชาคณิตศาสตร์ สถิติ หรือรับทำแบบวิเคราะห์ข้อมูลตัวเลข"},
+    "science": {"title": "นักเขียนบทความสุขภาพและวิทยาศาสตร์", "desc": "รับเขียนบทความความรู้ สุขภาพ อาหาร และวิทยาศาสตร์ลงเว็บไซต์/เพจ"},
+    "tech": {"title": "Freelance รับทำเว็บไซต์ / ซ่อมคอมพิวเตอร์และระบบ", "desc": "รับสร้างเว็บไซต์ร้านค้า ปรับแต่งระบบคอมพิวเตอร์ หรือดูแลระบบไอที"},
+    "english": {"title": "นักแปลเอกสารอิสระ / รับเขียนคอนเทนต์ภาษาอังกฤษ", "desc": "รับแปลเอกสาร แปลซับไตเติล หรือเขียนอีเมลธุรกิจภาษาอังกฤษ"},
+    "art": {"title": "Freelance Illustrator / ช่างภาพอิสระ", "desc": "รับวาดภาพ วาดสติกเกอร์ไลน์ ออกแบบโลโก้ หรือรับถ่ายภาพงานต่างๆ"},
+    "social": {"title": "นักสร้างคอนเทนต์ประวัติศาสตร์/เล่าเรื่อง", "desc": "ทำคลิปเล่าเรื่องประวัติศาสตร์ สังคม หรือเรื่องน่ารู้รอบโลก"},
+    "finance": {"title": "รับทำบัญชีร้านค้าออนไลน์ / ที่ปรึกษาภาษีส่วนบุคคล", "desc": "ช่วยร้านค้าเล็กๆ วางแผนภาษี ยื่นภาษี และสรุปบัญชีรายรับรายจ่าย"},
+    "marketing": {"title": "Freelance รับดูแลเพจ / ยิงโฆษณาออนไลน์", "desc": "รับเขียนโพสต์ขายของ ยิงแอด Facebook/TikTok ให้กับร้านค้าต่างๆ"},
+    "lang3": {"title": "ล่ามอิสระ / ไกด์นำเที่ยวต่างชาติ", "desc": "รับงานแปลภาษาเฉพาะกิจ ล่ามติดตาม หรือนำเที่ยวชาวต่างชาติ"},
+    "design_3d": {"title": "Freelance ขึ้นโมเดล 3D / เขียนแบบบ้าน", "desc": "รับเขียนแบบบ้าน 3D ให้ลูกค้าเห็นภาพก่อนสร้างจริง"},
+    "law": {"title": "ที่ปรึกษาข้อกฎหมายร้านค้าและสัญญาอิสระ", "desc": "ให้คำปรึกษาการทำสัญญาเช่า สัญญาจ้างงาน และกฎหมายการค้า"},
+    "psychology": {"title": "ที่ปรึกษาการปรับบุคลิกภาพ / Life Coach", "desc": "ให้คำปรึกษาเรื่องการสื่อสาร การทำงานร่วมกับผู้อื่น และการพัฒนาตนเอง"}
 }
 
 LEARNING_RESOURCES_DB = {
@@ -316,7 +333,7 @@ chart_type = st.sidebar.radio(
 # ---------------------------------------------------------
 with col_title:
     st.title("🎓 Smart Career Recommendation System")
-    st.caption("ระบบวิเคราะห์และจัดอันดับอาชีพอัจฉริยะ อ้างอิงคลัสเตอร์อาชีพจริงในโลก")
+    st.caption("ระบบวิเคราะห์และจัดอันดับอาชีพอัจฉริยะ ครอบคลุมอาชีพในชีวิตประจำวันและสายงานจริงในโลก")
 
 st.markdown("---")
 
@@ -465,7 +482,7 @@ else:
                 render_career_card(item, max_p)
 
     # --- ส่วนที่ 2: อาชีพอิสระ ---
-    st.subheader("🚀 เส้นทางอาชีพอิสระ (Freelance Options)")
+    st.subheader("🚀 เส้นทางอาชีพอิสระในชีวิตประจำวัน (Freelance Options)")
     fav_freelance = FREELANCE_CAREERS_DB[favorite_subject]
     st.success(f"**จากวิชาที่คุณชื่นชอบเป็นพิเศษ:** {SUBJECT_NAMES[favorite_subject]}\n\n"
                f"👉 **อาชีพอิสระที่แนะนำ:** **{fav_freelance['title']}**\n\n"
