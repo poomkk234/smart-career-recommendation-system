@@ -24,7 +24,7 @@ with col_toggle:
     is_dark = st.toggle("🌙 โหมดมืด (Dark Theme)", value=(st.session_state.theme_mode == "Dark"))
     st.session_state.theme_mode = "Dark" if is_dark else "Light"
 
-# CSS Custom Theme
+# Custom CSS ตกแต่ง Sidebar และ Tabs
 st.markdown("""
     <style>
     [data-testid="stSidebar"] {
@@ -122,15 +122,42 @@ SUBJECT_NAMES = {
 }
 
 # ---------------------------------------------------------
-# 4. ฐานข้อมูลอาชีพพร้อมระบบค่าน้ำหนักวิชา (Advanced DB)
+# 4. ฐานข้อมูลอาชีพ ครบ 12 รายวิชา (Full Coverage DB)
 # ---------------------------------------------------------
 CAREERS_DB = [
+    # --- สายภาษาที่สาม (lang3) ---
+    {
+        "title": "ล่ามและนักแปลภาษาต่างประเทศ (Interpreter / Translator)",
+        "primary": ["lang3"],
+        "secondary": ["english", "social"],
+        "desc": "แปลภาษา ฟัง-พูด สื่อสารระหว่างประเทศ แปลเอกสารหรือทำหน้าที่ล่ามในการประชุม"
+    },
+    {
+        "title": "พนักงานต้อนรับบนเครื่องบิน (Flight Attendant / Cabin Crew)",
+        "primary": ["lang3"],
+        "secondary": ["english", "psychology"],
+        "desc": "ดูแลความปลอดภัย บริการผู้โดยสารบนเครื่องบิน และใช้ทักษะภาษาต่างประเทศในการสื่อสาร"
+    },
+    {
+        "title": "เจ้าหน้าที่การทูต / วิเทศสัมพันธ์ (Diplomat / Foreign Affairs Officer)",
+        "primary": ["lang3"],
+        "secondary": ["social", "law"],
+        "desc": "เจรจาความสัมพันธ์ระหว่างประเทศ ดูแลงานการทูต และประสานงานองค์กรต่างประเทศ"
+    },
+    # --- สายวิทยาศาสตร์/แพทย์ (science) ---
     {
         "title": "แพทย์ / หมอรักษาโรค (Medical Doctor)",
-        "primary": ["science"],          # วิชาหลัก (น้ำหนัก 60%)
-        "secondary": ["math", "english"], # วิชาสนับสนุน (น้ำหนัก 40%)
+        "primary": ["science"],
+        "secondary": ["math", "english"],
         "desc": "วินิจฉัยโรค ประยุกต์ใช้วิทยาศาสตร์ คำนวณขนาดยา และอ่านตำราต่างประเทศ"
     },
+    {
+        "title": "พยาบาลวิชาชีพ (Registered Nurse)",
+        "primary": ["science"],
+        "secondary": ["psychology", "english"],
+        "desc": "ดูแลผู้ป่วย ใช้ความรู้วิทยาศาสตร์ สื่อสารสร้างความอุ่นใจ และดูแลผู้ป่วยต่างชาติ"
+    },
+    # --- สายจิตวิทยา (psychology) ---
     {
         "title": "นักจิตวิทยา / ที่ปรึกษาการแนะแนว (Psychologist / Counselor)",
         "primary": ["psychology"],
@@ -149,30 +176,7 @@ CAREERS_DB = [
         "secondary": ["science", "social"],
         "desc": "ฟื้นฟูสภาพจิตใจและพฤติกรรมผู้ป่วย โดยประยุกต์ใช้ความรู้ทางวิทยาศาสตร์และจิตวิทยา"
     },
-    {
-        "title": "พยาบาลวิชาชีพ (Registered Nurse)",
-        "primary": ["science"],
-        "secondary": ["psychology", "english"],
-        "desc": "ดูแลผู้ป่วย ใช้ความรู้วิทยาศาสตร์ สื่อสารสร้างความอุ่นใจ และดูแลผู้ป่วยต่างชาติ"
-    },
-    {
-        "title": "ผู้สร้างคอนเทนต์ / ยูทูปเบอร์ (Content Creator / YouTuber)",
-        "primary": ["art"],
-        "secondary": ["marketing", "tech"],
-        "desc": "คิดคอนเทนต์ ตัดต่อวิดีโอ (Art/Tech) วางกลยุทธ์สร้างยอดวิว (Marketing)"
-    },
-    {
-        "title": "พ่อค้าแม่ค้าออนไลน์ (E-commerce Seller)",
-        "primary": ["marketing"],
-        "secondary": ["finance", "tech"],
-        "desc": "ยิงโฆษณาออนไลน์ บริหารต้นทุนกำไร และบริหารระบบขายสินค้าออนไลน์"
-    },
-    {
-        "title": "นักวิเคราะห์ข้อมูล (Data Analyst)",
-        "primary": ["math", "tech"],
-        "secondary": ["finance"],
-        "desc": "วิเคราะห์ข้อมูลยอดขายและสถิติธุรกิจด้วยคอมพิวเตอร์และคณิตศาสตร์"
-    },
+    # --- สายคอมพิวเตอร์และคณิตศาสตร์ (tech / math) ---
     {
         "title": "วิศวกรซอฟต์แวร์ / นักเขียนโปรแกรม (Software Developer)",
         "primary": ["tech"],
@@ -180,22 +184,43 @@ CAREERS_DB = [
         "desc": "เขียนโปรแกรมคอมพิวเตอร์ ใช้ตรรกะคณิตศาสตร์แก้ปัญหา"
     },
     {
+        "title": "นักวิเคราะห์ข้อมูล (Data Analyst)",
+        "primary": ["math", "tech"],
+        "secondary": ["finance"],
+        "desc": "วิเคราะห์ข้อมูลยอดขายและสถิติธุรกิจด้วยคอมพิวเตอร์และคณิตศาสตร์"
+    },
+    # --- สายศิลปะและ 3D (art / design_3d) ---
+    {
+        "title": "ผู้สร้างคอนเทนต์ / ยูทูปเบอร์ (Content Creator / YouTuber)",
+        "primary": ["art"],
+        "secondary": ["marketing", "tech"],
+        "desc": "คิดคอนเทนต์ ตัดต่อวิดีโอ (Art/Tech) วางกลยุทธ์สร้างยอดวิว (Marketing)"
+    },
+    {
         "title": "สถาปนิก / นักออกแบบ 3D (Architect / 3D Designer)",
         "primary": ["design_3d"],
         "secondary": ["art", "math"],
         "desc": "ออกแบบอาคารสถานที่ วาดแบบ 3D และคำนวณโครงสร้างตามหลักสถาปัตยกรรม"
     },
+    # --- สายธุรกิจและการเงิน (marketing / finance) ---
     {
-        "title": "นักกฎหมาย / ทนายความ (Lawyer / Legal Advisor)",
-        "primary": ["law"],
-        "secondary": ["social", "english"],
-        "desc": "ตีความกฎหมาย ร่างสัญญา ดำเนินคดี และว่าความในชั้นศาล"
+        "title": "พ่อค้าแม่ค้าออนไลน์ (E-commerce Seller)",
+        "primary": ["marketing"],
+        "secondary": ["finance", "tech"],
+        "desc": "ยิงโฆษณาออนไลน์ บริหารต้นทุนกำไร และบริหารระบบขายสินค้าออนไลน์"
     },
     {
         "title": "นักการเงิน / ผู้จัดการกองทุน (Financial Analyst / Fund Manager)",
         "primary": ["finance"],
         "secondary": ["math", "marketing"],
         "desc": "วิเคราะห์การลงทุน บริหารความเสี่ยงทางการเงิน และจัดการผลตอบแทน"
+    },
+    # --- สายกฎหมายและสังคม (law / social / english) ---
+    {
+        "title": "นักกฎหมาย / ทนายความ (Lawyer / Legal Advisor)",
+        "primary": ["law"],
+        "secondary": ["social", "english"],
+        "desc": "ตีความกฎหมาย ร่างสัญญา ดำเนินคดี และว่าความในชั้นศาล"
     }
 ]
 
@@ -223,7 +248,7 @@ LEARNING_RESOURCES_DB = {
     "social": {"title": "สังคมศึกษาและการเมืองโลก", "resources": ["edX: Global History", "8 Minutes History Podcast", "National Geographic"]},
     "finance": {"title": "การเงิน บัญชี และการลงทุน", "resources": ["SET e-Learning (ตลาดหลักทรัพย์)", "Coursera Finance for Non-Finance", "Money Buffalo"]},
     "marketing": {"title": "การตลาดดิจิทัลและธุรกิจ", "resources": ["Google Digital Garage", "HubSpot Academy", "The Secret Sauce Podcast"]},
-    "lang3": {"title": "ภาษาที่สาม", "resources": ["Memrise", "Busuu App", "คอร์สเรียนภาษาต่างประเทศออนไลน์"]},
+    "lang3": {"title": "ภาษาที่สาม (3rd Language)", "resources": ["Memrise", "Busuu App", "คอร์สเรียนภาษาต่างประเทศออนไลน์"]},
     "design_3d": {"title": "สถาปัตยกรรมและ 3D Design", "resources": ["Blender Guru Tutorials", "SketchUp Campus", "Coursera: Architecture Design"]},
     "law": {"title": "กฎหมายและรัฐศาสตร์", "resources": ["คอร์สกฎหมายประชาชน (จุฬาฯ MOOC)", "edX: International Law", "คลังกฎหมายไทย"]},
     "psychology": {"title": "จิตวิทยาพฤติกรรมมนุษย์", "resources": ["Coursera: Intro to Psychology (Yale)", "Psych2Go Channel", "หนังสือสรุปจิตวิทยา"]}
@@ -252,11 +277,11 @@ chart_type = st.sidebar.radio(
 )
 
 # ---------------------------------------------------------
-# 6. อัลกอริทึมคำนวณน้ำหนักขั้นสูง (High-Precision Engine)
+# 6. อัลกอริทึมและการแสดงผลหลัก (Main Engine)
 # ---------------------------------------------------------
 with col_title:
     st.title("🎓 Smart Career Recommendation System")
-    st.caption("ระบบวิเคราะห์อาชีพอัจฉริยะ (คำนวณสอดคล้องระดับสูง + กราฟดูง่าย + สื่อการเรียนรู้)")
+    st.caption("ระบบวิเคราะห์อาชีพอัจฉริยะ (แก้ไขการคำนวณ + ครอบคลุม 12 วิชา + กราฟอ่านง่าย)")
 
 st.markdown("---")
 
@@ -282,27 +307,22 @@ if len(active_scores) == 0:
                 st.markdown(f"- 🔗 {r}")
 
 else:
-    # --- อัลกอริทึมใหม่แบบ Weighted Subject Matching ---
+    # --- อัลกอริทึมคำนวณแบบ Weighted Subject Matching ---
     def calculate_weighted_career_match(career):
         primary_subs = career["primary"]
         secondary_subs = career["secondary"]
         
-        # กำหนดสัดส่วนค่าน้ำหนัก (Primary 60%, Secondary 40%)
         primary_weight = 0.60
         secondary_weight = 0.40
         
-        # 1. คิดคะแนนฝั่งวิชาหลัก
         p_scores = [scores[s] for s in primary_subs]
         p_avg = sum(p_scores) / len(primary_subs) if primary_subs else 0
         
-        # 2. คิดคะแนนฝั่งวิชาสนับสนุน
         s_scores = [scores[s] for s in secondary_subs]
         s_avg = sum(s_scores) / len(secondary_subs) if secondary_subs else 0
         
-        # 3. รวมคะแนนถ่วงน้ำหนักตามสัดส่วนจริง
         final_match = (p_avg * primary_weight) + (s_avg * secondary_weight)
         
-        # ดึงรายวิชาที่มีคะแนนกรอกไว้จริง
         all_reqs = primary_subs + secondary_subs
         matched_used = [s for s in all_reqs if scores[s] > 0]
         
@@ -311,7 +331,6 @@ else:
     def get_all_ranked_careers(filter_subject_ids=None):
         ranked = []
         for career in CAREERS_DB:
-            # ถ้ามีการกรองเฉพาะวิชา ให้เช็คว่าอาชีพนี้เกี่ยวกรรมกับวิชานั้นหรือไม่
             all_reqs = career["primary"] + career["secondary"]
             if filter_subject_ids:
                 if not any(s in filter_subject_ids for s in all_reqs):
