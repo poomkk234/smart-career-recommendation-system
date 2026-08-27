@@ -92,7 +92,6 @@ if st.session_state.theme_mode == "Dark":
     """, unsafe_allow_html=True)
     chart_template = "plotly_dark"
     radar_color = "#64B5F6"
-    font_color = "#FFFFFF"
 else:
     st.markdown("""
         <style>
@@ -101,7 +100,6 @@ else:
     """, unsafe_allow_html=True)
     chart_template = "plotly_white"
     radar_color = "#1E88E5"
-    font_color = "#212121"
 
 # ---------------------------------------------------------
 # 3. ฐานข้อมูลวิชาการเรียน (12 รายวิชา)
@@ -125,7 +123,6 @@ SUBJECT_NAMES = {
 # 4. ฐานข้อมูลอาชีพ ครบถ้วนและครอบคลุม
 # ---------------------------------------------------------
 CAREERS_DB = [
-    # --- สายผสม ภาษาอังกฤษ + ศิลปะ ---
     {
         "title": "นักวาดภาพประกอบ / คอมมิคระดับโลก (Global Illustrator / Comic Artist)",
         "primary": ["art"],
@@ -138,7 +135,6 @@ CAREERS_DB = [
         "secondary": ["english", "tech"],
         "desc": "ออกแบบหน้าตาแอปพลิเคชันและเว็บไซต์โดยใช้หลักศิลปะ ร่วมกับการทำงานทีมต่างชาติ"
     },
-    # --- สายภาษาที่สาม ---
     {
         "title": "ล่ามและนักแปลภาษาต่างประเทศ (Interpreter / Translator)",
         "primary": ["lang3"],
@@ -157,7 +153,6 @@ CAREERS_DB = [
         "secondary": ["social", "law"],
         "desc": "เจรจาความสัมพันธ์ระหว่างประเทศ ดูแลงานการทูต และประสานงานองค์กรต่างประเทศ"
     },
-    # --- สายวิทยาศาสตร์/แพทย์ ---
     {
         "title": "แพทย์ / หมอรักษาโรค (Medical Doctor)",
         "primary": ["science"],
@@ -170,7 +165,6 @@ CAREERS_DB = [
         "secondary": ["psychology", "english"],
         "desc": "ดูแลผู้ป่วย ใช้ความรู้วิทยาศาสตร์ สื่อสารสร้างความอุ่นใจ และดูแลผู้ป่วยต่างชาติ"
     },
-    # --- สายจิตวิทยา ---
     {
         "title": "นักจิตวิทยา / ที่ปรึกษาการแนะแนว (Psychologist / Counselor)",
         "primary": ["psychology"],
@@ -183,7 +177,6 @@ CAREERS_DB = [
         "secondary": ["social", "law"],
         "desc": "คัดเลือก พัฒนาบุคลากร คอยดูแลสวัสดิภาพและกฎหมายแรงงานในองค์กร"
     },
-    # --- สายคอมพิวเตอร์และคณิตศาสตร์ ---
     {
         "title": "วิศวกรซอฟต์แวร์ / นักเขียนโปรแกรม (Software Developer)",
         "primary": ["tech"],
@@ -196,7 +189,6 @@ CAREERS_DB = [
         "secondary": ["finance"],
         "desc": "วิเคราะห์ข้อมูลยอดขายและสถิติธุรกิจด้วยคอมพิวเตอร์และคณิตศาสตร์"
     },
-    # --- สายศิลปะและ 3D ---
     {
         "title": "ผู้สร้างคอนเทนต์ / ยูทูปเบอร์ (Content Creator / YouTuber)",
         "primary": ["art"],
@@ -209,7 +201,6 @@ CAREERS_DB = [
         "secondary": ["art", "math"],
         "desc": "ออกแบบอาคารสถานที่ วาดแบบ 3D และคำนวณโครงสร้างตามหลักสถาปัตยกรรม"
     },
-    # --- สายธุรกิจและการเงิน ---
     {
         "title": "พ่อค้าแม่ค้าออนไลน์ (E-commerce Seller)",
         "primary": ["marketing"],
@@ -222,7 +213,6 @@ CAREERS_DB = [
         "secondary": ["math", "marketing"],
         "desc": "วิเคราะห์การลงทุน บริหารความเสี่ยงทางการเงิน และจัดการผลตอบแทน"
     },
-    # --- สายกฎหมายและสังคม ---
     {
         "title": "นักกฎหมาย / ทนายความ (Lawyer / Legal Advisor)",
         "primary": ["law"],
@@ -288,7 +278,7 @@ chart_type = st.sidebar.radio(
 # ---------------------------------------------------------
 with col_title:
     st.title("🎓 Smart Career Recommendation System")
-    st.caption("ระบบวิเคราะห์อาชีพอัจฉริยะ (Strict Matching + Fallback Notification)")
+    st.caption("ระบบวิเคราะห์อาชีพอัจฉริยะ (Strict Matching + Fallback)")
 
 st.markdown("---")
 
@@ -311,7 +301,6 @@ if len(active_scores) == 0:
                 st.markdown(f"- 🔗 {r}")
 
 else:
-    # --- อัลกอริทึมคำนวณความสอดคล้องที่แท้จริง (คิดเฉพาะวิชาที่มีคะแนน > 0) ---
     def calculate_weighted_career_match(career):
         primary_subs = career["primary"]
         secondary_subs = career["secondary"]
@@ -333,14 +322,12 @@ else:
         matched_used = active_primary + active_secondary
         return round(final_match, 1), matched_used, primary_subs, secondary_subs
 
-    # --- ฟังก์ชันกรองอาชีพแบบ Strict AND Logic ---
     def get_all_ranked_careers(filter_subject_ids=None):
         ranked = []
         for career in CAREERS_DB:
             all_reqs = career["primary"] + career["secondary"]
             
             if filter_subject_ids:
-                # บังคับว่าอาชีพนั้นต้องมีโครงสร้างรายวิชาตรงกับที่เลือก "ครบทุกวิชา"
                 has_all_subjects = all(s in all_reqs for s in filter_subject_ids)
                 if not has_all_subjects:
                     continue
@@ -384,10 +371,12 @@ else:
 
     st.subheader("📌 ผลการวิเคราะห์และจัดอันดับอาชีพที่เหมาะสม")
 
-    # === การจัดอันดับและแท็บแสดงผล ===
+    # =========================================================
+    # กรณีที่ 1: กรอกคะแนน 1 วิชา
+    # =========================================================
     if num_active == 1:
         single_id, single_score = sorted_active[0]
-        st.info(f"💡 **คุณกรอกคะแนนเพียง 1 วิชา:** {SUBJECT_NAMES[single_id]} ({single_score} คะแนน)")
+        st.info(f"💡 **คุณกรอกคะแนน 1 วิชา:** {SUBJECT_NAMES[single_id]} ({single_score} คะแนน)")
         
         c_list = get_all_ranked_careers([single_id])
         if c_list:
@@ -396,33 +385,49 @@ else:
         else:
             st.warning("ยังไม่พบอาชีพในฐานข้อมูลที่ใช้วิชานี้")
 
+    # =========================================================
+    # กรณีที่ 2: กรอกคะแนน 2 วิชา (a, b)
+    # =========================================================
     elif num_active == 2:
         s1_id, s1_score = sorted_active[0]
         s2_id, s2_score = sorted_active[1]
         st.info(f"💡 **คุณกรอกคะแนน 2 วิชา:** {SUBJECT_NAMES[s1_id]} ({s1_score} คะแนน), {SUBJECT_NAMES[s2_id]} ({s2_score} คะแนน)")
         
-        c_list = get_all_ranked_careers([s1_id, s2_id])
-        if c_list:
-            for i, item in enumerate(c_list[:3]):
+        # ตรวจสอบว่ามีอาชีพที่ใช้ 2 วิชานี้ร่วมกันหรือไม่
+        pair_list = get_all_ranked_careers([s1_id, s2_id])
+        
+        if pair_list:
+            st.success(f"🎉 **พบอาชีพตรงสายที่ใช้ทักษะผสมร่วมกัน:**")
+            for i, item in enumerate(pair_list[:3]):
                 render_career_card(item, f"🎯 อันดับ {i+1}:")
         else:
-            # 🔔 FALLBACK NOTIFICATION: เมื่อไม่พบความสอดคล้องคู่กัน
-            st.warning(f"⚠️ **ไม่พบอาชีพในฐานข้อมูลที่ต้องใช้ทักษะแบบผสมระหว่าง [{SUBJECT_NAMES[s1_id]}] + [{SUBJECT_NAMES[s2_id]}] พร้อมกัน**")
-            st.notice("💡 **คำแนะนำในการดูผลลัพธ์:**\n"
-                      f"1. สองวิชานี้อาจเป็นทักษะคนละสายงาน กรุณาเลือกเปิดดูความสอดคล้อง **แยกตามรายวิชาเดี่ยว (1 วิชา)** ในแท็บด้านล่าง\n"
-                      f"2. หรือลองกรอกคะแนนเพิ่มอีก 1 วิชา เพื่อเปิดดูการประมวลผล **ภาพรวม 3 วิชา**")
+            # แจ้งเตือนพร้อมแนะนำให้ดูแยกวิชาเดี่ยวแทน (เปลี่ยน st.notice เป็น st.info แล้ว)
+            st.warning(f"⚠️ **ไม่พบอาชีพในฐานข้อมูลที่ต้องใช้ [{SUBJECT_NAMES[s1_id]}] + [{SUBJECT_NAMES[s2_id]}] ร่วมกันโดยตรง**")
+            st.info("💡 **ระบบเปลี่ยนไปแสดงผลแบบ 'วิชาเดี่ยว (1 วิชา)' เพื่อให้คุณเห็นตัวเลือกอาชีพของแต่ละวิชาแทนครับ:**")
             
-            subtab_single1, subtab_single2 = st.tabs([
+            subtab1, subtab2 = st.tabs([
                 f"🥇 แยกดูเฉพาะ: {SUBJECT_NAMES[s1_id]}",
                 f"🥈 แยกดูเฉพาะ: {SUBJECT_NAMES[s2_id]}"
             ])
-            with subtab_single1:
-                for item in get_all_ranked_careers([s1_id])[:3]:
-                    render_career_card(item)
-            with subtab_single2:
-                for item in get_all_ranked_careers([s2_id])[:3]:
-                    render_career_card(item)
+            with subtab1:
+                c1_list = get_all_ranked_careers([s1_id])
+                if c1_list:
+                    for item in c1_list[:3]:
+                        render_career_card(item)
+                else:
+                    st.warning("ไม่พบอาชีพที่ตรงกับวิชานี้")
+                    
+            with subtab2:
+                c2_list = get_all_ranked_careers([s2_id])
+                if c2_list:
+                    for item in c2_list[:3]:
+                        render_career_card(item)
+                else:
+                    st.warning("ไม่พบอาชีพที่ตรงกับวิชานี้")
 
+    # =========================================================
+    # กรณีที่ 3: กรอกคะแนน 3 วิชาขึ้นไป (a, b, c) -> จับคู่ไขว้กันจนครบ
+    # =========================================================
     else:
         top_3 = sorted_active[:3]
         s1_id, s1_score = top_3[0]
@@ -446,24 +451,24 @@ else:
                     render_career_card(item, badge)
             else:
                 st.warning("⚠️ **ไม่พบอาชีพสายตรงที่ต้องใช้ทักษะทั้ง 3 วิชานี้ร่วมกันทั้งหมด**")
-                st.info("👉 กรุณาคลิกเลือกแท็บ **'⚖️ การจับคู่ย่อย (2 วิชาหลัก)'** หรือ **'💡 แยกตามวิชาเดี่ยว'** ด้านบน เพื่อดูอาชีพที่สอดคล้องทดแทน")
+                st.info("👉 กรุณาคลิกเลือกแท็บ **'⚖️ การจับคู่ย่อย (2 วิชาหลัก)'** หรือ **'💡 แยกตามวิชาเดี่ยว'** ด้านบน เพื่อดูอาชีพสอดคล้องทดแทน")
 
         with tab2:
+            # จับคู่ย่อย 2 วิชา จนครบ 3 คู่ (a+b, a+c, b+c)
             subtab2_1, subtab2_2, subtab2_3 = st.tabs([
                 f"1️⃣ {SUBJECT_NAMES[s1_id]} + {SUBJECT_NAMES[s2_id]}",
                 f"2️⃣ {SUBJECT_NAMES[s1_id]} + {SUBJECT_NAMES[s3_id]}",
                 f"3️⃣ {SUBJECT_NAMES[s2_id]} + {SUBJECT_NAMES[s3_id]}"
             ])
             
-            # ฟังก์ชันช่วยสร้าง Fallback Warning ในแท็บคู่ย่อย
             def render_pair_tab(sub1, sub2):
                 pair_list = get_all_ranked_careers([sub1, sub2])
                 if pair_list:
                     for item in pair_list[:3]:
                         render_career_card(item)
                 else:
-                    st.warning(f"⚠️ **ไม่พบความสอดคล้องระหว่าง [{SUBJECT_NAMES[sub1]}] + [{SUBJECT_NAMES[sub2]}]**")
-                    st.info(f"💡 สองวิชานี้ไม่ได้ใช้ร่วมกันโดยตรงในสายอาชีพมาตรฐาน แนะนำให้ไปที่แท็บ **'🧩 ผลลัพธ์ภาพรวม 3 วิชาหลัก'** หรือ **'💡 แยกตามวิชาเดี่ยว (1 วิชา)'** เพื่อดูผลวิเคราะห์ที่เหมาะสมที่สุดแทนครับ")
+                    st.warning(f"⚠️ **ไม่พบอาชีพที่ใช้ [{SUBJECT_NAMES[sub1]}] + [{SUBJECT_NAMES[sub2]}] ร่วมกัน**")
+                    st.info(f"💡 สองวิชานี้ไม่ได้ใช้ร่วมกันโดยตรง ให้ดูในแท็บวิชาเดี่ยวแทนครับ")
 
             with subtab2_1:
                 render_pair_tab(s1_id, s2_id)
