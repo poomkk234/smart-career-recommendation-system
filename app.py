@@ -246,8 +246,12 @@ if all_zero:
                 st.markdown(f"- 📖 {r}")
 
 else:
+    # หา Top 3 วิชาที่ผู้ใช้ทำคะแนนได้สูงสุดจริง (และคะแนน > 0)
+    active_sorted = sorted([(k, v) for k, v in scores.items() if v > 0], key=lambda x: x[1], reverse=True)
+    user_top_3_ids = [item[0] for item in active_sorted[:3]]
+
     # ---------------------------------------------------------
-    # ฟังก์ชันคำนวณใหม่: กรองวิชา 0 ออก และคิดคะแนนจากวิชาที่ > 0 เท่านั้น
+    # ฟังก์ชันคำนวณแบบใหม่: ล็อกวิชาหลักจาก Top 3 เท่านั้น + กรองวิชา 0 ออก
     # ---------------------------------------------------------
     def get_ranked_careers_by_subjects(target_subject_ids, require_all_matched=False):
         results = []
@@ -255,18 +259,18 @@ else:
             p_subs = career["primary"]
             s_subs = career["secondary"]
             
-            # ดึงเฉพาะวิชาที่ผู้ใช้นำเสนอ และมีคะแนน > 0
-            p_match = [s for s in p_subs if s in target_subject_ids and scores[s] > 0]
+            # วิชาหลัก: จะต้องเป็นวิชาที่อยู่ใน Top 3 ของผู้ใช้ และมีคะแนน > 0 เท่านั้น
+            p_match = [s for s in p_subs if s in target_subject_ids and s in user_top_3_ids and scores[s] > 0]
             
             if not p_match:
                 continue
                 
             if require_all_matched:
-                matched_in_primary = [s for s in target_subject_ids if s in p_subs and scores[s] > 0]
+                matched_in_primary = [s for s in target_subject_ids if s in p_subs and s in user_top_3_ids and scores[s] > 0]
                 if len(matched_in_primary) < len(target_subject_ids):
                     continue
 
-            # วิชาสนับสนุนที่มีคะแนน > 0
+            # วิชาสนับสนุนที่มีคะแนน > 0 (ถ้า 0 จะไม่นำมาคำนวณ)
             s_match = [s for s in s_subs if scores[s] > 0]
             
             avg_p = sum([scores[s] for s in p_match]) / len(p_match)
@@ -282,18 +286,22 @@ else:
             if final_score > 0:
                 results.append({
                     "details": career,
-                    "fit_score": final_score
+                    "fit_score": final_score,
+                    "active_primary": p_match,
+                    "active_secondary": s_match
                 })
         
         results.sort(key=lambda x: x["fit_score"], reverse=True)
         return results
 
     # ---------------------------------------------------------
-    # ฟังก์ชันแสดง Card: กรองวิชาคะแนน 0 ออก ไม่นำมาโชว์
+    # ฟังก์ชันแสดง Card
     # ---------------------------------------------------------
     def render_career_card(item, rank_badge=""):
         c = item["details"]
         fit = item["fit_score"]
+        active_p = item["active_primary"]
+        active_s = item["active_secondary"]
         
         if rank_badge:
             st.markdown(f"#### {rank_badge} **{c['title']}**")
@@ -302,14 +310,12 @@ else:
             
         st.write(f"**รายละเอียดอาชีพ:** {c['desc']}")
         
-        # กรองเฉพาะวิชาหลักที่มีคะแนน > 0
-        active_p = [s for s in c["primary"] if scores[s] > 0]
+        # แสดงเฉพาะวิชาหลัก Top 3 ที่มีคะแนน > 0
         if active_p:
             p_text = ", ".join([f"**{SUBJECT_NAMES[s]}** ({scores[s]} คะแนน)" for s in active_p])
-            st.markdown(f"💡 **วิชาหลักที่ใช้ประมวลผล:** {p_text}")
+            st.markdown(f"💡 **วิชาหลักที่ใช้ประมวลผล (Top 3 ของคุณ):** {p_text}")
         
-        # กรองเฉพาะวิชาสนับสนุนที่มีคะแนน > 0
-        active_s = [s for s in c["secondary"] if scores[s] > 0]
+        # แสดงเฉพาะวิชาสนับสนุนที่มีคะแนน > 0
         if active_s:
             s_text = ", ".join([f"{SUBJECT_NAMES[s]} ({scores[s]} คะแนน)" for s in active_s])
             st.markdown(f"✨ **วิชาสนับสนุน (ทักษะเสริมที่คุณมี):** {s_text}")
@@ -320,7 +326,6 @@ else:
         st.caption(f"📊 **ระดับความเข้ากันของทักษะวิชา: {fit}%**")
         st.markdown("---")
 
-    active_sorted = sorted([(k, v) for k, v in scores.items() if v > 0], key=lambda x: x[1], reverse=True)
     num_active = len(active_sorted)
 
     st.subheader("🎯 อาชีพที่เหมาะสมที่สุดจากการประมวลผลทักษะวิชา")
@@ -385,7 +390,7 @@ else:
         ])
 
         with tab1:
-            st.info(f"🎯 **กลุ่ม 3 วิชาเด่นของคุณ:** {SUBJECT_NAMES[s1_id]} ({s1_score} คะแนน), {SUBJECT_NAMES[s2_id]} ({s2_score} คะแนน), {SUBJECT_NAMES[s3_id]} ({s3_score} คะแนน)")
+            st.info(f"🎯 **กลุ่ม 3 วิชาเด่นสูงสุดของคุณ:** {SUBJECT_NAMES[s1_id]} ({s1_score} คะแนน), {SUBJECT_NAMES[s2_id]} ({s2_score} คะแนน), {SUBJECT_NAMES[s3_id]} ({s3_score} คะแนน)")
             c_list = get_ranked_careers_by_subjects([s1_id, s2_id, s3_id])
             for i, item in enumerate(c_list[:3]):
                 badges = ["🥇 อันดับ 1 (เหมาะสมที่สุด):", "🥈 อันดับ 2:", "🥉 อันดับ 3:"]
@@ -425,11 +430,11 @@ else:
                     render_career_card(item, badges[i])
 
             with subtab3_1:
-                render_single(s1_id)
+                render_single(sub_id=s1_id)
             with subtab3_2:
-                render_single(s2_id)
+                render_single(sub_id=s2_id)
             with subtab3_3:
-                render_single(s3_id)
+                render_single(sub_id=s3_id)
 
     # --- ส่วนที่ 2: อาชีพอิสระจากวิชาที่ชอบ ---
     st.subheader("🚀 อาชีพอิสระ (Freelance) จากวิชาที่คุณชอบ")
