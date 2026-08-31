@@ -67,91 +67,97 @@ SUBJECT_NAMES = {
 }
 
 # ---------------------------------------------------------
-# 4. ฐานข้อมูลอาชีพมหาชน
+# 4. ฐานข้อมูลอาชีพ (กำหนดให้ทุกอาชีพมี Primary 3 วิชาหลัก + Secondary วิชาเสริม)
 # ---------------------------------------------------------
 CAREERS_DB = [
     {
         "title": "ครู / อาจารย์สอนคณิตศาสตร์ (Mathematics Teacher)",
-        "primary": ["math"],
-        "secondary": ["psychology", "social"],
+        "primary": ["math", "psychology", "social"],
+        "secondary": ["tech", "english"],
         "desc": "ถ่ายทอดความรู้คณิตศาสตร์ วางแผนการสอน เข้าใจจิตวิทยาเด็กและพัฒนาการเรียนรู้"
     },
     {
         "title": "นักวิเคราะห์ตัวเลขและสถิติ (Data Analyst)",
-        "primary": ["math"],
-        "secondary": ["tech", "finance"],
+        "primary": ["math", "tech", "finance"],
+        "secondary": ["english", "marketing"],
         "desc": "นำตัวเลขและสถิติมาคำนวณ วิเคราะห์แนวโน้มธุรกิจและการเงินเพื่อช่วยการตัดสินใจ"
     },
     {
         "title": "โปรแกรมเมอร์ / นักพัฒนาแอปพลิเคชัน (Programmer / Developer)",
-        "primary": ["tech"],
-        "secondary": ["math", "english"],
+        "primary": ["tech", "math", "english"],
+        "secondary": ["design_3d", "art"],
         "desc": "เขียนโค้ดสร้างเว็บไซต์และแอปพลิเคชัน แก้ปัญหาด้วยตรรกะ และอ่านคู่มือภาษาอังกฤษ"
     },
     {
-        "title": "ครีเอเตอร์ / ยูทูบเบอร์ / นักการตลาดออนไลน์ (Content Creator & Digital Marketer)",
-        "primary": ["marketing"],
-        "secondary": ["art", "tech"],
+        "title": "ครีเอเตอร์ / นักการตลาดออนไลน์ (Content Creator & Digital Marketer)",
+        "primary": ["marketing", "art", "tech"],
+        "secondary": ["english", "psychology"],
         "desc": "คิดคอนเทนต์ ตัดต่อวิดีโอ โปรโมตสินค้าผ่านโซเชียลมีเดีย ยิงโฆษณาหาลูกค้า"
     },
     {
+        "title": "นักการตลาดระหว่างประเทศ (International Marketer)",
+        "primary": ["marketing", "english", "finance"],
+        "secondary": ["lang3", "psychology"],
+        "desc": "วางแผนกลยุทธ์การตลาดต่างประเทศ สื่อสารเจรจาขยายฐานลูกค้าทั่วโลก"
+    },
+    {
         "title": "เจ้าของธุรกิจส่วนตัว / แม่ค้าพ่อค้าออนไลน์ (Online Business Owner)",
-        "primary": ["marketing"],
-        "secondary": ["finance", "psychology"],
+        "primary": ["marketing", "finance", "psychology"],
+        "secondary": ["tech", "law"],
         "desc": "บริหารร้านค้า จัดการสต็อกสินค้า วางแผนต้นทุนกำไร และสื่อสารมัดใจลูกค้า"
     },
     {
         "title": "นักบัญชี / เจ้าหน้าที่การเงิน (Accountant / Finance Officer)",
-        "primary": ["finance"],
-        "secondary": ["math", "law"],
+        "primary": ["finance", "math", "law"],
+        "secondary": ["tech", "english"],
         "desc": "ทำรับ-จ่าย บันทึกบัญชี ตรวจสอบตัวเลขรายรับรายจ่าย ดูแลเรื่องภาษีถูกต้องตามกฎหมาย"
     },
     {
         "title": "แพทย์ / พยาบาล / เภสัชกร (Doctor / Nurse / Pharmacist)",
-        "primary": ["science"],
-        "secondary": ["psychology", "english"],
+        "primary": ["science", "psychology", "english"],
+        "secondary": ["math", "tech"],
         "desc": "ใช้วิทยาศาสตร์ชีวภาพในการตรวจรักษาโรค จ่ายยา และสื่อสารดูแลจิตวิทยาผู้ป่วย"
     },
     {
         "title": "เชฟ / ช่างทำขนม / เจ้าหน้าที่โภชนาการ (Chef / Baker)",
-        "primary": ["science"],
-        "secondary": ["art", "marketing"],
+        "primary": ["science", "art", "marketing"],
+        "secondary": ["finance", "english"],
         "desc": "ผสมผสานเคมีอาหารกับการตกแต่งหน้าตาอาหารให้อร่อย สวยงาม และคำนวณต้นทุนขาย"
     },
     {
         "title": "ทนายความ / นิติกร / ตำรวจ (Lawyer / Legal Officer / Police)",
-        "primary": ["law"],
-        "secondary": ["social", "psychology"],
+        "primary": ["law", "social", "psychology"],
+        "secondary": ["english", "finance"],
         "desc": "ใช้กฎหมายในการว่าความ ให้คำปรึกษาความถูกต้อง รักษาระเบียบสังคมและเข้าใจพฤติกรรมมนุษย์"
     },
     {
         "title": "นักจิตวิทยา / เจ้าหน้าที่ฝ่ายบุคคล (Psychologist / HR Officer)",
-        "primary": ["psychology"],
-        "secondary": ["social", "english"],
+        "primary": ["psychology", "social", "english"],
+        "secondary": ["law", "marketing"],
         "desc": "ให้คำปรึกษาปัญหาชีวิต ดูแลสุขภาพจิต สัมภาษณ์คัดเลือกคนเข้าทำงานและบริหารคน"
     },
     {
         "title": "กราฟิกดีไซเนอร์ / ช่างภาพ (Graphic Designer / Photographer)",
-        "primary": ["art"],
-        "secondary": ["design_3d", "marketing"],
+        "primary": ["art", "design_3d", "marketing"],
+        "secondary": ["tech", "english"],
         "desc": "วาดภาพ วาดการ์ตูน ออกแบบโลโก้ แบนเนอร์ ปรับแต่งรูปภาพและวิดีโอเพื่อการประชาสัมพันธ์"
     },
     {
         "title": "สถาปนิก / นักออกแบบภายใน (Architect / Interior Designer)",
-        "primary": ["design_3d"],
-        "secondary": ["art", "math"],
+        "primary": ["design_3d", "art", "math"],
+        "secondary": ["science", "tech"],
         "desc": "เขียนแบบบ้าน ออกแบบอาคาร และตกแต่งห้อง 3 มิติ พร้อมคำนวณพื้นที่และระยะโครงสร้าง"
     },
     {
         "title": "ล่าม / นักแปล / ไกด์นำเที่ยว (Interpreter / Translator / Tour Guide)",
-        "primary": ["lang3"],
-        "secondary": ["english", "social"],
+        "primary": ["lang3", "english", "social"],
+        "secondary": ["psychology", "marketing"],
         "desc": "แปลภาษา เจรจาติดต่อสื่อสารกับชาวต่างชาติ แนะนำสถานที่ท่องเที่ยวและวัฒนธรรม"
     },
     {
         "title": "นักบิน / สจ๊วต-แอร์โฮสเตส (Pilot / Cabin Crew)",
-        "primary": ["english"],
-        "secondary": ["science", "psychology"],
+        "primary": ["english", "science", "psychology"],
+        "secondary": ["lang3", "social"],
         "desc": "ใช้ภาษาอังกฤษสื่อสารการบิน ให้บริการผู้โดยสาร ดูแลความปลอดภัยและแก้วิกฤตฉุกเฉิน"
     }
 ]
@@ -240,33 +246,46 @@ if all_zero:
                 st.markdown(f"- 📖 {r}")
 
 else:
-    # ฟังก์ชันคำนวณคะแนนความเหมาะสม
-    def get_ranked_careers_by_subjects(target_subject_ids, require_both=False):
+    # ---------------------------------------------------------
+    # ฟังก์ชันคำนวณใหม่: วิชาหลักเป็นเกณฑ์หลัก (85-100%) วิชาสนับสนุนเป็นโบนัสเสริม (0-15%)
+    # ---------------------------------------------------------
+    def get_ranked_careers_by_subjects(target_subject_ids, require_all_matched=False):
         results = []
         for career in CAREERS_DB:
-            all_career_subs = career["primary"] + career["secondary"]
+            p_subs = career["primary"]
+            s_subs = career["secondary"]
             
-            # หากต้องการสอดคล้องทั้ง 2 วิชา ให้เช็กว่ามีทั้ง 2 วิชาในอาชีพนั้นไหม
-            if require_both:
-                matches = [s for s in target_subject_ids if s in all_career_subs]
-                if len(matches) < len(target_subject_ids):
-                    continue
+            # วิชาหลักที่ตรงกับที่กรอกเข้ามา
+            p_match = [s for s in p_subs if s in target_subject_ids]
             
-            p_match = [s for s in career["primary"] if s in target_subject_ids]
-            s_match = [s for s in career["secondary"] if s in target_subject_ids]
-            
-            if not p_match and not s_match:
+            # ถ้าไม่มีวิชาหลักตรงเลย ให้ข้ามอาชีพนี้ไปทันที
+            if not p_match:
                 continue
                 
-            p_avg = sum([scores[s] for s in p_match]) / len(career["primary"]) if p_match else 0
-            s_avg = sum([scores[s] for s in s_match]) / len(career["secondary"]) if s_match else 0
+            # หากต้องการกรอกกี่วิชา ต้องตรงวิชาหลักครบทั้งหมด (กรณีเลือก 2 วิชาสอดคล้อง)
+            if require_all_matched:
+                matched_in_primary = [s for s in target_subject_ids if s in p_subs]
+                if len(matched_in_primary) < len(target_subject_ids):
+                    continue
+
+            # 1. คำนวณคะแนนจากวิชาหลัก (น้ำหนักหลัก 85%)
+            p_score_sum = sum([scores[s] for s in p_match])
+            p_avg = p_score_sum / len(p_match)
+            base_fit = p_avg * 0.85
             
-            fit_score = round((p_avg * 0.7) + (s_avg * 0.3), 1)
+            # 2. คำนวณโบนัสเพิ่มจากวิชาสนับสนุน (โบนัสสูงสุด 15% ช่วยให้ทำงานได้ดีขึ้น)
+            s_match = [s for s in s_subs if scores[s] > 0]
+            bonus_fit = 0
+            if s_match:
+                s_avg = sum([scores[s] for s in s_match]) / len(s_match)
+                bonus_fit = (s_avg / 100.0) * 15.0  # ให้คะแนนโบนัสสูงสุด 15 คะแนน
             
-            if fit_score > 0:
+            final_score = round(min(base_fit + bonus_fit, 100.0), 1)
+            
+            if final_score > 0:
                 results.append({
                     "details": career,
-                    "fit_score": fit_score
+                    "fit_score": final_score
                 })
         
         results.sort(key=lambda x: x["fit_score"], reverse=True)
@@ -283,11 +302,14 @@ else:
             
         st.write(f"**รายละเอียดอาชีพ:** {c['desc']}")
         
+        # แสดงวิชาหลักครบทั้ง 3 วิชาเสมอ
         p_text = ", ".join([f"**{SUBJECT_NAMES[s]}** ({scores[s]} คะแนน)" for s in c["primary"]])
+        
+        # แสดงวิชาสนับสนุนว่าเป็นตัวช่วยทำอาชีพนี้ให้ดีขึ้นอย่างไร
         s_text = ", ".join([f"{SUBJECT_NAMES[s]} ({scores[s]} คะแนน)" for s in c["secondary"]])
         
-        st.markdown(f"💡 **วิชาหลักที่ใช้ประมวลผล:** {p_text}")
-        st.markdown(f"🛠️ **วิชาสนับสนุน:** {s_text}")
+        st.markdown(f"💡 **วิชาหลักที่ใช้วัดผลหลัก (3 วิชา):** {p_text}")
+        st.markdown(f"✨ **วิชาสนับสนุน (ทักษะเสริมที่ช่วยให้ทำอาชีพนี้ได้ดีขึ้น):** {s_text}")
         
         st.progress(min(fit / 100.0, 1.0))
         st.caption(f"📊 **ระดับความเข้ากันของทักษะวิชา: {fit}%**")
@@ -313,23 +335,22 @@ else:
         
         st.info(f"💡 **คุณกรอกคะแนน 2 วิชา:** {SUBJECT_NAMES[s1_id]} ({s1_score} คะแนน) และ {SUBJECT_NAMES[s2_id]} ({s2_score} คะแนน)")
         
-        # แบ่งแท็บวิเคราะห์ความสอดคล้อง 2 วิชา
         tab_both, tab_s1, tab_s2 = st.tabs([
-            f"🔗 อาชีพที่สอดคล้องทั้ง 2 วิชา ({SUBJECT_NAMES[s1_id].split(' ')[0]} + {SUBJECT_NAMES[s2_id].split(' ')[0]})",
-            f"🥇 อาชีพเฉพาะทาง: {SUBJECT_NAMES[s1_id]}",
-            f"🥈 อาชีพเฉพาะทาง: {SUBJECT_NAMES[s2_id]}"
+            f"🔗 อาชีพที่ใช้วิชาหลักคู่กัน ({SUBJECT_NAMES[s1_id].split(' ')[0]} + {SUBJECT_NAMES[s2_id].split(' ')[0]})",
+            f"🥇 อาชีพเด่นจาก: {SUBJECT_NAMES[s1_id]}",
+            f"🥈 อาชีพเด่นจาก: {SUBJECT_NAMES[s2_id]}"
         ])
 
         with tab_both:
-            both_careers = get_ranked_careers_by_subjects([s1_id, s2_id], require_both=True)
+            both_careers = get_ranked_careers_by_subjects([s1_id, s2_id], require_all_matched=True)
             if both_careers:
-                st.success(f"✨ **พบ {len(both_careers)} อาชีพที่ใช้ทักษะของทั้ง 2 วิชานี้ร่วมกัน:**")
+                st.success(f"✨ **พบ {len(both_careers)} อาชีพที่ดึง 2 วิชานี้มาใช้เป็นวิชาหลักคู่กัน:**")
                 for i, item in enumerate(both_careers[:3]):
-                    badges = ["🥇 อันดับ 1 (เชื่อมโยงที่สุด):", "🥈 อันดับ 2:", "🥉 อันดับ 3:"]
+                    badges = ["🥇 อันดับ 1 (ตรงคู่ที่สุด):", "🥈 อันดับ 2:", "🥉 อันดับ 3:"]
                     render_career_card(item, badges[i])
             else:
-                st.warning(f"⚠️ **ไม่พบอาชีพที่ดึง 2 วิชานี้มาใช้เป็นวิชาหลักคู่กันโดยตรง** แต่ระบบขอแนะนำอาชีพที่ใช้ 2 วิชานี้เกื้อกูลกันด้านล่าง:")
-                c_list = get_ranked_careers_by_subjects([s1_id, s2_id], require_both=False)
+                st.warning(f"⚠️ **ไม่พบอาชีพที่ดึง 2 วิชานี้มาเป็นวิชาหลักร่วมกันโดยตรง** ขอแนะนำอาชีพที่ใช้วิชาหนึ่งเป็นหลัก และอีกวิชาหนึ่งช่วยสนับสนุน:")
+                c_list = get_ranked_careers_by_subjects([s1_id, s2_id], require_all_matched=False)
                 for i, item in enumerate(c_list[:3]):
                     badges = ["🥇 อันดับ 1:", "🥈 อันดับ 2:", "🥉 อันดับ 3:"]
                     render_career_card(item, badges[i])
