@@ -67,7 +67,7 @@ SUBJECT_NAMES = {
 }
 
 # ---------------------------------------------------------
-# 4. ฐานข้อมูลอาชีพ (เพิ่ม ทนาย, วิศวกรก่อสร้าง, วิศวกรออกแบบ)
+# 4. ฐานข้อมูลอาชีพ
 # ---------------------------------------------------------
 CAREERS_DB = [
     {
@@ -247,7 +247,7 @@ if all_zero:
 
 else:
     # ---------------------------------------------------------
-    # ฟังก์ชันคำนวณ: วิชาหลักคิด 85% + วิชาสนับสนุนคิด 15%
+    # ฟังก์ชันคำนวณใหม่: กรองวิชา 0 ออก และคิดคะแนนจากวิชาที่ > 0 เท่านั้น
     # ---------------------------------------------------------
     def get_ranked_careers_by_subjects(target_subject_ids, require_all_matched=False):
         results = []
@@ -255,27 +255,29 @@ else:
             p_subs = career["primary"]
             s_subs = career["secondary"]
             
-            p_match = [s for s in p_subs if s in target_subject_ids]
+            # ดึงเฉพาะวิชาที่ผู้ใช้นำเสนอ และมีคะแนน > 0
+            p_match = [s for s in p_subs if s in target_subject_ids and scores[s] > 0]
             
             if not p_match:
                 continue
                 
             if require_all_matched:
-                matched_in_primary = [s for s in target_subject_ids if s in p_subs]
+                matched_in_primary = [s for s in target_subject_ids if s in p_subs and scores[s] > 0]
                 if len(matched_in_primary) < len(target_subject_ids):
                     continue
 
-            p_score_sum = sum([scores[s] for s in p_match])
-            p_avg = p_score_sum / len(p_match)
-            base_fit = p_avg * 0.85
-            
+            # วิชาสนับสนุนที่มีคะแนน > 0
             s_match = [s for s in s_subs if scores[s] > 0]
-            bonus_fit = 0
-            if s_match:
-                s_avg = sum([scores[s] for s in s_match]) / len(s_match)
-                bonus_fit = (s_avg / 100.0) * 15.0
             
-            final_score = round(min(base_fit + bonus_fit, 100.0), 1)
+            avg_p = sum([scores[s] for s in p_match]) / len(p_match)
+            
+            if s_match:
+                avg_s = sum([scores[s] for s in s_match]) / len(s_match)
+                final_score = (avg_p * 0.70) + (avg_s * 0.30)
+            else:
+                final_score = avg_p
+            
+            final_score = round(min(final_score, 100.0), 1)
             
             if final_score > 0:
                 results.append({
@@ -287,7 +289,7 @@ else:
         return results
 
     # ---------------------------------------------------------
-    # ฟังก์ชันแสดง Card
+    # ฟังก์ชันแสดง Card: กรองวิชาคะแนน 0 ออก ไม่นำมาโชว์
     # ---------------------------------------------------------
     def render_career_card(item, rank_badge=""):
         c = item["details"]
@@ -300,16 +302,19 @@ else:
             
         st.write(f"**รายละเอียดอาชีพ:** {c['desc']}")
         
-        user_p_subs = [s for s in c["primary"] if scores[s] > 0]
-        if user_p_subs:
-            p_text = ", ".join([f"**{SUBJECT_NAMES[s]}** ({scores[s]} คะแนน)" for s in user_p_subs])
-            st.markdown(f"💡 **วิชาหลักที่ใช้ประมวลผล:** {p_text}")
-        else:
-            p_text = ", ".join([f"**{SUBJECT_NAMES[s]}** ({scores[s]} คะแนน)" for s in c["primary"]])
+        # กรองเฉพาะวิชาหลักที่มีคะแนน > 0
+        active_p = [s for s in c["primary"] if scores[s] > 0]
+        if active_p:
+            p_text = ", ".join([f"**{SUBJECT_NAMES[s]}** ({scores[s]} คะแนน)" for s in active_p])
             st.markdown(f"💡 **วิชาหลักที่ใช้ประมวลผล:** {p_text}")
         
-        s_text = ", ".join([f"{SUBJECT_NAMES[s]} ({scores[s]} คะแนน)" for s in c["secondary"]])
-        st.markdown(f"✨ **วิชาสนับสนุน (ทักษะเสริมที่ช่วยให้ทำอาชีพนี้ได้ดีขึ้น):** {s_text}")
+        # กรองเฉพาะวิชาสนับสนุนที่มีคะแนน > 0
+        active_s = [s for s in c["secondary"] if scores[s] > 0]
+        if active_s:
+            s_text = ", ".join([f"{SUBJECT_NAMES[s]} ({scores[s]} คะแนน)" for s in active_s])
+            st.markdown(f"✨ **วิชาสนับสนุน (ทักษะเสริมที่คุณมี):** {s_text}")
+        else:
+            st.markdown("✨ **วิชาสนับสนุน:** *(ไม่พบทักษะเสริมที่คุณมีคะแนน)*")
         
         st.progress(min(fit / 100.0, 1.0))
         st.caption(f"📊 **ระดับความเข้ากันของทักษะวิชา: {fit}%**")
