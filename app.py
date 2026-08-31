@@ -67,98 +67,98 @@ SUBJECT_NAMES = {
 }
 
 # ---------------------------------------------------------
-# 4. ฐานข้อมูลอาชีพ (ปรับปรุงวิชาสนับสนุนให้ตรงกับความเป็นจริง 100%)
+# 4. ฐานข้อมูลอาชีพ (เพิ่ม ทนาย, วิศวกรก่อสร้าง, วิศวกรออกแบบ)
 # ---------------------------------------------------------
 CAREERS_DB = [
     {
+        "title": "ทนายความ / นิติกร / อัยการ (Lawyer / Legal Officer)",
+        "primary": ["law", "psychology", "social"],
+        "secondary": ["english", "finance", "design_3d"], 
+        "desc": "ว่าความ คุ้มครองสิทธิทางกฎหมาย ให้คำปรึกษาข้อสัญญา และเข้าใจจิตวิทยามนุษย์ในการเจรจาพิจารณาคดี"
+    },
+    {
+        "title": "วิศวกรโยธา / วิศวกรควบคุมงานก่อสร้าง (Civil / Construction Engineer)",
+        "primary": ["math", "science", "design_3d"],
+        "secondary": ["law", "finance", "tech"], 
+        "desc": "คำนวณโครงสร้าง คำนวณความปลอดภัย ตรวจแบบ 3 มิติ คุมงานก่อสร้างอาคารและโครงสร้างพื้นฐาน"
+    },
+    {
+        "title": "วิศวกรออกแบบและพัฒนาผลิตภัณฑ์ (Product Design Engineer)",
+        "primary": ["design_3d", "tech", "math"],
+        "secondary": ["art", "science", "psychology"], 
+        "desc": "ออกแบบชิ้นส่วน เครื่องกล หรือผลิตภัณฑ์ 3 มิติ จำลองการรับแรง และพัฒนาฟังก์ชันให้เหมาะกับผู้ใช้งาน"
+    },
+    {
+        "title": "สถาปนิก / นักออกแบบภายใน (Architect / Interior Designer)",
+        "primary": ["design_3d", "art", "math"],
+        "secondary": ["law", "science", "finance"], 
+        "desc": "เขียนแบบบ้าน ออกแบบอาคาร ตกแต่งห้อง 3 มิติ พร้อมคำนวณพื้นที่และตรวจสอบกฎหมายผังเมือง/ควบคุมอาคาร"
+    },
+    {
+        "title": "เจ้าของธุรกิจส่วนตัว / แม่ค้าพ่อค้าออนไลน์ (Online Business Owner)",
+        "primary": ["marketing", "finance", "psychology"],
+        "secondary": ["tech", "law", "design_3d"], 
+        "desc": "บริหารร้านค้า จัดการสต็อกสินค้า วางแผนต้นทุนกำไร สื่อสารมัดใจลูกค้า และทำสื่อโปรโมตสินค้า"
+    },
+    {
         "title": "ครู / อาจารย์สอนคณิตศาสตร์ (Mathematics Teacher)",
         "primary": ["math", "psychology", "social"],
-        "secondary": ["tech", "english"], # เสริมคอมฯ ทำสื่อการสอน, ภาษาอังกฤษอ่านตำราต่างประเทศ
+        "secondary": ["tech", "english"], 
         "desc": "ถ่ายทอดความรู้คณิตศาสตร์ วางแผนการสอน เข้าใจจิตวิทยาเด็กและพัฒนาการเรียนรู้"
     },
     {
         "title": "นักวิเคราะห์ตัวเลขและสถิติ (Data Analyst)",
         "primary": ["math", "tech", "finance"],
-        "secondary": ["english", "marketing", "psychology"], # เสริมภาษาอังกฤษอ่านชุดข้อมูล, การตลาดวิเคราะห์อินไซต์ลูกค้า
+        "secondary": ["english", "marketing", "psychology"], 
         "desc": "นำตัวเลขและสถิติมาคำนวณ วิเคราะห์แนวโน้มธุรกิจและการเงินเพื่อช่วยการตัดสินใจ"
     },
     {
         "title": "โปรแกรมเมอร์ / นักพัฒนาแอปพลิเคชัน (Programmer / Developer)",
         "primary": ["tech", "math", "english"],
-        "secondary": ["art", "design_3d", "psychology"], # เสริมศิลปะออกแบบ UI/UX, จิตวิทยาเข้าใจพฤติกรรมผู้ใช้
+        "secondary": ["art", "design_3d", "psychology"], 
         "desc": "เขียนโค้ดสร้างเว็บไซต์และแอปพลิเคชัน แก้ปัญหาด้วยตรรกะ และอ่านคู่มือภาษาอังกฤษ"
     },
     {
         "title": "ครีเอเตอร์ / นักการตลาดออนไลน์ (Content Creator & Digital Marketer)",
         "primary": ["marketing", "art", "tech"],
-        "secondary": ["english", "psychology", "finance"], # เสริมภาษาอังกฤษขยายตลาด, จิตวิทยามัดใจคนดู, การเงินวางงบยิงแอด
+        "secondary": ["english", "psychology", "design_3d"], 
         "desc": "คิดคอนเทนต์ ตัดต่อวิดีโอ โปรโมตสินค้าผ่านโซเชียลมีเดีย ยิงโฆษณาหาลูกค้า"
     },
     {
         "title": "นักการตลาดระหว่างประเทศ (International Marketer)",
         "primary": ["marketing", "english", "finance"],
-        "secondary": ["lang3", "psychology", "social"], # เสริมภาษาที่สาม, สังคมเข้าใจวัฒนธรรมคู่ค้าต่างชาติ
+        "secondary": ["lang3", "psychology", "social"], 
         "desc": "วางแผนกลยุทธ์การตลาดต่างประเทศ สื่อสารเจรจาขยายฐานลูกค้าทั่วโลก"
-    },
-    {
-        "title": "เจ้าของธุรกิจส่วนตัว / แม่ค้าพ่อค้าออนไลน์ (Online Business Owner)",
-        "primary": ["marketing", "finance", "psychology"],
-        "secondary": ["tech", "law", "english"], # เสริมคอมจัดการระบบขาย, กฎหมายคุ้มครองผู้บริโภค/ภาษี
-        "desc": "บริหารร้านค้า จัดการสต็อกสินค้า วางแผนต้นทุนกำไร และสื่อสารมัดใจลูกค้า"
     },
     {
         "title": "นักบัญชี / เจ้าหน้าที่การเงิน (Accountant / Finance Officer)",
         "primary": ["finance", "math", "law"],
-        "secondary": ["tech", "english", "marketing"], # เสริมคอมใช้ Excel/ERP, ภาษาอังกฤษดีลงานต่างชาติ
+        "secondary": ["tech", "english", "marketing"], 
         "desc": "ทำรับ-จ่าย บันทึกบัญชี ตรวจสอบตัวเลขรายรับรายจ่าย ดูแลเรื่องภาษีถูกต้องตามกฎหมาย"
     },
     {
         "title": "แพทย์ / พยาบาล / เภสัชกร (Doctor / Nurse / Pharmacist)",
         "primary": ["science", "psychology", "english"],
-        "secondary": ["tech", "math"], # เสริมเครื่องมือแพทย์ไฮเทค, คำนวณโดสยา
+        "secondary": ["tech", "math"], 
         "desc": "ใช้วิทยาศาสตร์ชีวภาพในการตรวจรักษาโรค จ่ายยา และสื่อสารดูแลจิตวิทยาผู้ป่วย"
-    },
-    {
-        "title": "เชฟ / ช่างทำขนม / เจ้าหน้าที่โภชนาการ (Chef / Baker)",
-        "primary": ["science", "art", "marketing"],
-        "secondary": ["finance", "english", "lang3"], # เสริมการเงินคิดต้นทุนจานอาหาร, ภาษาอังกฤษสื่อสารเมนู inter
-        "desc": "ผสมผสานเคมีอาหารกับการตกแต่งหน้าตาอาหารให้อร่อย สวยงาม และคำนวณต้นทุนขาย"
-    },
-    {
-        "title": "ทนายความ / นิติกร / ตำรวจ (Lawyer / Legal Officer / Police)",
-        "primary": ["law", "social", "psychology"],
-        "secondary": ["english", "finance", "tech"], # เสริมภาษาอังกฤษว่าความคดีอินเตอร์, การเงินตรวจคดีฟอกเงิน
-        "desc": "ใช้กฎหมายในการว่าความ ให้คำปรึกษาความถูกต้อง รักษาระเบียบสังคมและเข้าใจพฤติกรรมมนุษย์"
     },
     {
         "title": "นักจิตวิทยา / เจ้าหน้าที่ฝ่ายบุคคล (Psychologist / HR Officer)",
         "primary": ["psychology", "social", "english"],
-        "secondary": ["law", "marketing", "tech"], # เสริมกฎหมายแรงงาน, การตลาดโปรโมตองค์กรดึงคนเก่ง
+        "secondary": ["law", "marketing", "tech"], 
         "desc": "ให้คำปรึกษาปัญหาชีวิต ดูแลสุขภาพจิต สัมภาษณ์คัดเลือกคนเข้าทำงานและบริหารคน"
     },
     {
         "title": "กราฟิกดีไซเนอร์ / ช่างภาพ (Graphic Designer / Photographer)",
         "primary": ["art", "design_3d", "marketing"],
-        "secondary": ["tech", "english", "psychology"], # เสริมคอมใช้โปรแกรมกราฟิก, จิตวิทยาเลือกใช้สีสื่ออารมณ์
+        "secondary": ["tech", "english", "psychology"], 
         "desc": "วาดภาพ วาดการ์ตูน ออกแบบโลโก้ แบนเนอร์ ปรับแต่งรูปภาพและวิดีโอเพื่อการประชาสัมพันธ์"
-    },
-    {
-        "title": "สถาปนิก / นักออกแบบภายใน (Architect / Interior Designer)",
-        "primary": ["design_3d", "art", "math"],
-        "secondary": ["science", "tech", "finance"], # เสริมวิศวะโครงสร้าง/เคมีวัสดุ, การเงินประเมินงบสร้างบ้าน
-        "desc": "เขียนแบบบ้าน ออกแบบอาคาร และตกแต่งห้อง 3 มิติ พร้อมคำนวณพื้นที่และระยะโครงสร้าง"
     },
     {
         "title": "ล่าม / นักแปล / ไกด์นำเที่ยว (Interpreter / Translator / Tour Guide)",
         "primary": ["lang3", "english", "social"],
-        "secondary": ["psychology", "marketing", "art"], # เสริมจิตวิทยาบริการ, การตลาดปิดโปรแกรมทัวร์
+        "secondary": ["psychology", "marketing", "art"], 
         "desc": "แปลภาษา เจรจาติดต่อสื่อสารกับชาวต่างชาติ แนะนำสถานที่ท่องเที่ยวและวัฒนธรรม"
-    },
-    {
-        "title": "นักบิน / สจ๊วต-แอร์โฮสเตส (Pilot / Cabin Crew)",
-        "primary": ["english", "science", "psychology"],
-        "secondary": ["lang3", "social", "tech"], # เสริมภาษาที่ 3 ดูแลผู้โดยสารหลากหลายชาติ, คอมฯ ควบคุมระบบการบิน
-        "desc": "ใช้ภาษาอังกฤษสื่อสารการบิน ให้บริการผู้โดยสาร ดูแลความปลอดภัยและแก้วิกฤตฉุกเฉิน"
     }
 ]
 
@@ -172,7 +172,7 @@ FREELANCE_CAREERS_DB = {
     "finance": {"title": "ที่ปรึกษาการเงินส่วนบุคคลอิสระ / Trader", "desc": "วางแผนการเงิน บัญชี และการลงทุนอิสระให้ลูกค้าบุคคล"},
     "marketing": {"title": "Freelance Social Media Admin & Ad Specialist", "desc": "รับบริหารเพจ วางแผนคอนเทนต์ และยิงโฆษณาออนไลน์ให้แบรนด์ต่างๆ"},
     "lang3": {"title": "ล่ามอิสระ / นักแปลภาษาเฉพาะทาง", "desc": "รับงานล่ามการประชุม ถ่ายทำ หรือแปลซับไตเติลภาพยนตร์"},
-    "design_3d": {"title": "3D Modeler / Freelance Interior Visualizer", "desc": "รับขึ้นโมเดล 3D ออกแบบภาพทัศนียภาพห้องและอาคาร"},
+    "design_3d": {"title": "3D Modeler / Freelance Interior Visualizer / Draftsman", "desc": "รับขึ้นโมเดล 3D ออกแบบภาพทัศนียภาพห้องและโครงสร้างอาคาร"},
     "law": {"title": "ที่ปรึกษากฎหมายอิสระ (Legal Consultant)", "desc": "ให้คำปรึกษาด้านสัญญา กฎหมายธุรกิจ และทรัพย์สินทางปัญญา"},
     "psychology": {"title": "Life Coach / คอนซัลต์พัฒนาบุคลิกภาพ", "desc": "ให้คำปรึกษาการดำรงชีวิต การจัดการความเครียด และการสื่อสารในองค์กร"}
 }
@@ -247,7 +247,7 @@ if all_zero:
 
 else:
     # ---------------------------------------------------------
-    # ฟังก์ชันคำนวณ: คิดคะแนนเฉพาะวิชาที่ตรงกับที่กรอกเข้ามาจริง
+    # ฟังก์ชันคำนวณ: วิชาหลักคิด 85% + วิชาสนับสนุนคิด 15%
     # ---------------------------------------------------------
     def get_ranked_careers_by_subjects(target_subject_ids, require_all_matched=False):
         results = []
@@ -269,7 +269,6 @@ else:
             p_avg = p_score_sum / len(p_match)
             base_fit = p_avg * 0.85
             
-            # วิชาสนับสนุนที่ผู้ใช้กรอกคะแนนเข้ามา (> 0)
             s_match = [s for s in s_subs if scores[s] > 0]
             bonus_fit = 0
             if s_match:
@@ -288,7 +287,7 @@ else:
         return results
 
     # ---------------------------------------------------------
-    # ฟังก์ชันแสดง Card: ดึงเฉพาะวิชาที่ > 0 คะแนน มาโชว์เท่านั้น
+    # ฟังก์ชันแสดง Card
     # ---------------------------------------------------------
     def render_career_card(item, rank_badge=""):
         c = item["details"]
@@ -301,17 +300,16 @@ else:
             
         st.write(f"**รายละเอียดอาชีพ:** {c['desc']}")
         
-        # 1. กรองเฉพาะ "วิชาหลัก" ที่ผู้ใช้กรอกคะแนนเข้ามาจริง (> 0)
         user_p_subs = [s for s in c["primary"] if scores[s] > 0]
         if user_p_subs:
             p_text = ", ".join([f"**{SUBJECT_NAMES[s]}** ({scores[s]} คะแนน)" for s in user_p_subs])
             st.markdown(f"💡 **วิชาหลักที่ใช้ประมวลผล:** {p_text}")
+        else:
+            p_text = ", ".join([f"**{SUBJECT_NAMES[s]}** ({scores[s]} คะแนน)" for s in c["primary"]])
+            st.markdown(f"💡 **วิชาหลักที่ใช้ประมวลผล:** {p_text}")
         
-        # 2. กรองเฉพาะ "วิชาสนับสนุน" ที่ผู้ใช้กรอกคะแนนเข้ามาจริง (> 0)
-        user_s_subs = [s for s in c["secondary"] if scores[s] > 0]
-        if user_s_subs:
-            s_text = ", ".join([f"**{SUBJECT_NAMES[s]}** ({scores[s]} คะแนน)" for s in user_s_subs])
-            st.markdown(f"✨ **วิชาสนับสนุนที่คุณมี:** {s_text}")
+        s_text = ", ".join([f"{SUBJECT_NAMES[s]} ({scores[s]} คะแนน)" for s in c["secondary"]])
+        st.markdown(f"✨ **วิชาสนับสนุน (ทักษะเสริมที่ช่วยให้ทำอาชีพนี้ได้ดีขึ้น):** {s_text}")
         
         st.progress(min(fit / 100.0, 1.0))
         st.caption(f"📊 **ระดับความเข้ากันของทักษะวิชา: {fit}%**")
