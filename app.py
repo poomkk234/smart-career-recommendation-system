@@ -67,7 +67,7 @@ SUBJECT_NAMES = {
 }
 
 # ---------------------------------------------------------
-# 4. ฐานข้อมูลอาชีพมหาชน (รู้จักกันดี + มีวิชาสอดคล้องชัดเจน)
+# 4. ฐานข้อมูลอาชีพมหาชน
 # ---------------------------------------------------------
 CAREERS_DB = [
     {
@@ -156,7 +156,6 @@ CAREERS_DB = [
     }
 ]
 
-# ฐานข้อมูลอาชีพอิสระ
 FREELANCE_CAREERS_DB = {
     "math": {"title": "Tutor สอนคณิตศาสตร์ / Freelance Data Analyst", "desc": "รับสอนพิเศษออนไลน์ หรือรับงานวิเคราะห์ข้อมูลตัวเลขให้องค์กรต่างชาติ"},
     "science": {"title": "นักเขียนบทความวิทยาศาสตร์ / ครีเอเตอร์สาย Sci-Tech", "desc": "สร้างคอนเทนต์วิทยาศาสตร์ พิสูจน์อักษร หรืองานวิเคราะห์ข้อมูลสุขภาพ"},
@@ -172,7 +171,6 @@ FREELANCE_CAREERS_DB = {
     "psychology": {"title": "Life Coach / คอนซัลต์พัฒนาบุคลิกภาพ", "desc": "ให้คำปรึกษาการดำรงชีวิต การจัดการความเครียด และการสื่อสารในองค์กร"}
 }
 
-# ฐานข้อมูลสื่อการเรียนรู้
 LEARNING_RESOURCES_DB = {
     "math": {"title": "คณิตศาสตร์และสถิติ", "resources": ["Khan Academy Math", "Coursera: Calculus & Statistics", "Youtube: พี่ปั้น SmartMathPro"]},
     "science": {"title": "วิทยาศาสตร์และฟิสิกส์", "resources": ["EDX: Intro to Physics", "National Geographic Portal", "Youtube: คลังความรู้วิทยาศาสตร์ สสวท."]},
@@ -242,13 +240,19 @@ if all_zero:
                 st.markdown(f"- 📖 {r}")
 
 else:
-    # --- ฟังก์ชันคำนวณคะแนนความเหมาะสม (กรองวิชาที่มีคะแนน > 0 เท่านั้น) ---
-    def get_ranked_careers_by_subjects(target_subject_ids):
+    # ฟังก์ชันคำนวณคะแนนความเหมาะสม
+    def get_ranked_careers_by_subjects(target_subject_ids, require_both=False):
         results = []
         for career in CAREERS_DB:
-            # ตรวจสอบวิชาหลัก
+            all_career_subs = career["primary"] + career["secondary"]
+            
+            # หากต้องการสอดคล้องทั้ง 2 วิชา ให้เช็กว่ามีทั้ง 2 วิชาในอาชีพนั้นไหม
+            if require_both:
+                matches = [s for s in target_subject_ids if s in all_career_subs]
+                if len(matches) < len(target_subject_ids):
+                    continue
+            
             p_match = [s for s in career["primary"] if s in target_subject_ids]
-            # ตรวจสอบวิชาสนับสนุน
             s_match = [s for s in career["secondary"] if s in target_subject_ids]
             
             if not p_match and not s_match:
@@ -257,7 +261,6 @@ else:
             p_avg = sum([scores[s] for s in p_match]) / len(career["primary"]) if p_match else 0
             s_avg = sum([scores[s] for s in s_match]) / len(career["secondary"]) if s_match else 0
             
-            # วิชาหลักน้ำหนัก 70%, วิชาสนับสนุนน้ำหนัก 30%
             fit_score = round((p_avg * 0.7) + (s_avg * 0.3), 1)
             
             if fit_score > 0:
@@ -290,7 +293,6 @@ else:
         st.caption(f"📊 **ระดับความเข้ากันของทักษะวิชา: {fit}%**")
         st.markdown("---")
 
-    # ดึงเฉพาะวิชาที่ผู้ใช้ใส่คะแนน > 0
     active_sorted = sorted([(k, v) for k, v in scores.items() if v > 0], key=lambda x: x[1], reverse=True)
     num_active = len(active_sorted)
 
@@ -308,15 +310,43 @@ else:
     elif num_active == 2:
         s1_id, s1_score = active_sorted[0]
         s2_id, s2_score = active_sorted[1]
-        st.info(f"💡 **คุณกรอกคะแนน 2 วิชา:** {SUBJECT_NAMES[s1_id]} ({s1_score} คะแนน), {SUBJECT_NAMES[s2_id]} ({s2_score} คะแนน)")
         
-        c_list = get_ranked_careers_by_subjects([s1_id, s2_id])
-        for i, item in enumerate(c_list[:3]):
-            badges = ["🥇 อันดับ 1:", "🥈 อันดับ 2:", "🥉 อันดับ 3:"]
-            render_career_card(item, badges[i])
+        st.info(f"💡 **คุณกรอกคะแนน 2 วิชา:** {SUBJECT_NAMES[s1_id]} ({s1_score} คะแนน) และ {SUBJECT_NAMES[s2_id]} ({s2_score} คะแนน)")
+        
+        # แบ่งแท็บวิเคราะห์ความสอดคล้อง 2 วิชา
+        tab_both, tab_s1, tab_s2 = st.tabs([
+            f"🔗 อาชีพที่สอดคล้องทั้ง 2 วิชา ({SUBJECT_NAMES[s1_id].split(' ')[0]} + {SUBJECT_NAMES[s2_id].split(' ')[0]})",
+            f"🥇 อาชีพเฉพาะทาง: {SUBJECT_NAMES[s1_id]}",
+            f"🥈 อาชีพเฉพาะทาง: {SUBJECT_NAMES[s2_id]}"
+        ])
+
+        with tab_both:
+            both_careers = get_ranked_careers_by_subjects([s1_id, s2_id], require_both=True)
+            if both_careers:
+                st.success(f"✨ **พบ {len(both_careers)} อาชีพที่ใช้ทักษะของทั้ง 2 วิชานี้ร่วมกัน:**")
+                for i, item in enumerate(both_careers[:3]):
+                    badges = ["🥇 อันดับ 1 (เชื่อมโยงที่สุด):", "🥈 อันดับ 2:", "🥉 อันดับ 3:"]
+                    render_career_card(item, badges[i])
+            else:
+                st.warning(f"⚠️ **ไม่พบอาชีพที่ดึง 2 วิชานี้มาใช้เป็นวิชาหลักคู่กันโดยตรง** แต่ระบบขอแนะนำอาชีพที่ใช้ 2 วิชานี้เกื้อกูลกันด้านล่าง:")
+                c_list = get_ranked_careers_by_subjects([s1_id, s2_id], require_both=False)
+                for i, item in enumerate(c_list[:3]):
+                    badges = ["🥇 อันดับ 1:", "🥈 อันดับ 2:", "🥉 อันดับ 3:"]
+                    render_career_card(item, badges[i])
+
+        with tab_s1:
+            s1_careers = get_ranked_careers_by_subjects([s1_id])
+            for i, item in enumerate(s1_careers[:3]):
+                badges = ["🥇 อันดับ 1:", "🥈 อันดับ 2:", "🥉 อันดับ 3:"]
+                render_career_card(item, badges[i])
+
+        with tab_s2:
+            s2_careers = get_ranked_careers_by_subjects([s2_id])
+            for i, item in enumerate(s2_careers[:3]):
+                badges = ["🥇 อันดับ 1:", "🥈 อันดับ 2:", "🥉 อันดับ 3:"]
+                render_career_card(item, badges[i])
 
     else:
-        # กรณีมีคะแนนมากกว่า 2 วิชาขึ้นไป ให้แสดงแบบ 3 แท็บระบบหมวดหมู่ครบถ้วน
         top_3 = active_sorted[:3]
         s1_id, s1_score = top_3[0]
         s2_id, s2_score = top_3[1]
