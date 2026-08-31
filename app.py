@@ -67,97 +67,97 @@ SUBJECT_NAMES = {
 }
 
 # ---------------------------------------------------------
-# 4. ฐานข้อมูลอาชีพ (กำหนดให้ทุกอาชีพมี Primary 3 วิชาหลัก + Secondary วิชาเสริม)
+# 4. ฐานข้อมูลอาชีพ (ปรับปรุงวิชาสนับสนุนให้ตรงกับความเป็นจริง 100%)
 # ---------------------------------------------------------
 CAREERS_DB = [
     {
         "title": "ครู / อาจารย์สอนคณิตศาสตร์ (Mathematics Teacher)",
         "primary": ["math", "psychology", "social"],
-        "secondary": ["tech", "english"],
+        "secondary": ["tech", "english"], # เสริมคอมฯ ทำสื่อการสอน, ภาษาอังกฤษอ่านตำราต่างประเทศ
         "desc": "ถ่ายทอดความรู้คณิตศาสตร์ วางแผนการสอน เข้าใจจิตวิทยาเด็กและพัฒนาการเรียนรู้"
     },
     {
         "title": "นักวิเคราะห์ตัวเลขและสถิติ (Data Analyst)",
         "primary": ["math", "tech", "finance"],
-        "secondary": ["english", "marketing"],
+        "secondary": ["english", "marketing", "psychology"], # เสริมภาษาอังกฤษอ่านชุดข้อมูล, การตลาดวิเคราะห์อินไซต์ลูกค้า
         "desc": "นำตัวเลขและสถิติมาคำนวณ วิเคราะห์แนวโน้มธุรกิจและการเงินเพื่อช่วยการตัดสินใจ"
     },
     {
         "title": "โปรแกรมเมอร์ / นักพัฒนาแอปพลิเคชัน (Programmer / Developer)",
         "primary": ["tech", "math", "english"],
-        "secondary": ["design_3d", "art"],
+        "secondary": ["art", "design_3d", "psychology"], # เสริมศิลปะออกแบบ UI/UX, จิตวิทยาเข้าใจพฤติกรรมผู้ใช้
         "desc": "เขียนโค้ดสร้างเว็บไซต์และแอปพลิเคชัน แก้ปัญหาด้วยตรรกะ และอ่านคู่มือภาษาอังกฤษ"
     },
     {
         "title": "ครีเอเตอร์ / นักการตลาดออนไลน์ (Content Creator & Digital Marketer)",
         "primary": ["marketing", "art", "tech"],
-        "secondary": ["english", "psychology"],
+        "secondary": ["english", "psychology", "finance"], # เสริมภาษาอังกฤษขยายตลาด, จิตวิทยามัดใจคนดู, การเงินวางงบยิงแอด
         "desc": "คิดคอนเทนต์ ตัดต่อวิดีโอ โปรโมตสินค้าผ่านโซเชียลมีเดีย ยิงโฆษณาหาลูกค้า"
     },
     {
         "title": "นักการตลาดระหว่างประเทศ (International Marketer)",
         "primary": ["marketing", "english", "finance"],
-        "secondary": ["lang3", "psychology"],
+        "secondary": ["lang3", "psychology", "social"], # เสริมภาษาที่สาม, สังคมเข้าใจวัฒนธรรมคู่ค้าต่างชาติ
         "desc": "วางแผนกลยุทธ์การตลาดต่างประเทศ สื่อสารเจรจาขยายฐานลูกค้าทั่วโลก"
     },
     {
         "title": "เจ้าของธุรกิจส่วนตัว / แม่ค้าพ่อค้าออนไลน์ (Online Business Owner)",
         "primary": ["marketing", "finance", "psychology"],
-        "secondary": ["tech", "law"],
+        "secondary": ["tech", "law", "english"], # เสริมคอมจัดการระบบขาย, กฎหมายคุ้มครองผู้บริโภค/ภาษี
         "desc": "บริหารร้านค้า จัดการสต็อกสินค้า วางแผนต้นทุนกำไร และสื่อสารมัดใจลูกค้า"
     },
     {
         "title": "นักบัญชี / เจ้าหน้าที่การเงิน (Accountant / Finance Officer)",
         "primary": ["finance", "math", "law"],
-        "secondary": ["tech", "english"],
+        "secondary": ["tech", "english", "marketing"], # เสริมคอมใช้ Excel/ERP, ภาษาอังกฤษดีลงานต่างชาติ
         "desc": "ทำรับ-จ่าย บันทึกบัญชี ตรวจสอบตัวเลขรายรับรายจ่าย ดูแลเรื่องภาษีถูกต้องตามกฎหมาย"
     },
     {
         "title": "แพทย์ / พยาบาล / เภสัชกร (Doctor / Nurse / Pharmacist)",
         "primary": ["science", "psychology", "english"],
-        "secondary": ["math", "tech"],
+        "secondary": ["tech", "math"], # เสริมเครื่องมือแพทย์ไฮเทค, คำนวณโดสยา
         "desc": "ใช้วิทยาศาสตร์ชีวภาพในการตรวจรักษาโรค จ่ายยา และสื่อสารดูแลจิตวิทยาผู้ป่วย"
     },
     {
         "title": "เชฟ / ช่างทำขนม / เจ้าหน้าที่โภชนาการ (Chef / Baker)",
         "primary": ["science", "art", "marketing"],
-        "secondary": ["finance", "english"],
+        "secondary": ["finance", "english", "lang3"], # เสริมการเงินคิดต้นทุนจานอาหาร, ภาษาอังกฤษสื่อสารเมนู inter
         "desc": "ผสมผสานเคมีอาหารกับการตกแต่งหน้าตาอาหารให้อร่อย สวยงาม และคำนวณต้นทุนขาย"
     },
     {
         "title": "ทนายความ / นิติกร / ตำรวจ (Lawyer / Legal Officer / Police)",
         "primary": ["law", "social", "psychology"],
-        "secondary": ["english", "finance"],
+        "secondary": ["english", "finance", "tech"], # เสริมภาษาอังกฤษว่าความคดีอินเตอร์, การเงินตรวจคดีฟอกเงิน
         "desc": "ใช้กฎหมายในการว่าความ ให้คำปรึกษาความถูกต้อง รักษาระเบียบสังคมและเข้าใจพฤติกรรมมนุษย์"
     },
     {
         "title": "นักจิตวิทยา / เจ้าหน้าที่ฝ่ายบุคคล (Psychologist / HR Officer)",
         "primary": ["psychology", "social", "english"],
-        "secondary": ["law", "marketing"],
+        "secondary": ["law", "marketing", "tech"], # เสริมกฎหมายแรงงาน, การตลาดโปรโมตองค์กรดึงคนเก่ง
         "desc": "ให้คำปรึกษาปัญหาชีวิต ดูแลสุขภาพจิต สัมภาษณ์คัดเลือกคนเข้าทำงานและบริหารคน"
     },
     {
         "title": "กราฟิกดีไซเนอร์ / ช่างภาพ (Graphic Designer / Photographer)",
         "primary": ["art", "design_3d", "marketing"],
-        "secondary": ["tech", "english"],
+        "secondary": ["tech", "english", "psychology"], # เสริมคอมใช้โปรแกรมกราฟิก, จิตวิทยาเลือกใช้สีสื่ออารมณ์
         "desc": "วาดภาพ วาดการ์ตูน ออกแบบโลโก้ แบนเนอร์ ปรับแต่งรูปภาพและวิดีโอเพื่อการประชาสัมพันธ์"
     },
     {
         "title": "สถาปนิก / นักออกแบบภายใน (Architect / Interior Designer)",
         "primary": ["design_3d", "art", "math"],
-        "secondary": ["science", "tech"],
+        "secondary": ["science", "tech", "finance"], # เสริมวิศวะโครงสร้าง/เคมีวัสดุ, การเงินประเมินงบสร้างบ้าน
         "desc": "เขียนแบบบ้าน ออกแบบอาคาร และตกแต่งห้อง 3 มิติ พร้อมคำนวณพื้นที่และระยะโครงสร้าง"
     },
     {
         "title": "ล่าม / นักแปล / ไกด์นำเที่ยว (Interpreter / Translator / Tour Guide)",
         "primary": ["lang3", "english", "social"],
-        "secondary": ["psychology", "marketing"],
+        "secondary": ["psychology", "marketing", "art"], # เสริมจิตวิทยาบริการ, การตลาดปิดโปรแกรมทัวร์
         "desc": "แปลภาษา เจรจาติดต่อสื่อสารกับชาวต่างชาติ แนะนำสถานที่ท่องเที่ยวและวัฒนธรรม"
     },
     {
         "title": "นักบิน / สจ๊วต-แอร์โฮสเตส (Pilot / Cabin Crew)",
         "primary": ["english", "science", "psychology"],
-        "secondary": ["lang3", "social"],
+        "secondary": ["lang3", "social", "tech"], # เสริมภาษาที่ 3 ดูแลผู้โดยสารหลากหลายชาติ, คอมฯ ควบคุมระบบการบิน
         "desc": "ใช้ภาษาอังกฤษสื่อสารการบิน ให้บริการผู้โดยสาร ดูแลความปลอดภัยและแก้วิกฤตฉุกเฉิน"
     }
 ]
@@ -247,7 +247,7 @@ if all_zero:
 
 else:
     # ---------------------------------------------------------
-    # ฟังก์ชันคำนวณใหม่: วิชาหลักเป็นเกณฑ์หลัก (85-100%) วิชาสนับสนุนเป็นโบนัสเสริม (0-15%)
+    # ฟังก์ชันคำนวณ: คิดคะแนนเฉพาะวิชาที่ตรงกับที่กรอกเข้ามาจริง
     # ---------------------------------------------------------
     def get_ranked_careers_by_subjects(target_subject_ids, require_all_matched=False):
         results = []
@@ -255,30 +255,26 @@ else:
             p_subs = career["primary"]
             s_subs = career["secondary"]
             
-            # วิชาหลักที่ตรงกับที่กรอกเข้ามา
             p_match = [s for s in p_subs if s in target_subject_ids]
             
-            # ถ้าไม่มีวิชาหลักตรงเลย ให้ข้ามอาชีพนี้ไปทันที
             if not p_match:
                 continue
                 
-            # หากต้องการกรอกกี่วิชา ต้องตรงวิชาหลักครบทั้งหมด (กรณีเลือก 2 วิชาสอดคล้อง)
             if require_all_matched:
                 matched_in_primary = [s for s in target_subject_ids if s in p_subs]
                 if len(matched_in_primary) < len(target_subject_ids):
                     continue
 
-            # 1. คำนวณคะแนนจากวิชาหลัก (น้ำหนักหลัก 85%)
             p_score_sum = sum([scores[s] for s in p_match])
             p_avg = p_score_sum / len(p_match)
             base_fit = p_avg * 0.85
             
-            # 2. คำนวณโบนัสเพิ่มจากวิชาสนับสนุน (โบนัสสูงสุด 15% ช่วยให้ทำงานได้ดีขึ้น)
+            # วิชาสนับสนุนที่ผู้ใช้กรอกคะแนนเข้ามา (> 0)
             s_match = [s for s in s_subs if scores[s] > 0]
             bonus_fit = 0
             if s_match:
                 s_avg = sum([scores[s] for s in s_match]) / len(s_match)
-                bonus_fit = (s_avg / 100.0) * 15.0  # ให้คะแนนโบนัสสูงสุด 15 คะแนน
+                bonus_fit = (s_avg / 100.0) * 15.0
             
             final_score = round(min(base_fit + bonus_fit, 100.0), 1)
             
@@ -291,6 +287,9 @@ else:
         results.sort(key=lambda x: x["fit_score"], reverse=True)
         return results
 
+    # ---------------------------------------------------------
+    # ฟังก์ชันแสดง Card: ดึงเฉพาะวิชาที่ > 0 คะแนน มาโชว์เท่านั้น
+    # ---------------------------------------------------------
     def render_career_card(item, rank_badge=""):
         c = item["details"]
         fit = item["fit_score"]
@@ -302,14 +301,17 @@ else:
             
         st.write(f"**รายละเอียดอาชีพ:** {c['desc']}")
         
-        # แสดงวิชาหลักครบทั้ง 3 วิชาเสมอ
-        p_text = ", ".join([f"**{SUBJECT_NAMES[s]}** ({scores[s]} คะแนน)" for s in c["primary"]])
+        # 1. กรองเฉพาะ "วิชาหลัก" ที่ผู้ใช้กรอกคะแนนเข้ามาจริง (> 0)
+        user_p_subs = [s for s in c["primary"] if scores[s] > 0]
+        if user_p_subs:
+            p_text = ", ".join([f"**{SUBJECT_NAMES[s]}** ({scores[s]} คะแนน)" for s in user_p_subs])
+            st.markdown(f"💡 **วิชาหลักที่ใช้ประมวลผล:** {p_text}")
         
-        # แสดงวิชาสนับสนุนว่าเป็นตัวช่วยทำอาชีพนี้ให้ดีขึ้นอย่างไร
-        s_text = ", ".join([f"{SUBJECT_NAMES[s]} ({scores[s]} คะแนน)" for s in c["secondary"]])
-        
-        st.markdown(f"💡 **วิชาหลักที่ใช้วัดผลหลัก (3 วิชา):** {p_text}")
-        st.markdown(f"✨ **วิชาสนับสนุน (ทักษะเสริมที่ช่วยให้ทำอาชีพนี้ได้ดีขึ้น):** {s_text}")
+        # 2. กรองเฉพาะ "วิชาสนับสนุน" ที่ผู้ใช้กรอกคะแนนเข้ามาจริง (> 0)
+        user_s_subs = [s for s in c["secondary"] if scores[s] > 0]
+        if user_s_subs:
+            s_text = ", ".join([f"**{SUBJECT_NAMES[s]}** ({scores[s]} คะแนน)" for s in user_s_subs])
+            st.markdown(f"✨ **วิชาสนับสนุนที่คุณมี:** {s_text}")
         
         st.progress(min(fit / 100.0, 1.0))
         st.caption(f"📊 **ระดับความเข้ากันของทักษะวิชา: {fit}%**")
